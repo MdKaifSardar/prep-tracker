@@ -1,0 +1,270 @@
+{
+  "historicalLogs": [
+    {
+      "date": "2026-09-01",
+      "topic": "DSA",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-02",
+      "topic": "DSA",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-02",
+      "topic": "JavaScript",
+      "count": 5,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-04",
+      "topic": "DSA",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-04",
+      "topic": "React",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-05",
+      "topic": "DSA",
+      "count": 6,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-05",
+      "topic": "JavaScript",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-05",
+      "topic": "React",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-08",
+      "topic": "DSA",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-08",
+      "topic": "JavaScript",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-09",
+      "topic": "DSA",
+      "count": 5,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-09",
+      "topic": "JavaScript",
+      "count": 6,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-09",
+      "topic": "React",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-10",
+      "topic": "DSA",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-11",
+      "topic": "JavaScript",
+      "count": 7,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-11",
+      "topic": "React",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-12",
+      "topic": "DSA",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-14",
+      "topic": "DSA",
+      "count": 6,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-14",
+      "topic": "JavaScript",
+      "count": 5,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-15",
+      "topic": "DSA",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-15",
+      "topic": "JavaScript",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-15",
+      "topic": "React",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-16",
+      "topic": "React",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-17",
+      "topic": "DSA",
+      "count": 5,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-18",
+      "topic": "DSA",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-18",
+      "topic": "JavaScript",
+      "count": 8,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-18",
+      "topic": "React",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-20",
+      "topic": "DSA",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-20",
+      "topic": "JavaScript",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-21",
+      "topic": "DSA",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-21",
+      "topic": "React",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-22",
+      "topic": "DSA",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-22",
+      "topic": "JavaScript",
+      "count": 6,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-22",
+      "topic": "React",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-23",
+      "topic": "JavaScript",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-24",
+      "topic": "JavaScript",
+      "count": 3,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-24",
+      "topic": "React",
+      "count": 2,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-25",
+      "topic": "DSA",
+      "count": 1,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-25",
+      "topic": "JavaScript",
+      "count": 4,
+      "source": "Historical Backfill"
+    },
+    {
+      "date": "2026-09-25",
+      "topic": "React",
+      "count": 3,
+      "source": "Historical Backfill"
+    }
+  ],
+  "dailyLogs": [
+    {
+      "date": "2026-09-30",
+      "topic": "DSA",
+      "problems": "58-58",
+      "count": 1
+    },
+    {
+      "date": "2026-09-30",
+      "topic": "JavaScript",
+      "problems": "62-63",
+      "count": 2
+    },
+    {
+      "date": "2026-10-01",
+      "topic": "DSA",
+      "problems": "59-60",
+      "count": 2
+    },
+    {
+      "date": "2026-10-02",
+      "topic": "DSA",
+      "problems": "61-61",
+      "count": 1
+    }
+  ]
+}
