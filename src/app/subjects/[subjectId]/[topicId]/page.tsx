@@ -30,6 +30,7 @@ import {
   Check,
   BookOpen,
   List,
+  X,
 } from "lucide-react";
 
 export default function DedicatedTopicPage() {
@@ -53,36 +54,78 @@ export default function DedicatedTopicPage() {
   const [filterStatus, setFilterStatus] = useState<"ALL" | "UNCOMPLETED" | "COMPLETED">("ALL");
   const [isSyncing, setIsSyncing] = useState(false);
 
-  // Collapsible Dual Sidebar States
+  // Collapsible Dual Sidebar States (Desktop)
   const [isLeftCollapsed, setIsLeftCollapsed] = useState(false);
   const [isRightCollapsed, setIsRightCollapsed] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState<string>("");
+
+  // Responsive Mobile Drawer States
+  const [isMobileLeftOpen, setIsMobileLeftOpen] = useState(false);
+  const [isMobileRightOpen, setIsMobileRightOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     try {
       if (localStorage.getItem("sidebar_left_collapsed") === "true") {
         setIsLeftCollapsed(true);
       }
-      if (localStorage.getItem("sidebar_right_collapsed") === "true" || window.innerWidth < 1280) {
+      if (localStorage.getItem("sidebar_right_collapsed") === "true") {
         setIsRightCollapsed(true);
       }
     } catch (_) {}
   }, []);
 
+  // Responsive breakpoint listener
+  useEffect(() => {
+    const handleResize = () => {
+      const desktop = window.innerWidth >= 1200;
+      setIsDesktop(desktop);
+      if (desktop) {
+        setIsMobileLeftOpen(false);
+        setIsMobileRightOpen(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close drawer on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileLeftOpen(false);
+        setIsMobileRightOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const toggleLeftSidebar = () => {
-    setIsLeftCollapsed((prev) => {
-      const next = !prev;
-      localStorage.setItem("sidebar_left_collapsed", String(next));
-      return next;
-    });
+    if (isDesktop) {
+      setIsLeftCollapsed((prev) => {
+        const next = !prev;
+        localStorage.setItem("sidebar_left_collapsed", String(next));
+        return next;
+      });
+    } else {
+      setIsMobileLeftOpen((prev) => !prev);
+      setIsMobileRightOpen(false);
+    }
   };
 
   const toggleRightSidebar = () => {
-    setIsRightCollapsed((prev) => {
-      const next = !prev;
-      localStorage.setItem("sidebar_right_collapsed", String(next));
-      return next;
-    });
+    if (isDesktop) {
+      setIsRightCollapsed((prev) => {
+        const next = !prev;
+        localStorage.setItem("sidebar_right_collapsed", String(next));
+        return next;
+      });
+    } else {
+      setIsMobileRightOpen((prev) => !prev);
+      setIsMobileLeftOpen(false);
+    }
   };
 
   // Firestore Realtime Listener: Exactly 1 single document read per subject!
@@ -234,104 +277,332 @@ export default function DedicatedTopicPage() {
   const doneCount = topicItems.filter((i) => completedIds.has(i.id)).length;
   const progressPercent = topicItems.length > 0 ? Math.round((doneCount / topicItems.length) * 100) : 0;
 
+  // DRY Topics Navigator (Used in Desktop Left Sidebar & Mobile Drawer)
+  const renderTopicsNav = (onItemClick?: () => void) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+      {manifest.topics.map((t) => {
+        const isActive = t.id === topicId;
+        const topicItemsTotal = manifest.items.filter((i) => i.topicId === t.id);
+        const topicDone = topicItemsTotal.filter((i) => completedIds.has(i.id)).length;
+        const isAllDone = topicItemsTotal.length > 0 && topicDone === topicItemsTotal.length;
+
+        return (
+          <Link
+            key={t.id}
+            href={`/subjects/${subjectId}/${t.id}`}
+            onClick={() => onItemClick && onItemClick()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "0.5rem",
+              padding: "0.5rem 0.65rem",
+              borderRadius: "6px",
+              textDecoration: "none",
+              fontSize: "0.82rem",
+              fontWeight: isActive ? 700 : 500,
+              color: isActive ? "#fff" : "var(--text-secondary)",
+              background: isActive ? "rgba(99, 102, 241, 0.15)" : "transparent",
+              borderLeft: isActive ? "3px solid var(--accent-primary)" : "3px solid transparent",
+              transition: "all 0.15s ease",
+            }}
+          >
+            <span style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              flex: 1,
+            }}>
+              {t.name}
+            </span>
+
+            <span style={{
+              fontSize: "0.72rem",
+              color: isAllDone ? "var(--accent-emerald)" : "var(--text-muted)",
+              fontFamily: "var(--font-mono)",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.2rem",
+              flexShrink: 0,
+            }}>
+              {isAllDone ? (
+                <Check size={13} style={{ color: "var(--accent-emerald)" }} />
+              ) : (
+                `${topicDone}/${topicItemsTotal.length}`
+              )}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+
+  // DRY In-Page Outline (Used in Desktop Right Sidebar & Mobile Drawer)
+  const renderOutlineNav = (onItemClick?: () => void) => (
+    <nav style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
+      {topicItems.map((item) => {
+        const targetId = isHandbook ? `ref-${item.id}` : `q-${item.order}`;
+        const isActive = activeSectionId === targetId;
+        const isDone = completedIds.has(item.id);
+
+        return (
+          <a
+            key={item.id}
+            href={`#${targetId}`}
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById(targetId);
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+                setActiveSectionId(targetId);
+              }
+              if (onItemClick) onItemClick();
+            }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.45rem",
+              padding: "0.4rem 0.5rem",
+              borderRadius: "4px",
+              fontSize: "0.78rem",
+              textDecoration: "none",
+              color: isActive ? "var(--accent-cyan)" : isDone ? "#34d399" : "var(--text-secondary)",
+              background: isActive ? "rgba(6, 182, 212, 0.1)" : "transparent",
+              borderLeft: isActive ? "2px solid var(--accent-cyan)" : "2px solid transparent",
+              fontWeight: isActive ? 700 : 400,
+              transition: "all 0.15s ease",
+              lineHeight: 1.4,
+            }}
+          >
+            <span style={{
+              fontSize: "0.72rem",
+              fontFamily: "var(--font-mono)",
+              color: isActive ? "var(--accent-cyan)" : "var(--text-muted)",
+              flexShrink: 0,
+            }}>
+              {isHandbook ? "•" : `#${item.order}`}
+            </span>
+            <span style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              flex: 1,
+            }}>
+              {item.title}
+            </span>
+            {isDone && (
+              <Check size={12} style={{ color: "#34d399", flexShrink: 0 }} />
+            )}
+          </a>
+        );
+      })}
+    </nav>
+  );
+
   return (
     <div style={{ minHeight: "100vh", paddingBottom: "5rem", background: "var(--bg-app)" }}>
+      {/* Off-Canvas Backdrop (Mobile & Tablet) */}
+      {(isMobileLeftOpen || isMobileRightOpen) && (
+        <div
+          className="drawer-backdrop"
+          onClick={() => {
+            setIsMobileLeftOpen(false);
+            setIsMobileRightOpen(false);
+          }}
+        />
+      )}
+
+      {/* Mobile Off-Canvas Drawer: Topics */}
+      {isMobileLeftOpen && (
+        <aside className="mobile-drawer mobile-drawer-left sidebar-scroll" style={{ padding: "1.25rem 1rem" }}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingBottom: "0.85rem",
+            marginBottom: "0.75rem",
+            borderBottom: "1px solid var(--border-subtle)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+              <BookOpen size={16} style={{ color: "var(--accent-primary)" }} />
+              <strong style={{ fontSize: "0.88rem", color: "var(--text-primary)" }}>
+                {manifest.name}
+              </strong>
+            </div>
+            <button
+              onClick={() => setIsMobileLeftOpen(false)}
+              style={{
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "none",
+                borderRadius: "4px",
+                color: "var(--text-secondary)",
+                padding: "0.3rem",
+                cursor: "pointer",
+                display: "flex",
+              }}
+              title="Close drawer"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div style={{ flex: 1, overflowY: "auto" }}>
+            {renderTopicsNav(() => setIsMobileLeftOpen(false))}
+          </div>
+        </aside>
+      )}
+
+      {/* Mobile Off-Canvas Drawer: In-Page Outline */}
+      {isMobileRightOpen && (
+        <aside className="mobile-drawer mobile-drawer-right sidebar-scroll" style={{ padding: "1.25rem 1rem" }}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingBottom: "0.85rem",
+            marginBottom: "0.75rem",
+            borderBottom: "1px solid var(--border-subtle)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+              <List size={16} style={{ color: "var(--accent-cyan)" }} />
+              <strong style={{ fontSize: "0.88rem", color: "var(--text-primary)" }}>
+                On This Page ({topicItems.length})
+              </strong>
+            </div>
+            <button
+              onClick={() => setIsMobileRightOpen(false)}
+              style={{
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "none",
+                borderRadius: "4px",
+                color: "var(--text-secondary)",
+                padding: "0.3rem",
+                cursor: "pointer",
+                display: "flex",
+              }}
+              title="Close outline"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div style={{ flex: 1, overflowY: "auto" }}>
+            {renderOutlineNav(() => setIsMobileRightOpen(false))}
+          </div>
+        </aside>
+      )}
+
       {/* Top Navbar */}
       <div style={{
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "rgba(8, 11, 17, 0.92)",
+        background: "rgba(8, 11, 17, 0.95)",
         backdropFilter: "blur(16px)",
         borderBottom: "1px solid var(--border-subtle)",
-        padding: "0.85rem 0",
+        padding: "0.6rem 0",
       }}>
-        <div className="container" style={{
+        <div style={{
+          maxWidth: "1650px",
+          margin: "0 auto",
+          padding: "0 1rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "1rem",
+          gap: "0.5rem",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+          {/* Left section: Topics toggle + breadcrumbs */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", minWidth: 0 }}>
             <button
               onClick={toggleLeftSidebar}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.4rem",
-                background: isLeftCollapsed ? "rgba(255,255,255,0.06)" : "rgba(99, 102, 241, 0.15)",
-                border: isLeftCollapsed ? "1px solid var(--border-subtle)" : "1px solid rgba(99, 102, 241, 0.4)",
-                color: isLeftCollapsed ? "var(--text-secondary)" : "#fff",
-                padding: "0.3rem 0.65rem",
+                gap: "0.35rem",
+                background: isDesktop && !isLeftCollapsed ? "rgba(99, 102, 241, 0.15)" : "rgba(255,255,255,0.06)",
+                border: isDesktop && !isLeftCollapsed ? "1px solid rgba(99, 102, 241, 0.4)" : "1px solid var(--border-subtle)",
+                color: isDesktop && !isLeftCollapsed ? "#fff" : "var(--text-secondary)",
+                padding: "0.32rem 0.6rem",
                 borderRadius: "var(--radius-sm)",
                 fontSize: "0.8rem",
                 fontWeight: 600,
                 cursor: "pointer",
-                transition: "all 0.15s ease",
+                flexShrink: 0,
               }}
-              title={isLeftCollapsed ? "Open Topics Sidebar" : "Collapse Topics Sidebar"}
+              title={isDesktop ? (isLeftCollapsed ? "Open Topics Sidebar" : "Collapse Topics Sidebar") : "Browse Topics"}
             >
-              {isLeftCollapsed ? <PanelLeftOpen size={15} /> : <PanelLeftClose size={15} />}
+              <BookOpen size={14} />
               <span>Topics</span>
             </button>
 
             <Link
               href="/"
+              className="hide-on-mobile"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.4rem",
+                gap: "0.35rem",
                 color: "var(--text-muted)",
-                fontSize: "0.85rem",
+                fontSize: "0.82rem",
                 textDecoration: "none",
+                flexShrink: 0,
               }}
             >
-              <ArrowLeft size={15} /> Dashboard
+              <ArrowLeft size={13} /> Dashboard
             </Link>
-            <span style={{ color: "var(--border-subtle)" }}>/</span>
+            <span className="hide-on-mobile" style={{ color: "var(--border-subtle)" }}>/</span>
+
             <Link
               href={`/subjects/${subjectId}`}
               style={{
                 color: "var(--accent-primary)",
-                fontSize: "0.85rem",
+                fontSize: "0.82rem",
                 textDecoration: "none",
                 fontWeight: 600,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
+              title="Return to Master Index"
             >
-              📋 {isHandbook ? "Handbook Index" : "Master Index"}
+              <span className="hide-on-mobile">📋 {isHandbook ? "Handbook Index" : "Master Index"}</span>
+              <span className="show-on-mobile">📋 {manifest.name.replace(/Interview.*/i, "").trim()}</span>
             </Link>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          {/* Right section: Progress + Outline toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0 }}>
             {isHandbook ? (
               <button
                 onClick={() => handleToggleItem(`chapter_${currentTopic.id}`, currentTopic.name)}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.45rem",
-                  padding: "0.35rem 0.85rem",
+                  gap: "0.35rem",
+                  padding: "0.3rem 0.65rem",
                   borderRadius: "var(--radius-sm)",
-                  fontSize: "0.82rem",
+                  fontSize: "0.78rem",
                   fontWeight: 600,
                   cursor: "pointer",
                   border: isChapterRevised ? "1px solid #10b981" : "1px solid rgba(255,255,255,0.15)",
                   background: isChapterRevised ? "rgba(16, 185, 129, 0.15)" : "rgba(255, 255, 255, 0.05)",
                   color: isChapterRevised ? "#34d399" : "var(--text-primary)",
+                  whiteSpace: "nowrap",
                 }}
               >
-                {isChapterRevised ? <CheckSquare size={16} /> : <Square size={16} />}
-                <span>{isChapterRevised ? "Chapter Revised ✓" : "Mark Chapter as Revised"}</span>
+                {isChapterRevised ? <CheckSquare size={14} /> : <Square size={14} />}
+                <span className="hide-on-mobile">{isChapterRevised ? "Chapter Revised ✓" : "Mark as Revised"}</span>
+                <span className="show-on-mobile">{isChapterRevised ? "Revised ✓" : "Revise"}</span>
               </button>
             ) : (
-              <>
-                <span style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
-                  Topic: <strong style={{ color: "var(--accent-emerald)" }}>{doneCount}</strong> / {topicItems.length} ({progressPercent}%)
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
+                  <strong style={{ color: "var(--accent-emerald)" }}>{doneCount}</strong>/{topicItems.length}
+                  <span className="hide-on-mobile"> ({progressPercent}%)</span>
                 </span>
-                <div style={{
-                  width: "90px",
-                  height: "6px",
+                <div className="hide-on-mobile" style={{
+                  width: "80px",
+                  height: "5px",
                   background: "rgba(255, 255, 255, 0.1)",
                   borderRadius: "4px",
                   overflow: "hidden",
@@ -343,12 +614,12 @@ export default function DedicatedTopicPage() {
                     transition: "width 0.3s ease",
                   }} />
                 </div>
-              </>
+              </div>
             )}
 
             {isSyncing && (
-              <span style={{ fontSize: "0.75rem", color: "var(--accent-primary)" }}>
-                ● Syncing...
+              <span style={{ fontSize: "0.7rem", color: "var(--accent-primary)" }}>
+                ●
               </span>
             )}
 
@@ -357,21 +628,21 @@ export default function DedicatedTopicPage() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.4rem",
-                background: isRightCollapsed ? "rgba(255,255,255,0.06)" : "rgba(6, 182, 212, 0.15)",
-                border: isRightCollapsed ? "1px solid var(--border-subtle)" : "1px solid rgba(6, 182, 212, 0.4)",
-                color: isRightCollapsed ? "var(--text-secondary)" : "#fff",
-                padding: "0.3rem 0.65rem",
+                gap: "0.35rem",
+                background: isDesktop && !isRightCollapsed ? "rgba(6, 182, 212, 0.15)" : "rgba(255,255,255,0.06)",
+                border: isDesktop && !isRightCollapsed ? "1px solid rgba(6, 182, 212, 0.4)" : "1px solid var(--border-subtle)",
+                color: isDesktop && !isRightCollapsed ? "#fff" : "var(--text-secondary)",
+                padding: "0.32rem 0.6rem",
                 borderRadius: "var(--radius-sm)",
                 fontSize: "0.8rem",
                 fontWeight: 600,
                 cursor: "pointer",
-                transition: "all 0.15s ease",
+                flexShrink: 0,
               }}
-              title={isRightCollapsed ? "Open In-Page Outline" : "Collapse Outline"}
+              title={isDesktop ? (isRightCollapsed ? "Open Outline" : "Collapse Outline") : "On This Page"}
             >
+              <List size={14} />
               <span>Outline</span>
-              {isRightCollapsed ? <PanelRightOpen size={15} /> : <PanelRightClose size={15} />}
             </button>
           </div>
         </div>
@@ -386,9 +657,9 @@ export default function DedicatedTopicPage() {
         alignItems: "flex-start",
       }}>
         {/* ========================================================= */}
-        {/* 1. LEFT SIDEBAR: MASTER TOPICS INDEX                      */}
+        {/* 1. DESKTOP LEFT SIDEBAR: MASTER TOPICS INDEX (>= 1200px)  */}
         {/* ========================================================= */}
-        {!isLeftCollapsed && (
+        {isDesktop && !isLeftCollapsed && (
           <aside
             className="sidebar-scroll"
             aria-label="Topics Navigation"
@@ -396,8 +667,8 @@ export default function DedicatedTopicPage() {
               width: "270px",
               minWidth: "270px",
               position: "sticky",
-              top: "57px",
-              height: "calc(100vh - 57px)",
+              top: "51px",
+              height: "calc(100vh - 51px)",
               overflowY: "auto",
               borderRight: "1px solid var(--border-subtle)",
               background: "rgba(10, 15, 29, 0.5)",
@@ -440,61 +711,7 @@ export default function DedicatedTopicPage() {
               </button>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-              {manifest.topics.map((t) => {
-                const isActive = t.id === topicId;
-                const topicItemsTotal = manifest.items.filter((i) => i.topicId === t.id);
-                const topicDone = topicItemsTotal.filter((i) => completedIds.has(i.id)).length;
-                const isAllDone = topicItemsTotal.length > 0 && topicDone === topicItemsTotal.length;
-
-                return (
-                  <Link
-                    key={t.id}
-                    href={`/subjects/${subjectId}/${t.id}`}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: "0.5rem",
-                      padding: "0.45rem 0.65rem",
-                      borderRadius: "6px",
-                      textDecoration: "none",
-                      fontSize: "0.82rem",
-                      fontWeight: isActive ? 700 : 500,
-                      color: isActive ? "#fff" : "var(--text-secondary)",
-                      background: isActive ? "rgba(99, 102, 241, 0.15)" : "transparent",
-                      borderLeft: isActive ? "3px solid var(--accent-primary)" : "3px solid transparent",
-                      transition: "all 0.15s ease",
-                    }}
-                  >
-                    <span style={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      flex: 1,
-                    }}>
-                      {t.name}
-                    </span>
-
-                    <span style={{
-                      fontSize: "0.72rem",
-                      color: isAllDone ? "var(--accent-emerald)" : "var(--text-muted)",
-                      fontFamily: "var(--font-mono)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.2rem",
-                      flexShrink: 0,
-                    }}>
-                      {isAllDone ? (
-                        <Check size={13} style={{ color: "var(--accent-emerald)" }} />
-                      ) : (
-                        `${topicDone}/${topicItemsTotal.length}`
-                      )}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
+            {renderTopicsNav()}
           </aside>
         )}
 
@@ -504,8 +721,8 @@ export default function DedicatedTopicPage() {
         <main style={{
           flex: 1,
           minWidth: 0,
-          padding: "2rem 2.5rem 4rem 2.5rem",
-          maxWidth: isLeftCollapsed && isRightCollapsed ? "1060px" : "900px",
+          padding: isDesktop ? "2rem 2.5rem 4rem 2.5rem" : "1.25rem 1rem 4rem 1rem",
+          maxWidth: isDesktop ? (isLeftCollapsed && isRightCollapsed ? "1060px" : "900px") : "100%",
           margin: "0 auto",
           transition: "max-width 0.25s ease",
         }}>
@@ -576,15 +793,15 @@ export default function DedicatedTopicPage() {
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: "0.75rem",
+            gap: "0.6rem",
             marginBottom: "2rem",
             padding: "0.6rem 0.85rem",
             background: "rgba(15, 23, 42, 0.4)",
             border: "1px solid var(--border-subtle)",
             borderRadius: "var(--radius-md)",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-              <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginRight: "0.2rem" }}>Filter:</span>
+            <div className="filter-scroll-row" style={{ flex: 1 }}>
+              <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginRight: "0.2rem", flexShrink: 0 }}>Filter:</span>
               <button
                 onClick={() => setFilterPriority("ALL")}
                 style={{
@@ -594,6 +811,7 @@ export default function DedicatedTopicPage() {
                   borderRadius: "4px",
                   fontSize: "0.78rem",
                   fontWeight: 600,
+                  flexShrink: 0,
                 }}
               >
                 All ({topicItems.length})
@@ -608,6 +826,7 @@ export default function DedicatedTopicPage() {
                   borderRadius: "4px",
                   fontSize: "0.78rem",
                   fontWeight: 600,
+                  flexShrink: 0,
                 }}
               >
                 🔴 P0 Only ({topicItems.filter((q) => q.priority === "P0").length})
@@ -621,13 +840,14 @@ export default function DedicatedTopicPage() {
                   borderRadius: "4px",
                   fontSize: "0.78rem",
                   fontWeight: 600,
+                  flexShrink: 0,
                 }}
               >
                 Unsolved ({topicItems.length - doneCount})
               </button>
             </div>
 
-            <span style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>
+            <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
               Showing {displayedItems.length} of {topicItems.length} items
             </span>
           </div>
@@ -637,7 +857,7 @@ export default function DedicatedTopicPage() {
         {/* ARCHETYPE A: INTERVIEW Q&A (Full Content & Syntax Highlighting) */}
         {/* ------------------------------------------------------------- */}
         {!isHandbook && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", marginBottom: "3.5rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem", marginBottom: "3.5rem" }}>
             {displayedItems.map((q) => {
               const isDone = completedIds.has(q.id);
 
@@ -649,12 +869,12 @@ export default function DedicatedTopicPage() {
                     background: isDone ? "rgba(16, 185, 129, 0.025)" : "rgba(15, 23, 42, 0.45)",
                     border: `1px solid ${isDone ? "rgba(16, 185, 129, 0.3)" : "var(--border-subtle)"}`,
                     borderRadius: "var(--radius-md)",
-                    padding: "1.5rem",
+                    padding: isDesktop ? "1.5rem" : "1.1rem 0.9rem",
                     transition: "all 0.15s ease",
                   }}
                 >
                   {/* Question Header: ### QNum. 🔴 P0 [Type] Title */}
-                  <div style={{ display: "flex", alignItems: "flex-start", gap: "0.85rem", marginBottom: "1rem" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem", marginBottom: "1rem" }}>
                     <button
                       onClick={() => handleToggleItem(q.id, q.title, q.order)}
                       style={{
@@ -662,10 +882,13 @@ export default function DedicatedTopicPage() {
                         border: "none",
                         cursor: "pointer",
                         color: isDone ? "#34d399" : "var(--text-muted)",
-                        paddingTop: "0.2rem",
+                        minWidth: "36px",
+                        minHeight: "36px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        padding: "0.2rem",
+                        flexShrink: 0,
                       }}
                       title={isDone ? "Mark as uncompleted" : "Mark as completed (auto-logs to streak)"}
                     >
@@ -827,12 +1050,12 @@ export default function DedicatedTopicPage() {
                   background: "rgba(15, 23, 42, 0.45)",
                   border: "1px solid var(--border-subtle)",
                   borderRadius: "var(--radius-md)",
-                  padding: "1.5rem",
+                  padding: isDesktop ? "1.5rem" : "1.1rem 0.9rem",
                 }}
               >
                 {/* Reference Block Title */}
                 <h3 style={{
-                  fontSize: "1.2rem",
+                  fontSize: isDesktop ? "1.2rem" : "1.05rem",
                   fontWeight: 700,
                   color: "var(--text-primary)",
                   marginBottom: "0.75rem",
@@ -887,17 +1110,25 @@ export default function DedicatedTopicPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          gap: "0.5rem",
           paddingTop: "1.5rem",
           borderTop: "1px solid var(--border-subtle)",
-          fontSize: "0.88rem",
+          fontSize: "0.85rem",
           color: "var(--text-muted)",
         }}>
           {prevTopic ? (
             <Link
               href={`/subjects/${subjectId}/${prevTopic.id}`}
-              style={{ color: "var(--text-secondary)", textDecoration: "none", fontWeight: 600 }}
+              style={{
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.3rem",
+              }}
             >
-              ⬅️ Previous: {prevTopic.name.replace(/^\d+\.\s*/, "")}
+              ⬅️ <span className="hide-on-mobile">Prev: </span>{prevTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)}
             </Link>
           ) : (
             <span style={{ color: "var(--text-muted)" }}>⏮️ (start)</span>
@@ -905,7 +1136,15 @@ export default function DedicatedTopicPage() {
 
           <Link
             href={`/subjects/${subjectId}`}
-            style={{ color: "var(--accent-primary)", textDecoration: "none", fontWeight: 700 }}
+            style={{
+              color: "var(--accent-primary)",
+              textDecoration: "none",
+              fontWeight: 700,
+              padding: "0.25rem 0.5rem",
+              borderRadius: "4px",
+              background: "rgba(99, 102, 241, 0.08)",
+              fontSize: "0.8rem",
+            }}
           >
             [📋 Index]
           </Link>
@@ -913,9 +1152,16 @@ export default function DedicatedTopicPage() {
           {nextTopic ? (
             <Link
               href={`/subjects/${subjectId}/${nextTopic.id}`}
-              style={{ color: "var(--text-secondary)", textDecoration: "none", fontWeight: 600 }}
+              style={{
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.3rem",
+              }}
             >
-              Next: {nextTopic.name.replace(/^\d+\.\s*/, "")} ➡️
+              <span className="hide-on-mobile">Next: </span>{nextTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)} ➡️
             </Link>
           ) : (
             <span style={{ color: "var(--text-muted)" }}>(end) ⏭️</span>
@@ -924,9 +1170,9 @@ export default function DedicatedTopicPage() {
       </main>
 
       {/* ========================================================= */}
-      {/* 3. RIGHT SIDEBAR: IN-PAGE OUTLINE (ACTIVE SCROLLSPY)       */}
+      {/* 3. DESKTOP RIGHT SIDEBAR: IN-PAGE OUTLINE (>= 1200px)     */}
       {/* ========================================================= */}
-      {!isRightCollapsed && (
+      {isDesktop && !isRightCollapsed && (
         <aside
           className="sidebar-scroll"
           aria-label="In-page outline"
@@ -934,8 +1180,8 @@ export default function DedicatedTopicPage() {
             width: "260px",
             minWidth: "260px",
             position: "sticky",
-            top: "57px",
-            height: "calc(100vh - 57px)",
+            top: "51px",
+            height: "calc(100vh - 51px)",
             overflowY: "auto",
             borderLeft: "1px solid var(--border-subtle)",
             background: "rgba(10, 15, 29, 0.5)",
@@ -954,7 +1200,7 @@ export default function DedicatedTopicPage() {
             marginBottom: "0.5rem",
             borderBottom: "1px solid var(--border-subtle)",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
               <List size={15} style={{ color: "var(--accent-cyan)" }} />
               <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--text-muted)" }}>
                 On This Page ({topicItems.length})
@@ -978,63 +1224,7 @@ export default function DedicatedTopicPage() {
             </button>
           </div>
 
-          <nav style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-            {topicItems.map((item) => {
-              const targetId = isHandbook ? `ref-${item.id}` : `q-${item.order}`;
-              const isActive = activeSectionId === targetId;
-              const isDone = completedIds.has(item.id);
-
-              return (
-                <a
-                  key={item.id}
-                  href={`#${targetId}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const el = document.getElementById(targetId);
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                      setActiveSectionId(targetId);
-                    }
-                  }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.45rem",
-                    padding: "0.35rem 0.5rem",
-                    borderRadius: "4px",
-                    fontSize: "0.78rem",
-                    textDecoration: "none",
-                    color: isActive ? "var(--accent-cyan)" : isDone ? "#34d399" : "var(--text-secondary)",
-                    background: isActive ? "rgba(6, 182, 212, 0.1)" : "transparent",
-                    borderLeft: isActive ? "2px solid var(--accent-cyan)" : "2px solid transparent",
-                    fontWeight: isActive ? 700 : 400,
-                    transition: "all 0.15s ease",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  <span style={{
-                    fontSize: "0.72rem",
-                    fontFamily: "var(--font-mono)",
-                    color: isActive ? "var(--accent-cyan)" : "var(--text-muted)",
-                    flexShrink: 0,
-                  }}>
-                    {isHandbook ? "•" : `#${item.order}`}
-                  </span>
-                  <span style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    flex: 1,
-                  }}>
-                    {item.title}
-                  </span>
-                  {isDone && (
-                    <Check size={12} style={{ color: "#34d399", flexShrink: 0 }} />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
+          {renderOutlineNav()}
         </aside>
       )}
     </div>

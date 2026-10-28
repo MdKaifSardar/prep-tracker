@@ -105,6 +105,7 @@ export default function CodeBlock({ code, language = "javascript", title }: Code
         border: "1px solid rgba(255, 255, 255, 0.1)",
         background: "#060910",
         overflow: "hidden",
+        maxWidth: "100%",
         marginTop: "0.85rem",
         marginBottom: "1rem",
       }}

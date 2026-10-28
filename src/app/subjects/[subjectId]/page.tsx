@@ -107,13 +107,14 @@ export default function SubjectMasterIndexPage() {
             <ArrowLeft size={16} /> Back to Dashboard
           </Link>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <span style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
-              {isHandbook ? "Chapters Revised:" : "Completed Questions:"} <strong style={{ color: "var(--accent-emerald)" }}>{completedCount}</strong> / {totalItems} ({progressPercent}%)
+          <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+            <span style={{ fontSize: "0.82rem", color: "var(--text-muted)", whiteSpace: "nowrap" }}>
+              <span className="hide-on-mobile">{isHandbook ? "Chapters Revised: " : "Progress: "}</span>
+              <strong style={{ color: "var(--accent-emerald)" }}>{completedCount}</strong> / {totalItems} ({progressPercent}%)
             </span>
-            <div style={{
-              width: "120px",
-              height: "7px",
+            <div className="hide-on-mobile" style={{
+              width: "110px",
+              height: "6px",
               background: "rgba(255, 255, 255, 0.1)",
               borderRadius: "4px",
               overflow: "hidden",
@@ -129,7 +130,7 @@ export default function SubjectMasterIndexPage() {
         </div>
       </div>
 
-      <main className="container" style={{ marginTop: "2.5rem", maxWidth: "980px" }}>
+      <main className="container" style={{ marginTop: "2rem", maxWidth: "980px" }}>
         {/* Document Header */}
         <header style={{ marginBottom: "2rem", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
@@ -148,7 +149,7 @@ export default function SubjectMasterIndexPage() {
           </div>
 
           <h1 style={{
-            fontSize: "2rem",
+            fontSize: "clamp(1.5rem, 4vw, 2rem)",
             fontWeight: 800,
             letterSpacing: "-0.03em",
             marginBottom: "0.75rem",
@@ -156,7 +157,7 @@ export default function SubjectMasterIndexPage() {
           }}>
             # {manifest.name} ({totalItems} {isHandbook ? "Chapters" : "Questions"})
           </h1>
-          <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: 1.6, marginBottom: "1rem" }}>
+          <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem", lineHeight: 1.6, marginBottom: "1rem" }}>
             {manifest.description}
           </p>
 
@@ -170,22 +171,22 @@ export default function SubjectMasterIndexPage() {
               color: "var(--text-muted)",
               display: "flex",
               flexWrap: "wrap",
-              gap: "1.5rem",
+              gap: "1.25rem",
             }}>
               <div>
-                <strong style={{ color: "var(--text-secondary)" }}>Priority Legend:</strong> 🔴 P0 = must-know, highest interview ROI &nbsp;·&nbsp; 🟠 P1 = daily baseline / important
+                <strong style={{ color: "var(--text-secondary)" }}>Priority Legend:</strong> 🔴 P0 = must-knowROI &nbsp;·&nbsp; 🟠 P1 = daily baseline
               </div>
               <div>
-                <strong style={{ color: "var(--text-secondary)" }}>Types:</strong> [C] Conceptual &nbsp;·&nbsp; [Q] Code &nbsp;·&nbsp; [D] Architecture &nbsp;·&nbsp; [P] Performance
+                <strong style={{ color: "var(--text-secondary)" }}>Types:</strong> [C] Concept &nbsp;·&nbsp; [Q] Code &nbsp;·&nbsp; [D] Design &nbsp;·&nbsp; [P] Perf
               </div>
             </div>
           )}
         </header>
 
-        {/* 📚 Master Index Table */}
+        {/* 📚 Master Index Table & Mobile Cards */}
         <section style={{ marginBottom: "3rem" }}>
           <div style={{ marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
+            <h2 style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
               📚 {isHandbook ? "Chapter Navigation Index" : "Section & Pattern Index"}
             </h2>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "0.25rem" }}>
@@ -195,7 +196,8 @@ export default function SubjectMasterIndexPage() {
             </p>
           </div>
 
-          <div style={{
+          {/* Desktop Table View (>= 769px) */}
+          <div className="hide-on-mobile" style={{
             background: "rgba(15, 23, 42, 0.4)",
             border: "1px solid var(--border-subtle)",
             borderRadius: "var(--radius-md)",
@@ -291,6 +293,76 @@ export default function SubjectMasterIndexPage() {
                 })}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Touch Cards View (< 769px) */}
+          <div className="show-on-mobile" style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {manifest.topics.map((topic) => {
+              let isDone = false;
+              let doneCount = 0;
+
+              if (isHandbook) {
+                isDone = completedIds.has(`chapter_${topic.id}`);
+              } else {
+                const topicQuestions = manifest.items.filter((item) => item.topicId === topic.id);
+                doneCount = topicQuestions.filter((item) => completedIds.has(item.id)).length;
+                isDone = doneCount === topic.itemCount && topic.itemCount > 0;
+              }
+
+              return (
+                <Link
+                  key={topic.id}
+                  href={`/subjects/${subjectId}/${topic.id}`}
+                  style={{
+                    display: "block",
+                    padding: "1rem",
+                    background: "rgba(15, 23, 42, 0.6)",
+                    border: `1px solid ${isDone ? "rgba(16, 185, 129, 0.3)" : "var(--border-subtle)"}`,
+                    borderRadius: "var(--radius-md)",
+                    textDecoration: "none",
+                    color: "inherit",
+                    transition: "all 0.15s ease",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.4rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                      <span style={{
+                        fontSize: "0.75rem",
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--accent-primary)",
+                        background: "rgba(99, 102, 241, 0.1)",
+                        padding: "0.1rem 0.4rem",
+                        borderRadius: "3px",
+                      }}>
+                        #{topic.id}
+                      </span>
+                      <strong style={{ fontSize: "0.95rem", color: "var(--text-primary)" }}>
+                        {topic.name}
+                      </strong>
+                    </div>
+                    <ArrowRight size={15} style={{ color: "var(--text-muted)" }} />
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.8rem", color: "var(--text-secondary)", marginTop: "0.5rem" }}>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem" }}>
+                      {topic.rangeOrLabel} ({topic.itemCount} {isHandbook ? "cards" : "questions"})
+                    </span>
+
+                    <span style={{
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: "4px",
+                      fontSize: "0.75rem",
+                      fontFamily: "var(--font-mono)",
+                      background: isDone ? "rgba(16, 185, 129, 0.15)" : "rgba(255, 255, 255, 0.05)",
+                      color: isDone ? "#34d399" : "var(--text-muted)",
+                      fontWeight: 600,
+                    }}>
+                      {isHandbook ? (isDone ? "Revised ✓" : "Pending") : `${doneCount}/${topic.itemCount} ${isDone ? "✓" : ""}`}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       </main>

@@ -271,4 +271,96 @@ section[id] {
   background: rgba(255, 255, 255, 0.25);
 }
 
+/* ============================================================ */
+/* Responsive Layout Utilities (Mobile, Tablet, Desktop)       */
+/* ============================================================ */
+
+/* Hide/Show by breakpoint */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .hide-on-tablet {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .show-on-tablet {
+    display: none !important;
+  }
+}
+
+/* Horizontal Smooth-Scroll Filter Pills (Touch friendly, no scrollbars) */
+.filter-scroll-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  padding: 0.2rem 0;
+}
+.filter-scroll-row::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Off-Canvas Backdrop */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 99;
+  animation: fadeInBackdrop 0.2s ease-out forwards;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Off-Canvas Drawer (Left & Right) */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: min(85vw, 340px);
+  background: #0d1322;
+  border-right: 1px solid var(--border-subtle);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-drawer-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.mobile-drawer-right {
+  right: 0;
+  left: auto;
+  border-left: 1px solid var(--border-subtle);
+  border-right: none;
+  transform: translateX(0);
+}
+
+/* Touch-optimized code blocks */
+pre, code {
+  -webkit-overflow-scrolling: touch;
+}
+
+
 
