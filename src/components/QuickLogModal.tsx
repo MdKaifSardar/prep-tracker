@@ -79,7 +79,7 @@ export default function QuickLogModal({
         problemRange: parseResult.cleanString,
         parsedCount: parseResult.count,
         isRevision,
-        notes: notes.trim() || undefined,
+        notes: notes.trim() || "",
       });
       // Reset form
       setProblemRange("");

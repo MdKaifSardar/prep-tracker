@@ -10,7 +10,7 @@ import {
   onSnapshot,
   addDoc,
   deleteDoc,
-  updateDoc,
+  setDoc,
   doc,
 } from "firebase/firestore";
 import { Topic, DailyLog, KPIStats } from "@/types";
@@ -36,6 +36,8 @@ export default function DashboardPage() {
   const [selectedTopicForLog, setSelectedTopicForLog] = useState<Topic | null>(null);
   const [seedNotice, setSeedNotice] = useState<string | null>(null);
 
+  const [permissionError, setPermissionError] = useState<string | null>(null);
+
   // Real-time Firestore Listeners
   useEffect(() => {
     if (!user || !isAuthorized) {
@@ -44,29 +46,52 @@ export default function DashboardPage() {
     }
 
     setLoadingData(true);
+    setPermissionError(null);
 
     // 1. Listen to Topics
     const topicsRef = collection(db, "topics");
-    const unsubscribeTopics = onSnapshot(topicsRef, (snapshot) => {
-      const topicList: Topic[] = [];
-      snapshot.forEach((docSnap) => {
-        topicList.push({ id: docSnap.id, ...docSnap.data() } as Topic);
-      });
-      // Fallback to DEFAULT_TOPICS if empty in UI
-      setTopics(topicList.length > 0 ? topicList : DEFAULT_TOPICS);
-    });
+    const unsubscribeTopics = onSnapshot(
+      topicsRef,
+      (snapshot) => {
+        const topicList: Topic[] = [];
+        snapshot.forEach((docSnap) => {
+          topicList.push({ id: docSnap.id, ...docSnap.data() } as Topic);
+        });
+        setTopics(topicList.length > 0 ? topicList : DEFAULT_TOPICS);
+      },
+      (error) => {
+        console.error("Firestore topics listener error:", error);
+        if (error.code === "permission-denied") {
+          setPermissionError(
+            "Firestore Security Rules are currently blocking reads. In your Firebase Console, go to Firestore Database → Rules and set rules to allow access."
+          );
+        }
+      }
+    );
 
     // 2. Listen to Daily Logs
     const logsRef = collection(db, "daily_logs");
     const logsQuery = query(logsRef, orderBy("date", "desc"));
-    const unsubscribeLogs = onSnapshot(logsQuery, (snapshot) => {
-      const logList: DailyLog[] = [];
-      snapshot.forEach((docSnap) => {
-        logList.push({ id: docSnap.id, ...docSnap.data() } as DailyLog);
-      });
-      setLogs(logList);
-      setLoadingData(false);
-    });
+    const unsubscribeLogs = onSnapshot(
+      logsQuery,
+      (snapshot) => {
+        const logList: DailyLog[] = [];
+        snapshot.forEach((docSnap) => {
+          logList.push({ id: docSnap.id, ...docSnap.data() } as DailyLog);
+        });
+        setLogs(logList);
+        setLoadingData(false);
+      },
+      (error) => {
+        console.error("Firestore logs listener error:", error);
+        if (error.code === "permission-denied") {
+          setPermissionError(
+            "Firestore Security Rules are currently blocking reads. In your Firebase Console, go to Firestore Database → Rules and set rules to allow access."
+          );
+        }
+        setLoadingData(false);
+      }
+    );
 
     return () => {
       unsubscribeTopics();
@@ -89,7 +114,13 @@ export default function DashboardPage() {
   }) => {
     try {
       await addDoc(collection(db, "daily_logs"), {
-        ...logData,
+        date: logData.date,
+        topicId: logData.topicId,
+        topicName: logData.topicName,
+        problemRange: logData.problemRange,
+        parsedCount: logData.parsedCount,
+        isRevision: logData.isRevision,
+        notes: logData.notes?.trim() || "",
         timestamp: new Date(logData.date).getTime(),
       });
     } catch (error) {
@@ -112,7 +143,15 @@ export default function DashboardPage() {
   // Action: Update Topic Target
   const handleUpdateTopicTarget = async (topicId: string, newTarget: number) => {
     try {
-      await updateDoc(doc(db, "topics", topicId), { target: newTarget });
+      const existing = topics.find((t) => t.id === topicId) || DEFAULT_TOPICS.find((t) => t.id === topicId);
+      await setDoc(
+        doc(db, "topics", topicId),
+        {
+          ...(existing || {}),
+          target: newTarget,
+        },
+        { merge: true }
+      );
     } catch (error) {
       console.error("Failed to update target:", error);
     }
@@ -183,6 +222,55 @@ export default function DashboardPage() {
       />
 
       <main className="container" style={{ marginTop: "1.75rem" }}>
+        {/* Permission Denied Guide Banner */}
+        {permissionError && (
+          <div style={{
+            background: "rgba(239, 68, 68, 0.12)",
+            border: "1px solid rgba(239, 68, 68, 0.35)",
+            color: "#fecaca",
+            padding: "1rem 1.25rem",
+            borderRadius: "var(--radius-md)",
+            fontSize: "0.85rem",
+            marginBottom: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.6rem",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{ fontWeight: 700, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                🔒 Firestore Permission Denied
+              </span>
+              <button
+                onClick={() => setPermissionError(null)}
+                style={{ color: "#fca5a5", fontWeight: 700 }}
+              >
+                ✕
+              </button>
+            </div>
+            <p style={{ margin: 0, lineHeight: 1.4, color: "#fecaca" }}>
+              Your Firebase Firestore Security Rules are currently blocking reads. To fix this, open the <strong>Firebase Console</strong> → <strong>Firestore Database</strong> → <strong>Rules</strong> tab and publish:
+            </p>
+            <pre style={{
+              background: "rgba(0, 0, 0, 0.4)",
+              padding: "0.6rem 0.8rem",
+              borderRadius: "4px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.78rem",
+              color: "#38bdf8",
+              overflowX: "auto",
+            }}>
+{`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}`}
+            </pre>
+          </div>
+        )}
+
         {/* Seed Notification Banner */}
         {seedNotice && (
           <div style={{

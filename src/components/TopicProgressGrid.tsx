@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Topic, DailyLog } from "@/types";
 import { PlusCircle, Target, CheckCircle, Clock, Edit2 } from "lucide-react";
 
@@ -196,6 +197,28 @@ export default function TopicProgressGrid({
                   {remaining === 0 ? "Target completed! 🎉" : `${remaining} problems remaining`}
                 </span>
               </div>
+
+              {/* Link to Dedicated Question Bank */}
+              {t.id === "javascript" && (
+                <Link
+                  href="/topics/javascript"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginTop: "0.85rem",
+                    paddingTop: "0.75rem",
+                    borderTop: "1px solid var(--border-subtle)",
+                    fontSize: "0.8rem",
+                    color: "var(--accent-primary)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  <span>📖 Browse Question Bank (78 Qs)</span>
+                  <span>→</span>
+                </Link>
+              )}
             </div>
           );
         })}

@@ -35,3 +35,33 @@ export interface KPIStats {
   thisWeek: number;
   thisMonth: number;
 }
+
+export interface Question {
+  id: string;               // e.g. "js_1"
+  topicId: string;          // "javascript"
+  qNumber: number;          // 1..78
+  title: string;            // Question text
+  sectionId: number;        // 1..9
+  sectionName: string;      // e.g. "1. JS Fundamentals, Engine & Scope"
+  priority: "P0" | "P1";
+  type: "C" | "Q" | "D" | "P";
+  tldr: string;             // 1-2 sentence core concept takeaway
+  leetcodeUrl?: string;     // Official link if DSA question
+  docRef?: string;          // Relative markdown anchor
+}
+
+export interface SectionInfo {
+  id: number;               // 1..9
+  name: string;             // "1. JS Fundamentals, Engine & Scope"
+  range: string;            // "#1 – #15"
+  questionCount: number;
+}
+
+export interface QuestionBankData {
+  topicId: string;
+  topicName: string;
+  totalQuestions: number;
+  sections: SectionInfo[];
+  questions: Question[];
+}
+
