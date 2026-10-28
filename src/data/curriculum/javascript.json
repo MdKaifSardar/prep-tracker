@@ -79,6 +79,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Primitive types (string, number, boolean, undefined, null, symbol, bigint) store immutable raw values directly on the Stack and compare by value. Reference types (Object, Array, Function, Map, Set) store pointers on the Stack to mutable objects allocated on the Heap, comparing by memory address.",
+      "explanation": "JavaScript partitions memory into the **Call Stack** and the **Memory Heap**:\n- **Primitive Types:** Stored directly in the call stack variable binding frame. When copied (`b = a`), the actual value is duplicated. Comparing primitives (`a === b`) compares their raw underlying binary representations.\n- **Reference Types:** The object payload resides in the dynamic Memory Heap, while the stack holds a 64-bit memory pointer. Copying (`b = a`) duplicates the reference address, causing both variables to mutate the same heap memory object. Comparing reference types (`a === b`) evaluates whether both pointers reference the exact same memory allocation address.",
+      "codeSnippet": "// Primitive Copy & Comparison (By Value)\nlet x = 10;\nlet y = x; // Duplicate value 10\ny = 20;\nconsole.log(x); // 10 (x is unchanged)\nconsole.log(x === 10); // true\n\n// Reference Copy & Comparison (By Reference)\nconst obj1 = { name: \"Alice\" };\nconst obj2 = obj1; // Duplicate memory pointer address\nobj2.name = \"Bob\";\nconsole.log(obj1.name); // \"Bob\" (mutated underlying heap object)\nconsole.log({ a: 1 } === { a: 1 }); // false (distinct memory references!)",
+      "gotchas": "• Assuming two identical-looking objects are equal (`{} === {}` is `false`). When passing an object into a function, mutating its properties affects the caller, but reassigning the parameter variable itself inside the function breaks the reference without altering the caller's variable.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#1"
     },
     {
@@ -90,6 +93,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "typeof returns a string indicating the primitive data type of an operand. typeof null returns \"object\" due to a historic bug in the original 1995 JS engine where null's type tag bit vector (0x00) matched the type tag for objects.",
+      "explanation": "`typeof` is a unary operator evaluated at runtime. It returns one of 8 strings: `\"undefined\"`, `\"boolean\"`, `\"number\"`, `\"bigint\"`, `\"string\"`, `\"symbol\"`, `\"function\"`, or `\"object\"`.\n\n**The `typeof null === \"object\"` Bug:**\nIn the original 32-bit implementation of JavaScript (1995), values were stored with a type tag in the lower 1-3 bits followed by the actual value data:\n- Objects used the tag `000` in the lowest bits.\n- `null` was represented as the NULL pointer (`0x00` across all bits).\nBecause `null` had `000` in its type tag bits, the `typeof` check misidentified `null` as an object. Fixing this bug in ES6 was proposed but rejected because it would break millions of existing legacy web scripts.",
+      "codeSnippet": "console.log(typeof 42);          // \"number\"\nconsole.log(typeof \"hello\");     // \"string\"\nconsole.log(typeof true);        // \"boolean\"\nconsole.log(typeof undefined);   // \"undefined\"\nconsole.log(typeof Symbol());    // \"symbol\"\nconsole.log(typeof 10n);         // \"bigint\"\nconsole.log(typeof (() => {}));  // \"function\"\nconsole.log(typeof {});          // \"object\"\nconsole.log(typeof null);        // \"object\" (HISTORIC BUG!)\n\n// Robust type checking utility for null vs object:\nfunction getExactType(val) {\n  if (val === null) return \"null\";\n  return typeof val;\n}",
+      "gotchas": "• Relying on `typeof val === 'object'` to check if a value is a non-null object without guarding against `null`. Always check `val !== null && typeof val === 'object'` or use `Object.prototype.toString.call(val)`.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#2"
     },
     {
@@ -101,6 +107,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "undefined represents a variable declared but not yet assigned a value; null is an intentional assignment representing empty/no object value; undeclared is a variable that has never been declared in any accessible scope, throwing a ReferenceError on access.",
+      "explanation": "- **undefined:** Automatic default value assigned by JS engine during memory creation phase for uninitialized `var`/`let` variables, missing parameters, or non-existent object properties. Type is `\"undefined\"`.\n- **null:** Intentional explicit value assigned by developer or returned by APIs (e.g. `document.querySelector`) to signify the absence of any value or object target. Type is `\"object\"`.\n- **Undeclared:** Identifiers that have not been declared in the current or outer scope chains. Accessing an undeclared variable throws a `ReferenceError` at execution time (except when evaluated via `typeof undeclaredVar`, which safely returns `\"undefined\"`).",
+      "codeSnippet": "let a; // Declared, uninitialized -> undefined\nconst b = null; // Declared, assigned explicit null\n\nconsole.log(a); // undefined\nconsole.log(b); // null\n\n// Undeclared identifier\ntry {\n  console.log(c); // Throws ReferenceError: c is not defined\n} catch (e) {\n  console.log(e.name); // \"ReferenceError\"\n}\n\n// typeof edge case for undeclared:\nconsole.log(typeof undeclaredVar); // \"undefined\" (Safe check!)",
+      "gotchas": "• Confusing `undefined` and `null` in loose equality (`null == undefined` is `true`, but `null === undefined` is `false`). Additionally, default parameter fallback (`fn(param = 'default')`) triggers on `undefined`, but NOT on `null`!",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#3"
     },
     {
@@ -112,6 +121,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "NaN (\"Not-a-Number\") represents an invalid numerical operation result. Per IEEE 754 floating-point standard, NaN is not equal to anything including itself. Number.isNaN() strictly checks if a value is NaN without coercion, unlike global isNaN() which coercively converts to number first.",
+      "explanation": "**NaN Characteristics:**\n- Type of `NaN` is `\"number\"` (`typeof NaN === \"number\"`).\n- Represents an undefined or unrepresentable mathematical calculation result (e.g. `0 / 0`, `Math.sqrt(-1)`, `parseInt(\"invalid\")`).\n- According to IEEE 754 spec, `NaN !== NaN` to ensure invalid calculations do not evaluate as equal to other invalid calculations.\n\n**Difference between Detection Methods:**\n1. `isNaN(val)`: Implicitly coerces `val` to a number before checking (`isNaN(\"abc\")` -> `isNaN(NaN)` -> `true`!).\n2. `Number.isNaN(val)`: Strict check. Returns `true` ONLY if `typeof val === 'number'` and `val` is `NaN` (`Number.isNaN(\"abc\")` -> `false`).\n3. `Object.is(NaN, NaN)`: Returns `true` (SameValue algorithm handles `NaN` equality and distinguishes `+0` vs `-0`).",
+      "codeSnippet": "console.log(NaN === NaN);            // false\nconsole.log(NaN !== NaN);            // true\n\n// Global isNaN (COERCIVE GOTCHA)\nconsole.log(isNaN(\"hello\"));         // true (coerced \"hello\" -> NaN!)\n\n// Number.isNaN (STRICT & ACCURATE)\nconsole.log(Number.isNaN(\"hello\"));  // false\nconsole.log(Number.isNaN(NaN));      // true\n\n// Object.is Comparison\nconsole.log(Object.is(NaN, NaN));    // true\nconsole.log(Object.is(+0, -0));      // false\nconsole.log(+0 === -0);              // true",
+      "gotchas": "• Using `myVar === NaN` or global `isNaN(myVar)`. Always use `Number.isNaN(myVar)` or `Object.is(myVar, NaN)` for robust NaN detection.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#4"
     },
     {
@@ -123,6 +135,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "In boolean contexts (e.g., if conditions), values are coerced to true (truthy) or false (falsy). There are exactly 8 falsy values in JS: false, 0, -0, 0n (BigInt zero), \"\" (empty string), null, undefined, and NaN.",
+      "explanation": "JavaScript performs implicit boolean type coercion when values are evaluated in boolean expressions (such as `if` statements, logical operators `&&` / `||`, and the `Boolean()` constructor).\n\nEverything in JavaScript is **truthy** EXCEPT for the exact set of 8 **falsy** values:\n1. `false` (Boolean false)\n2. `0` (Number zero)\n3. `-0` (Number negative zero)\n4. `0n` (BigInt zero)\n5. `\"\"`, `''`,",
+      "codeSnippet": "const falsyValues = [false, 0, -0, 0n, \"\", null, undefined, NaN];\n\nfalsyValues.forEach(val => {\n  console.log(Boolean(val)); // Prints false for all 8\n});\n\n// Common TRUTHY traps in interviews:\nconsole.log(Boolean([]));        // true\nconsole.log(Boolean({}));        // true\nconsole.log(Boolean(\"0\"));       // true (non-empty string!)\nconsole.log(Boolean(\"false\"));   // true (non-empty string!)",
+      "gotchas": "• Assuming empty arrays `[]` or empty objects `{}` are falsy in `if ([])` checks. Check length (`arr.length > 0`) or object keys (`Object.keys(obj).length > 0`) instead.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#5"
     },
     {
@@ -134,6 +149,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Implicit coercion automatically converts types behind the scenes during operations, while explicit coercion is manual conversion by the developer. Strict equality (===) checks both value and type without coercion, whereas loose equality (==) coerces operands to a common type before comparing.",
+      "explanation": "- **Explicit Coercion:** Intentional developer conversion using constructors as functions (e.g. `String(123)`, `Number(\"456\")`, `Boolean(1)`).\n- **Implicit Coercion:** JS engine automatically converts operands during operations (e.g., `\"5\" + 2` -> `\"52\"` via string concatenation, but `\"5\" - 2` -> `3` via numeric conversion).\n\n**Loose (==) vs Strict (===) Algorithm:**\n- `===` checks if Type(A) === Type(B). If types differ, returns `false` immediately.\n- `==` converts types using Abstract Equality Comparison Algorithm:\n  - String == Number $\\rightarrow$ converts String to Number.\n  - Boolean == Anything $\\rightarrow$ converts Boolean to Number (`true` $\\rightarrow$ `1`, `false` $\\rightarrow$ `0`).\n  - Object == Primitive $\\rightarrow$ converts Object to Primitive via `[Symbol.toPrimitive]`, `valueOf()`, or `toString()`.\n  - `null == undefined` returns `true` (special spec rule).",
+      "codeSnippet": "// Implicit Coercion Rules\nconsole.log(\"5\" + 3);  // \"53\" (String concatenation prioritized by +)\nconsole.log(\"5\" - 3);  // 2 (Numeric conversion forced by -)\nconsole.log(\"5\" * \"2\"); // 10\n\n// Loose (==) vs Strict (===)\nconsole.log(\"5\" == 5);   // true  (\"5\" converted to 5)\nconsole.log(\"5\" === 5);  // false (Types differ: string vs number)\n\nconsole.log(false == 0); // true  (false -> 0)\nconsole.log(null == undefined); // true (spec exception)\nconsole.log(null === undefined); // false",
+      "gotchas": "• Using `==` when checking user inputs or API values, leading to edge case bugs like `\"\" == 0` (`true`) or `\"\\n\" == 0` (`true`). Always default to `===`.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#6"
     },
     {
@@ -145,6 +163,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Short-circuit evaluation means logical expressions evaluate left-to-right and stop as soon as the outcome is guaranteed. && returns the first falsy operand (or last value), || returns the first truthy operand (or last value), ?? returns right operand ONLY if left is null/undefined, and ?. safely short-circuits property access if left is nullish.",
+      "explanation": "- **Short-Circuiting:** Evaluation halts immediately once the result is determined without executing remaining expressions.\n- **`A && B`:** Evaluates `A`. If `A` is falsy, returns `A` immediately without evaluating `B`. If `A` is truthy, evaluates and returns `B`.\n- **`A || B`:** Evaluates `A`. If `A` is truthy, returns `A` immediately. If `A` is falsy, evaluates and returns `B`.\n- **`A ?? B` (Nullish Coalescing):** Evaluates `A`. Returns `B` ONLY if `A` is `null` or `undefined` (preserves falsy values like `0`, `\"\"`, `false`).\n- **`A?.B` (Optional Chaining):** Short-circuits and returns `undefined` if `A` is `null` or `undefined` instead of throwing a `TypeError`.__",
+      "codeSnippet": "// && (Logical AND)\nconsole.log(0 && \"Hello\");       // 0 (Short-circuits on 0)\nconsole.log(\"Hi\" && \"World\");    // \"World\"\n\n// || (Logical OR - Falsy Fallback)\nconsole.log(0 || 42);            // 42 (0 is falsy)\nconsole.log(\"\" || \"Default\");    // \"Default\"\n\n// ?? (Nullish Coalescing - Null/Undefined Fallback)\nconsole.log(0 ?? 42);            // 0 (0 is kept!)\nconsole.log(null ?? \"Default\");  // \"Default\"\n\n// ?. (Optional Chaining)\nconst user = { profile: null };\nconsole.log(user.profile?.avatar?.url); // undefined (No TypeError!)",
+      "gotchas": "• Using `||` for default config options when `0` or `\"\"` are valid user inputs. `config.count || 10` converts `0` to `10`! Use `config.count ?? 10` instead.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#7"
     },
     {
@@ -156,6 +177,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "JS is a dynamically typed, single-threaded, garbage-collected, multi-paradigm language. ECMAScript is the standard specification (ECMA-262); JavaScript is the primary language implementation of that specification.",
+      "explanation": "**Key Characteristics:**\n1. **Dynamically Typed:** Variable types are checked at runtime, not compile-time. Variables hold values of any type and can be reassigned dynamically.\n2. **Single-Threaded:** Operates on a single main thread with one Call Stack using an Event Loop to handle async non-blocking operations.\n3. **Garbage-Collected:** Memory allocation and deallocation are managed automatically using mark-and-sweep algorithms based on object reachability.\n4. **Multi-Paradigm:** Supports Object-Oriented (prototypal), Functional (first-class functions, pure functions, immutability), and Event-Driven programming styles.\n\n**ECMAScript vs JavaScript:**\n- **ECMAScript (ES):** The official standard governed by TC39 committee (ECMA-262 specification).\n- **JavaScript:** The implementation created by Brendan Eich (1995) that conforms to ECMAScript standard and adds Host Environment APIs (DOM, `window`, `fetch` in browser; `fs`, `process` in Node.js).",
+      "codeSnippet": "// Dynamic Typing & Multi-Paradigm Example\nlet data = 100; // Number\ndata = \"Now a String\"; // Dynamic type change\n\n// Functional Paradigm: High Order Function & Pure Calculation\nconst numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n => n * 2); // [2, 4, 6, 8]\n\n// OOP Paradigm: Class & Prototypal Inheritance\nclass Person {\n  constructor(name) { this.name = name; }\n  greet() { return `Hi, I'm ${this.name}`; }\n}",
+      "gotchas": "• Confusing ECMAScript specs with runtime Web APIs (e.g. `setTimeout`, `fetch`, DOM elements are NOT part of ECMAScript standard; they are provided by the browser/Node host environment).",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#8"
     },
     {
@@ -167,6 +191,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "V8 parses JS code into an Abstract Syntax Tree (AST), executes bytecode via an interpreter (Ignition), and dynamically compiles hot code paths into machine code via JIT compilers (TurboFan). JS uses Just-In-Time (JIT) compilation, making it both interpreted and compiled at runtime.",
+      "explanation": "**V8 Engine Compilation Pipeline:**\n1. **Parser:** Converts raw JS code tokens into an Abstract Syntax Tree (AST).\n2. **Ignition (Bytecode Interpreter):** Converts AST into lightweight, memory-efficient Bytecode and begins execution immediately for fast start time.\n3. **TurboFan (JIT Compiler):** Monitors runtime execution (\"profiling\"). Hot functions executed frequently are compiled into highly optimized machine code.\n4. **Deoptimization:** If runtime type assumptions change (e.g. passing a string to a function that previously only received integers), TurboFan deoptimizes machine code back to bytecode.",
+      "codeSnippet": "// Monomorphic (Fast JIT Machine Code path)\nfunction add(a, b) {\n  return a + b;\n}\nfor (let i = 0; i < 10000; i++) add(1, 2); // TurboFan optimizes add() for Numbers!\n\n// Polymorphic Mutation -> Triggers Deoptimization!\nadd(\"hello\", \"world\"); // Type changes to String! TurboFan deoptimizes back to Ignition bytecode.",
+      "gotchas": "• Writing polymorphic code (frequently changing object hidden classes or variable types passed into hot functions), causing V8 to continuously optimize and deoptimize code.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#9"
     },
     {
@@ -178,6 +205,9 @@
       "priority": "P0",
       "type": "D",
       "summary": "The JS engine (e.g. V8) executes ECMAScript code using a Call Stack and Memory Heap. The Runtime Environment (Browser/Node.js) wraps the engine with event loops, task queues, and APIs (Web APIs or libuv) to enable non-blocking asynchronous operation.",
+      "explanation": "**Engine vs Runtime:**\n- **JS Engine (V8/SpiderMonkey):** Call Stack + Memory Heap + Garbage Collector.\n- **Runtime Environment:** JS Engine + Host APIs (DOM, `fetch` in Browser; `fs`, `http` in Node) + Event Loop + Microtask/Macrotask Queues.\n\n**Single-Threaded Reality:**\nJavaScript executes JS code on **one main thread** (one Call Stack). Non-blocking operations (I/O, network requests, timers) are offloaded by the runtime to browser C++ background threads or libuv thread pool workers, which push callbacks back to task queues upon completion.",
+      "codeSnippet": "// Runtime Orchestration:\nconsole.log(\"1. Stack First\");\n\nsetTimeout(() => {\n  console.log(\"3. Macrotask Queue (via Web API Timer)\");\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log(\"2. Microtask Queue (High Priority)\");\n});\n\n// Output:\n// 1. Stack First\n// 2. Microtask Queue (High Priority)\n// 3. Macrotask Queue (via Web API Timer)",
+      "gotchas": "• Thinking Node.js or browsers run JS code across multiple threads concurrently. The JS thread is single; background C++/libuv workers handle I/O and notify JS via the Event Loop queues.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#10"
     },
     {
@@ -189,6 +219,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "An Execution Context (EC) is an environment created when running JS code. It consists of a Memory Creation Phase (hoisting variables and functions) and an Execution Phase (running code line by line). The Call Stack manages active ECs on a LIFO basis.",
+      "explanation": "**Types of Execution Contexts:**\n1. **Global Execution Context (GEC):** Created when script starts. Creates `window`/`global` and `this`.\n2. **Function Execution Context (FEC):** Created whenever a function is invoked.\n\n**Two Execution Phases:**\n1. **Creation Phase:**\n   - Creates Variable Environment & Lexical Environment.\n   - Sets up scope chain.\n   - Allocates memory for variables (`var` initialized to `undefined`, `let`/`const` placed in TDZ, functions stored in full).\n2. **Execution Phase:**\n   - Runs code line by line, assigning values to variables and executing function calls.",
+      "codeSnippet": "var a = 10;\nfunction calc(num) {\n  var res = num * 2;\n  return res;\n}\nvar ans = calc(a);\n\n/* Call Stack Trace:\n1. GEC pushed [a: undefined -> 10, calc: fn, ans: undefined -> 20]\n2. FEC calc(10) pushed [num: 10, res: undefined -> 20]\n3. FEC calc pops off stack\n4. GEC finishes & pops off stack on exit\n*/",
+      "gotchas": "• Confusing function definition time with function execution time. Lexical scope is determined at definition time, but Execution Contexts are created at call time.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#11"
     },
     {
@@ -200,6 +233,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Memory is managed automatically via Mark-and-Sweep garbage collection, which reclaims memory from objects unattached from root references. Memory leaks occur when unreachable objects are unintentionally retained by active references (e.g., closures, timers, event listeners).",
+      "explanation": "**Memory Allocation:**\n- **Stack:** Stores primitive values and function call execution frames.\n- **Heap:** Stores objects, arrays, and functions.\n\n**Mark-and-Sweep Algorithm:**\n1. Collector builds a set of \"GC Roots\" (Global object, local call stack variables).\n2. Traverses all references from roots to mark reachable objects.\n3. Any memory node in heap NOT marked reachable is swept and reclaimed.\n\n**4 Main Causes of Memory Leaks:**\n1. Forgotten Timers (`setInterval` retaining referenced objects).\n2. Unremoved Event Listeners on DOM elements removed from document.\n3. Unintentional Global Variables (`window.userData = ...`).\n4. Out-of-date Closures holding large references.",
+      "codeSnippet": "// Memory Leak Example: Forgotten Timer\nfunction startTracker() {\n  const hugeData = new Array(1000000).fill(\"DATA\");\n  setInterval(() => {\n    // Closure retains hugeData indefinitely in memory heap!\n    console.log(hugeData.length);\n  }, 1000);\n}\n\n// Fix: Store interval ID and clearInterval when destroyed!",
+      "gotchas": "• Removing a DOM element from the document tree (`element.remove()`) without unregistering attached event listeners or references in JS arrays, preventing GC from freeing element memory.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#12"
     },
     {
@@ -211,6 +247,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "var is function-scoped, hoisted with undefined, and allows redeclaration. let and const are block-scoped ({}), hoisted into the Temporal Dead Zone (TDZ), and disallow redeclaration. const prevents reassigning the variable reference, but object properties inside a const object can still be mutated.",
+      "explanation": "**Comparison Matrix:**\n- **`var`:** Scope = Function; Hoisted = `undefined`; Redeclare = Yes; Reassign = Yes.\n- **`let`:** Scope = Block (`{}`); Hoisted = TDZ (`ReferenceError`); Redeclare = No; Reassign = Yes.\n- **`const`:** Scope = Block (`{}`); Hoisted = TDZ (`ReferenceError`); Redeclare = No; Reassign = No.\n\n**Const Mutability:**\n`const` locks variable *binding reference*, NOT value immutability. A `const` object reference cannot point to a new object address, but properties *within* the heap object can be updated or deleted.",
+      "codeSnippet": "const user = { name: \"Alice\" };\nuser.name = \"Bob\"; // ALLOWED: Mutating property inside heap object\nconsole.log(user.name); // \"Bob\"\n\n// user = { name: \"Charlie\" }; // TypeError: Assignment to constant variable!\n\n// To freeze property mutations:\nObject.freeze(user);\n// user.name = \"David\"; // Fails silently or throws TypeError in strict mode",
+      "gotchas": "• Believing `const` makes an object or array immutable. Use `Object.freeze()` or immutable data libraries for true runtime property immutability.",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#13"
     },
     {
@@ -222,6 +261,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Scope determines variable accessibility. Global scope is root; function scope is bound inside function bodies; block scope is bound within {} pairs. Lexical scope means inner functions resolve variables based on where they were written in source code, forming a scope chain.",
+      "explanation": "**Scope Hierarchy:**\n- **Global Scope:** Accessible anywhere in the application.\n- **Function Scope:** Variables declared with `var`, `let`, `const` inside a function are isolated to that function.\n- **Block Scope:** Variables declared with `let`/`const` inside `{}` (if, for, while blocks) are isolated to that block.\n\n**Scope Chain & Variable Shadowing:**\nWhen a variable is evaluated, JS checks the local scope. If not found, it traverses outer lexical scopes step by step up to global scope. If an inner scope declares a variable with the same name as an outer scope variable, it **shadows** the outer variable within that inner scope.",
+      "codeSnippet": "const title = \"Global\";\n\nfunction outer() {\n  const title = \"Outer\"; // Shadowing global title\n  \n  function inner() {\n    console.log(title); // Output: \"Outer\" (searches scope chain!)\n  }\n  inner();\n}\nouter();",
+      "gotchas": "• Assuming `var` respects block scopes (`if`, `for`). `var` leaks out of `if` blocks and `for` loops into the enclosing function or global scope!",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#14"
     },
     {
@@ -233,6 +275,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Hoisting is JS allocating memory for variable/function declarations before executing code. var hoists initialized to undefined; let/const hoist into the Temporal Dead Zone (TDZ) throwing ReferenceError if accessed early; function declarations hoist fully.",
+      "explanation": "**Hoisting Behaviors during Creation Phase:**\n- **Function Declarations:** Fully hoisted with implementation. Can be called *before* definition line.\n- **Function Expressions / Arrow Functions:** Hoisted according to their variable declaration (`var` -> `undefined`, `let`/`const` -> TDZ).\n- **`var`:** Hoisted and initialized to `undefined`. Accessing before declaration returns `undefined`.\n- **`let`/`const` (TDZ):** Hoisted into the **Temporal Dead Zone**—the spatial scope region from the start of the block until the execution reaches the actual declaration statement. Accessing during TDZ throws a `ReferenceError`.",
+      "codeSnippet": "// Function Declaration (Fully Hoisted)\ngreet(); // Prints \"Hello!\"\nfunction greet() { console.log(\"Hello!\"); }\n\n// var Hoisting\nconsole.log(a); // undefined\nvar a = 5;\n\n// let / const TDZ\ntry {\n  console.log(b); // ReferenceError: Cannot access 'b' before initialization\n  let b = 10;\n} catch (e) { console.log(e.message); }",
+      "gotchas": "• Expecting arrow functions assigned to `var` or `let` (`var fn = () => {}`) to behave like function declarations. Invoking `fn()` before declaration line throws `TypeError: fn is not a function`!",
       "docRef": "javascript/answers/01-js-fundamentals-engine-and-scope.md#15"
     },
     {
@@ -244,6 +289,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "First-class functions mean functions are treated like regular values (stored in variables, passed as args, returned from functions). Higher-order functions accept or return other functions. Callback functions are passed as arguments to be executed later.",
+      "explanation": "- **First-Class Citizens:** In JS, functions are first-class values (objects). They can be assigned to variables, stored in array/object data structures, passed as parameters to other functions, and returned from functions.\n- **Higher-Order Function (HOF):** Any function that takes one or more functions as arguments OR returns a function as its result (e.g. `Array.prototype.map`, `filter`, `reduce`, `addEventListener`).\n- **Callback Function:** A function passed into another function as an argument, intended to be executed (\"called back\") synchronously or asynchronously at a later time.",
+      "codeSnippet": "const calculate = (operationFn, a, b) => operationFn(a, b); // HOF\nconst add = (x, y) => x + y; // Callback\n\nconsole.log(calculate(add, 5, 3)); // 8",
+      "gotchas": "• Invoking the callback function directly when passing it into a HOF (`setTimeout(myFn(), 1000)` instead of `setTimeout(myFn, 1000)`), executing `myFn` immediately instead of waiting for the timer.",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#16"
     },
     {
@@ -255,6 +303,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Function declarations are hoisted fully; expressions are bound to variables. Arrow functions have concise syntax, lexical this (inherited from outer scope), no arguments object, no prototype property, and cannot be used as constructors with new.",
+      "explanation": "**Arrow Functions vs Regular Functions:**\n1. **`this` Binding:** Regular functions bind `this` dynamically at call time based on invocation context. Arrow functions do NOT have their own `this`; they capture `this` lexically from their enclosing scope.\n2. **Constructors:** Regular functions can be invoked with `new` to instantiate objects. Arrow functions throw `TypeError: ... is not a constructor` because they lack a `.prototype` property.\n3. **`arguments` Object:** Regular functions have an `arguments` object. Arrow functions do not (use rest parameters `...args` instead).\n4. **Duplicate Parameters:** Regular functions allow duplicate named parameters in non-strict mode; arrow functions disallow them.",
+      "codeSnippet": "const obj = {\n  name: \"TechCorp\",\n  regularFn: function() { console.log(\"Regular:\", this.name); },\n  arrowFn: () => { console.log(\"Arrow:\", this.name); }\n};\n\nobj.regularFn(); // \"Regular: TechCorp\" (Implicit binding)\nobj.arrowFn();   // \"Arrow: undefined\" (Lexical Window/Global this!)",
+      "gotchas": "• Using arrow functions as object methods or class prototype methods when you intend to reference object instance properties via `this`.",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#17"
     },
     {
@@ -266,6 +317,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Rest parameters (...args) collect remaining function arguments into an array. Spread syntax (...arr) expands iterables into elements. Default parameters specify fallbacks for undefined. arguments is an array-like object in regular functions.",
+      "explanation": "- **Rest Parameters (`...rest`):** Must be the last parameter in function signature. Packs remaining arguments into a real JS Array.\n- **Spread Syntax (`...iterable`):** Unpacks elements of an array/object into discrete items inside calls, array literals, or object literals.\n- **Default Parameters:** Fallback values assigned to parameters when arguments passed are `undefined`.\n- **`arguments` Object:** Array-like object available inside regular functions containing all passed parameters. Lacks array methods (`map`, `filter`) and is obsolete compared to Rest parameters.",
+      "codeSnippet": "// Rest Parameter & Default Parameter\nfunction sum(multiplier = 1, ...numbers) {\n  return numbers.reduce((acc, curr) => acc + curr, 0) * multiplier;\n}\nconsole.log(sum(2, 10, 20, 30)); // 120\n\n// Spread Operator\nconst arr1 = [1, 2];\nconst arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]",
+      "gotchas": "• Using `arguments` in arrow functions (throws `ReferenceError` unless inherited from outer regular function) or placing rest parameters anywhere except at the end of function parameters.",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#18"
     },
     {
@@ -277,6 +331,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "A closure is a function bundled together with references to its surrounding lexical environment, allowing inner functions to access outer variables even after the outer function has finished executing.",
+      "explanation": "**How Closures Work:**\nWhen a function is declared in JS, it retains a reference to its parent Lexical Environment via an internal `[[Environment]]` property. Even after the outer function execution context is popped off the Call Stack, any variables referenced by the inner function remain preserved on the Memory Heap instead of being garbage-collected.\n\n**Practical Uses:**\n1. Data Privacy / Encapsulation (creating private variables in factory functions).\n2. Currying and Partial Application.\n3. Event Listeners & Async Callbacks holding state.\n4. IIFEs (Immediately Invoked Function Expressions) for isolated module scopes.",
+      "codeSnippet": "function createCounter() {\n  let count = 0; // Private variable encapsulated by closure!\n  return {\n    increment: () => ++count,\n    decrement: () => --count,\n    getCount: () => count\n  };\n}\n\nconst counter = createCounter();\nconsole.log(counter.increment()); // 1\nconsole.log(counter.increment()); // 2\nconsole.log(counter.count);       // undefined (Private!)",
+      "gotchas": "• Creating closures in loops with `var` (`for (var i = 0; i < 3; i++)`) causing all iterations to share the same mutated global `i` variable. Use `let` or IIFE to fix!",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#19"
     },
     {
@@ -288,6 +345,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "A pure function given the same inputs will always return the exact same output without causing side effects (modifying global state, mutating args, or performing external I/O).",
+      "explanation": "**Requirements of Pure Functions:**\n1. **Deterministic:** Output depends *solely* on input parameters. If input is `(2, 3)`, output is ALWAYS `5`.\n2. **Zero Side Effects:** Does NOT alter external state (global variables, outer objects), perform console logging, write to DOM, mutate parameters, or trigger network/disk I/O.\n\n**Why Pure Functions Matter:**\n- Highly predictable, trivial to unit test, cacheable via memoization, and safe for parallel execution.",
+      "codeSnippet": "// IMPURE Function (Mutates outer state & non-deterministic)\nlet total = 0;\nfunction addToTotal(num) {\n  total += num; // Side Effect: Mutating global variable!\n  return total;\n}\n\n// PURE Function (No side effects, deterministic)\nfunction addPure(a, b) {\n  return a + b;\n}",
+      "gotchas": "• Mutating array or object arguments directly inside a function (`arr.push(item)`) instead of returning a new array copy (`[...arr, item]`).",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#20"
     },
     {
@@ -299,6 +359,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Currying transforms a multi-argument function into a sequence of unary functions. Function composition combines multiple functions where the output of one function becomes the input of the next.",
+      "explanation": "- **Currying:** `f(a, b, c)` $\\rightarrow$ `f(a)(b)(c)`. Allows partial application of arguments, enabling creation of reusable specialized utility functions.\n- **Function Composition:** Mathematical `(f ∘ g)(x) = f(g(x))`. Pipe or Compose functions pass data through a pipeline of single-responsibility pure transformations.",
+      "codeSnippet": "// Currying\nconst curryAdd = a => b => c => a + b + c;\nconsole.log(curryAdd(1)(2)(3)); // 6\n\n// Composition: compose(f, g)(x) => f(g(x))\nconst add10 = x => x + 10;\nconst double = x => x * 2;\n\nconst compose = (f, g) => x => f(g(x));\nconst addThenDouble = compose(double, add10);\nconsole.log(addThenDouble(5)); // (5 + 10) * 2 = 30",
+      "gotchas": "• Confusing composition order: `compose(f, g)` executes Right-to-Left (`g` then `f`), whereas `pipe(f, g)` executes Left-to-Right (`f` then `g`).",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#21"
     },
     {
@@ -310,6 +373,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "this is determined by how a function is called: default binding (global/undefined in strict mode), implicit binding (object calling method), explicit binding (call/apply/bind), new binding (new object created), or lexical binding (arrow functions).",
+      "explanation": "**5 Rules of `this` Determination (In order of precedence):**\n1. **`new` Binding:** When function called with `new`, `this` is the newly constructed object instance.\n2. **Explicit Binding:** When invoked via `.call()`, `.apply()`, or `.bind()`, `this` is explicitly specified target object.\n3. **Implicit Binding:** When method called via object property (`obj.fn()`), `this` is `obj`.\n4. **Default Binding:** Standalone function invocation (`fn()`). `this` defaults to `window`/`global` (or `undefined` in `'use strict'`).\n5. **Lexical Binding:** Arrow functions ignore all above 4 rules and inherit `this` from enclosing scope at declaration time.",
+      "codeSnippet": "function showThis() {\n  'use strict';\n  console.log(this);\n}\nshowThis(); // undefined (Strict mode default binding)\n\nconst user = {\n  name: \"Sam\",\n  greet() { console.log(this.name); }\n};\nuser.greet(); // \"Sam\" (Implicit binding)",
+      "gotchas": "• Expecting `this` inside a function to refer to the function itself or its lexical scope.",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#22"
     },
     {
@@ -321,6 +387,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "When a method is passed as a callback, it loses its original implicit object binding (defaulting to window/undefined). Fix it by explicitly binding with .bind(), wrapping in an arrow function, or passing an inline callback.",
+      "explanation": "**The Lost `this` Problem:**\nPassing an object method as a callback passes the underlying function reference directly (`const fn = obj.method`). When the receiver executes `fn()`, it invokes it as a standalone function call (Default Binding), causing `this` to point to `window` or `undefined` instead of `obj`.",
+      "codeSnippet": "const user = {\n  name: \"Alice\",\n  greet() { console.log(\"Hello,\", this.name); }\n};\n\n// PROBLEM: Method passed as callback loses binding\nsetTimeout(user.greet, 100); // \"Hello, undefined\"\n\n// FIX 1: .bind()\nsetTimeout(user.greet.bind(user), 100); // \"Hello, Alice\"\n\n// FIX 2: Wrapper Arrow Function\nsetTimeout(() => user.greet(), 100); // \"Hello, Alice\"",
+      "gotchas": "• Passing unbound object methods directly to `setTimeout`, `addEventListener`, or React event handlers.",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#23"
     },
     {
@@ -332,6 +401,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "call() invokes the function immediately with this and individual arguments. apply() invokes immediately with this and an array of arguments. bind() returns a new permanently bound function without invoking it immediately.",
+      "explanation": "- **`.call(thisArg, arg1, arg2, ...)`:** Invokes function immediately. Arguments passed comma-separated.\n- **`.apply(thisArg, [arg1, arg2, ...])`:** Invokes function immediately. Arguments passed as an Array/Array-like object.\n- **`.bind(thisArg, arg1, arg2, ...)`:** Does NOT execute immediately. Returns a copy of the function with `this` and pre-filled parameters bound permanently.",
+      "codeSnippet": "function introduce(greeting, punctuation) {\n  console.log(`${greeting} ${this.name}${punctuation}`);\n}\nconst person = { name: \"Bob\" };\n\n// call: Individual comma arguments\nintroduce.call(person, \"Hello\", \"!\"); // \"Hello Bob!\"\n\n// apply: Array arguments\nintroduce.apply(person, [\"Welcome\", \".\"]); // \"Welcome Bob.\"\n\n// bind: Returns new function\nconst boundFn = introduce.bind(person, \"Hi\");\nboundFn(\"?\"); // \"Hi Bob?\"",
+      "gotchas": "• Attempting to re-bind a function already bound via `.bind()`. Calling `.bind()` on an already bound function has no effect on `this`!",
       "docRef": "javascript/answers/02-functions-closures-and-this.md#24"
     },
     {
@@ -343,6 +415,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Objects are created via literals {}, Object.create(), or constructors. Properties are accessed via dot or bracket notation. Destructuring extracts values into variables. Object.keys/values/entries return arrays of own enumerable property keys, values, or [key, value] pairs.",
+      "explanation": "- **Dot vs Bracket Notation:** Dot (`obj.key`) requires valid static identifiers. Bracket (`obj[key]`) evaluates dynamic expressions or keys with special characters/spaces.\n- **Destructuring:** Syntax unpacking array elements or object properties into distinct variables with default value support.\n- **Static Object Reflection:**\n  - `Object.keys(obj)` $\\rightarrow$ `['a', 'b']`\n  - `Object.values(obj)` $\\rightarrow$ `[1, 2]`\n  - `Object.entries(obj)` $\\rightarrow$ `[['a', 1], ['b', 2]]`",
+      "codeSnippet": "const user = { id: 101, fullName: \"Sarah\", role: \"Admin\" };\n\n// Destructuring with renaming & default value\nconst { fullName: name, role, salary = 50000 } = user;\nconsole.log(name, role, salary); // \"Sarah\" \"Admin\" 50000\n\n// Object.entries iteration\nfor (const [key, value] of Object.entries(user)) {\n  console.log(`${key}: ${value}`);\n}",
+      "gotchas": "• Accessing nested destructured properties when parent object is `undefined` (`const { a: { b } } = null`), throwing `TypeError`.",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#25"
     },
     {
@@ -354,6 +429,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Shallow copy duplicates top-level properties but retains shared references to nested objects. Deep copy duplicates all levels recursively. Spread and Object.assign create shallow copies; JSON.parse/stringify fails on functions/Date/undefined/circular refs; structuredClone() performs true deep cloning natively.",
+      "explanation": "**Shallow Copy:** Copies primitive values, but copies heap pointers for nested objects/arrays. Mutating nested values affects the source object!\n**Deep Copy:** Recursively clones all nested objects/arrays creating independent heap instances.\n\n**Cloning Techniques & Limitations:**\n1. **Spread `{...obj}` / `Object.assign()`:** Shallow copy only.\n2. **`JSON.parse(JSON.stringify(obj))`:** Deep copy hack. FAILS on `Date` (converts to string), `RegExp`, `Symbol`, `undefined`, `Function` (stripped out!), and throws Error on Circular References.\n3. **`structuredClone(obj)`:** Modern native API. Deep clones circular references, ArrayBuffers, Dates, Maps, Sets. FAILS on functions and DOM nodes.",
+      "codeSnippet": "const original = { a: 1, nested: { b: 2 } };\n\n// Shallow Copy\nconst shallow = { ...original };\nshallow.nested.b = 99;\nconsole.log(original.nested.b); // 99 (MUTATED!)\n\n// Native Deep Copy with structuredClone\nconst deep = structuredClone(original);\ndeep.nested.b = 500;\nconsole.log(original.nested.b); // 99 (SAFE & INDEPENDENT!)",
+      "gotchas": "• Using JSON.stringify for deep cloning objects containing methods, dates, or undefined values.",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#26"
     },
     {
@@ -365,6 +443,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Object.freeze() makes an object shallowly immutable (prevents adding, deleting, or modifying top-level properties). It is shallow; nested objects remain mutable unless recursively frozen.",
+      "explanation": "- **Immutability:** Preventing modifications to an object's state.\n- **`Object.freeze(obj)`:** Prevents adding new properties, deleting existing properties, or changing property values/descriptors.\n- **Shallow Nature of Freeze:** `Object.freeze` only locks the immediate top-level primitive property bindings. If a property references a nested object, that nested object remains completely mutable!",
+      "codeSnippet": "const config = Object.freeze({\n  host: \"localhost\",\n  db: { port: 5432 } // Nested object\n});\n\nconfig.host = \"127.0.0.1\"; // Silently fails or throws in strict mode\nconsole.log(config.host); // \"localhost\"\n\nconfig.db.port = 8080; // MUTATED! (Nested objects not frozen)\nconsole.log(config.db.port); // 8080\n\n// Deep Freeze Helper:\nfunction deepFreeze(obj) {\n  Object.keys(obj).forEach(prop => {\n    if (typeof obj[prop] === 'object' && obj[prop] !== null) deepFreeze(obj[prop]);\n  });\n  return Object.freeze(obj);\n}",
+      "gotchas": "• Assuming `Object.freeze()` performs a deep freeze on nested objects.",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#27"
     },
     {
@@ -376,6 +457,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Every JS object has an internal prototype link to another object. Prototypal inheritance allows objects to inherit properties/methods via this chain. .prototype is the object attached to constructor functions; __proto__ is the internal accessor link on object instances.",
+      "explanation": "**Prototype Chain Mechanism:**\nWhen looking up a property on an object (`obj.prop`), JS first searches the object's own properties. If not found, it traverses up its `__proto__` link to its prototype object, continuing up the chain until it finds the property or hits `null` (end of chain).\n\n**`prototype` vs `__proto__`:**\n- **`fn.prototype`:** Object template property present on constructor functions. Defines properties/methods shared by instances instantiated via `new fn()`.\n- **`instance.__proto__`:** Internal accessor property pointing to the prototype object from which the instance inherited.",
+      "codeSnippet": "function Animal(name) { this.name = name; }\nAnimal.prototype.eat = function() { console.log(this.name, \"eats.\"); };\n\nconst dog = new Animal(\"Rex\");\ndog.eat(); // \"Rex eats.\" (Found on Animal.prototype via prototype chain!)\n\nconsole.log(dog.__proto__ === Animal.prototype); // true\nconsole.log(Animal.prototype.__proto__ === Object.prototype); // true\nconsole.log(Object.prototype.__proto__); // null (End of chain)",
+      "gotchas": "• Using `__proto__` directly in production code (deprecated). Use `Object.getPrototypeOf(obj)` and `Object.setPrototypeOf(obj)` instead.",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#28"
     },
     {
@@ -387,6 +471,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "When new Fn() is called: 1) A new empty object is created, 2) Its __proto__ is linked to Fn.prototype, 3) Fn is executed with this set to the new object, 4) The object is returned (unless Fn returns its own explicit object).",
+      "explanation": "**The 4 Steps of the `new` Operator:**\n1. Creates a brand new empty plain JavaScript object `{}`.\n2. Links the new object's `__proto__` to the constructor's `prototype` property (`obj.__proto__ = Constructor.prototype`).\n3. Binds the new object as `this` context for the constructor function and executes the constructor code.\n4. If the constructor returns a non-primitive object, that object is returned. Otherwise, the created instance object is returned automatically.",
+      "codeSnippet": "function CustomNew(Constructor, ...args) {\n  // Step 1 & 2: Create object & link prototype\n  const instance = Object.create(Constructor.prototype);\n  \n  // Step 3: Execute constructor with this = instance\n  const result = Constructor.apply(instance, args);\n  \n  // Step 4: Return object\n  return (typeof result === 'object' && result !== null) ? result : instance;\n}",
+      "gotchas": "• Forgetting `new` when calling a constructor function (`const user = User()`), causing `this` to point to global `window` and polluting global variables!",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#29"
     },
     {
@@ -398,6 +485,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "ES6 classes are syntactic sugar over prototypal inheritance. extends sets up prototype links; super calls parent constructor/methods; static methods belong to the class itself; #private fields are encapsulated at runtime.",
+      "explanation": "**Class Core Architecture:**\nES6 `class` syntax is syntactic sugar over prototype delegation.\n- **`extends`:** Links `SubClass.prototype.__proto__ = SuperClass.prototype`.\n- **`super(...)`:** Invokes parent constructor inside child constructor (mandatory before using `this`).\n- **`static`:** Attaches methods directly to class function object (`Class.method`), not instance prototype.\n- **`#private`:** Hard private fields enforced by JS engine runtime (accessing outside class throws SyntaxError).",
+      "codeSnippet": "class BankAccount {\n  #balance = 0; // Truly Private Field\n\n  constructor(owner, initial) {\n    this.owner = owner;\n    this.#balance = initial;\n  }\n\n  deposit(amount) { this.#balance += amount; }\n  getBalance() { return this.#balance; }\n}\n\nconst acc = new BankAccount(\"Alice\", 100);\nacc.deposit(50);\nconsole.log(acc.getBalance()); // 150\n// console.log(acc.#balance); // SyntaxError: Private field '#balance' must be declared in an enclosing class",
+      "gotchas": "• Using `this` inside child constructor before calling `super()` (throws `ReferenceError`).",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#30"
     },
     {
@@ -409,6 +499,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Map accepts keys of any data type and maintains insertion order. Set stores unique values of any type. Use Set with Array.from() or spread to remove array duplicates in O(N) time.",
+      "explanation": "- **Map vs Object:** Objects only accept String/Symbol keys. Maps accept any type (objects, functions, primitives) as keys, preserve insertion order, and have built-in `.size` property.\n- **Set:** Collection of unique values. Prevents duplicate entries automatically using SameValueZero algorithm.",
+      "codeSnippet": "// Deduplicating Array with Set\nconst nums = [1, 2, 2, 3, 4, 4, 5];\nconst uniqueNums = [...new Set(nums)]; // [1, 2, 3, 4, 5]\n\n// Map with Object Keys\nconst keyObj = { id: 1 };\nconst map = new Map();\nmap.set(keyObj, \"User Data Payload\");\nconsole.log(map.get(keyObj)); // \"User Data Payload\"",
+      "gotchas": "• Using objects as Map keys in plain Objects (`obj[keyObj]`), which converts keyObj to string `'[object Object]'`, overwriting other object keys!",
       "docRef": "javascript/answers/03-objects-prototypes-and-classes.md#31"
     },
     {
@@ -420,6 +513,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "map transforms elements returning a new array; filter returns items passing a test; reduce accumulates elements into a single value; forEach iterates with side effects (returns undefined); find returns first matching element; some/every check boolean conditions.",
+      "explanation": "**Array Iterators:**\n- **`map(fn)`:** Returns new array of same length with transformed items.\n- **`filter(fn)`:** Returns new array containing elements where `fn` returns `true`.\n- **`reduce(fn, init)`:** Accumulates array elements into a single value/object/array.\n- **`forEach(fn)`:** Executes side effects for each element. Returns `undefined` (cannot chain!).\n- **`find(fn)`:** Returns first element satisfying condition, or `undefined`.\n- **`some(fn)`:** Returns `true` if AT LEAST ONE element satisfies condition.\n- **`every(fn)`:** Returns `true` if ALL elements satisfy condition.",
+      "codeSnippet": "const numbers = [1, 2, 3, 4, 5];\n\nconst squared = numbers.map(n => n ** 2); // [1, 4, 9, 16, 25]\nconst evens = numbers.filter(n => n % 2 === 0); // [2, 4]\nconst sum = numbers.reduce((acc, curr) => acc + curr, 0); // 15\nconst hasNegative = numbers.some(n => n < 0); // false",
+      "gotchas": "• Trying to break or return early from a `forEach` loop. `return` inside `forEach` callback acts as `continue`; use `for...of` or `some()` if early termination is needed.",
       "docRef": "javascript/answers/04-arrays-iteration-and-error-handling.md#32"
     },
     {
@@ -431,6 +527,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Mutating methods modify original array in place (push, pop, shift, unshift, splice, sort, reverse). Non-mutating methods return new arrays (slice, concat, map, filter, toSorted, toReversed). Array.prototype.sort() converts elements to strings by default!",
+      "explanation": "**Mutating vs Non-Mutating Methods:**\n- **Mutating (In-Place):** `splice()`, `sort()`, `reverse()`, `push()`, `pop()`, `shift()`, `unshift()`.\n- **Non-Mutating:** `slice()`, `concat()`, `map()`, `filter()`, `toSorted()`, `toReversed()`, `toSpliced()`.\n\n**The Default `sort()` Lexicographical Gotcha:**\n`array.sort()` converts elements to strings before sorting alphabetically! `[10, 2, 5].sort()` yields `[10, 2, 5]` because `'10' < '2'`. Pass a numeric comparator `(a, b) => a - b` to fix.",
+      "codeSnippet": "const nums = [10, 2, 5, 1];\n\n// Default Sort Bug\nconsole.log([...nums].sort()); // [1, 10, 2, 5] (String sorting!)\n\n// Correct Numeric Sort\nconsole.log([...nums].sort((a, b) => a - b)); // [1, 2, 5, 10]\n\n// Immutable Sort (ES2023)\nconst sorted = nums.toSorted((a, b) => a - b); // Original nums unchanged!",
+      "gotchas": "• Calling `.sort()` or `.reverse()` on a React state array directly mutating state in place instead of making a copy (`[...arr].sort()`).",
       "docRef": "javascript/answers/04-arrays-iteration-and-error-handling.md#33"
     },
     {
@@ -442,6 +541,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "for...in iterates over enumerable property keys of an object (including prototype chain). for...of iterates over values of iterable objects (Arrays, Strings, Maps, Sets).",
+      "explanation": "- **`for...in`:** Designed for Objects. Loops over enumerable property **keys** (strings/symbols). Traverses up prototype chain!\n- **`for...of`:** Designed for Iterables (objects implementing `[Symbol.iterator]`). Loops over collection **values** directly.",
+      "codeSnippet": "const arr = ['a', 'b', 'c'];\narr.customProp = 'hello';\n\n// for...in (Keys + Prototype/Custom props)\nfor (const index in arr) {\n  console.log(index); // \"0\", \"1\", \"2\", \"customProp\"\n}\n\n// for...of (Values only)\nfor (const value of arr) {\n  console.log(value); // \"a\", \"b\", \"c\"\n}",
+      "gotchas": "• Using `for...in` to iterate over arrays (yields string indexes and includes custom prototype properties).",
       "docRef": "javascript/answers/04-arrays-iteration-and-error-handling.md#34"
     },
     {
@@ -453,6 +555,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "try runs code; catch captures thrown exceptions; finally always runs regardless of outcome. Custom error classes extend built-in Error to add custom properties (e.g., statusCode).",
+      "explanation": "**Error Handling Architecture:**\n- `try`: Encloses code that may throw a runtime error.\n- `catch(err)`: Executes if an exception is thrown in try block.\n- `finally`: Guaranteed execution block after try/catch completes, ideal for cleanup (closing database connections, clearing timers).\n\n**Custom Error Classes:**\nInheriting from `Error` retains stack trace generation (`Error.captureStackTrace`) and allows custom domain properties.",
+      "codeSnippet": "class NotFoundError extends Error {\n  constructor(message) {\n    super(message);\n    this.name = \"NotFoundError\";\n    this.statusCode = 404;\n  }\n}\n\ntry {\n  throw new NotFoundError(\"User not found in DB\");\n} catch (err) {\n  if (err instanceof NotFoundError) {\n    console.log(`${err.name} (${err.statusCode}): ${err.message}`);\n  }\n} finally {\n  console.log(\"Cleanup executed.\");\n}",
+      "gotchas": "• Swallowing errors in `catch(e) {}` silently without logging or rethrowing, masking runtime failures.",
       "docRef": "javascript/answers/04-arrays-iteration-and-error-handling.md#35"
     },
     {
@@ -464,6 +569,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "The Event Loop monitors Call Stack and Queues. When Call Stack is empty, it processes ALL Microtasks (Promises, queueMicrotask) before processing ONE Macrotask (setTimeout, setInterval, I/O). A busy call stack blocks the event loop and freezes the UI.",
+      "explanation": "**Event Loop Priority Order:**\n1. Execute synchronous code on **Call Stack**.\n2. When Call Stack empties, flush the entire **Microtask Queue** completely (Promise `.then` callbacks, `queueMicrotask`, `process.nextTick` in Node).\n3. Render UI updates (in browser).\n4. Pick and execute ONE task from **Macrotask Queue** (`setTimeout`, `setInterval`, I/O, `requestAnimationFrame`).\n5. Repeat loop.\n\n**Why Promises run before setTimeout(0):**\nPromise callbacks enter the Microtask queue, which has absolute priority over the Macrotask queue.",
+      "codeSnippet": "console.log(\"1. Sync Main\");\n\nsetTimeout(() => console.log(\"4. Macrotask (Timeout)\"), 0);\n\nPromise.resolve().then(() => console.log(\"2. Microtask 1\"));\nPromise.resolve().then(() => console.log(\"3. Microtask 2\"));\n\nconsole.log(\"Sync End\");\n\n// Output Order:\n// 1. Sync Main\n// Sync End\n// 2. Microtask 1\n// 3. Microtask 2\n// 4. Macrotask (Timeout)",
+      "gotchas": "• Running intensive recursive microtasks (`Promise.resolve().then(loop)`), starving the Macrotask queue and freezing UI rendering permanently.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#36"
     },
     {
@@ -475,6 +583,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "Concurrency is dealing with multiple tasks at once by interleaving execution on a single core (Event Loop). Parallelism is executing multiple tasks simultaneously at the exact same physical instant on multiple CPU cores.",
+      "explanation": "- **Concurrency (Single CPU Core):** Tasks overlap in execution window via context switching or asynchronous non-blocking event loops (JavaScript's model).\n- **Parallelism (Multi-Core CPU):** Independent instructions run physically simultaneously across different hardware CPU cores (e.g. Web Workers / Worker Threads).",
+      "codeSnippet": "// Web Worker Parallelism Example (Main Thread):\nconst worker = new Worker('worker.js');\nworker.postMessage({ data: [100000000] }); // Runs on separate physical CPU thread!\n\nworker.onmessage = (e) => {\n  console.log(\"Parallel computation result:\", e.data);\n};",
+      "gotchas": "• Assuming asynchronous JS code (`async/await`, Promises) runs in parallel on multiple CPU cores. It runs concurrently on a single thread unless Web Workers / Worker Threads are used.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#37"
     },
     {
@@ -486,6 +597,9 @@
       "priority": "P1",
       "type": "C",
       "summary": "Callback hell refers to deeply nested, unmaintainable asynchronous callbacks (\"pyramid of doom\"). Promises were introduced to flatten async flows into chainable, composable pipelines with centralized error handling.",
+      "explanation": "**Limitations of Callbacks:**\n1. Deep nesting (\"Pyramid of Doom\") leading to unreadable code.\n2. Inversion of Control: Trusting 3rd party functions to call your callback correctly (not too many times, not zero times).\n3. Difficult error propagation across nested operations.\n\n**Promises Solution:**\nStandardizes async control flow into a state machine (`Pending`, `Fulfilled`, `Rejected`), decoupling async producers from consumers.",
+      "codeSnippet": "// Callback Hell (Pyramid of Doom)\ngetData((a) => {\n  getMoreData(a, (b) => {\n    getFinalData(b, (c) => {\n      console.log(c);\n    });\n  });\n});\n\n// Promises (Flat Chained Pipeline)\ngetData()\n  .then(a => getMoreData(a))\n  .then(b => getFinalData(b))\n  .then(c => console.log(c))\n  .catch(err => console.error(err));",
+      "gotchas": "• Failing to return a Promise inside a `.then()` chain, causing subsequent `.then()` steps to execute prematurely with `undefined`.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#38"
     },
     {
@@ -497,6 +611,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "A Promise represents the eventual completion or failure of an async operation. It has 3 states: Pending, Fulfilled, or Rejected. .then() handles fulfillment, .catch() handles rejection, and .finally() executes regardless.",
+      "explanation": "**Promise State Machine:**\n- **Pending:** Initial state, neither fulfilled nor rejected.\n- **Fulfilled:** Operation completed successfully (value set). Immutably locked.\n- **Rejected:** Operation failed (reason set). Immutably locked.\n\nOnce settled (fulfilled or rejected), state transitions can never change again.",
+      "codeSnippet": "const fetchUser = new Promise((resolve, reject) => {\n  const success = true;\n  setTimeout(() => {\n    if (success) resolve({ id: 1, name: \"Alice\" });\n    else reject(\"Database connection error\");\n  }, 100);\n});\n\nfetchUser\n  .then(user => console.log(user.name))\n  .catch(err => console.error(err))\n  .finally(() => console.log(\"Operation completed.\"));",
+      "gotchas": "• Attempting to reset or re-trigger a settled Promise instance. Promises represent a single one-shot async result.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#39"
     },
     {
@@ -508,6 +625,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "In Promise chaining, returning a primitive/object wraps it in a resolved Promise; returning another Promise waits for it to resolve; throwing an error or returning a rejected Promise skips to the nearest .catch().",
+      "explanation": "**`.then()` Resolution Rules:**\n1. **Returns a Value `x`:** Returns a new Promise resolved with `x`.\n2. **Returns a Promise `P`:** The chain adopts the state and value of `P`.\n3. **Throws Error `e`:** Returns a new Promise rejected with `e` (caught by next `.catch()`).",
+      "codeSnippet": "Promise.resolve(5)\n  .then(val => val * 2) // Returns 10\n  .then(val => new Promise(res => res(val + 5))) // Returns Promise(15)\n  .then(val => {\n    throw new Error(\"Something went wrong!\");\n  })\n  .catch(err => console.log(\"Caught:\", err.message)); // Handles thrown error!",
+      "gotchas": "• Forgetting to `return` Promises inside `.then()` handlers, breaking the asynchronous chain sequence.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#40"
     },
     {
@@ -519,6 +639,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Promise.all waits for all to succeed (fails fast on first error); allSettled waits for all to finish regardless of outcome; race resolves/rejects as soon as the FIRST promise settles; any resolves as soon as the FIRST promise succeeds (fails if all fail).",
+      "explanation": "**Promise Combinators Comparison:**\n- **`Promise.all([p1, p2])`:** Returns array of all results. Fails instantly if ANY promise rejects.\n- **`Promise.allSettled([p1, p2])`:** Returns array of objects `{ status: 'fulfilled'|'rejected', value|reason }`. NEVER rejects.\n- **`Promise.race([p1, p2])`:** Settles with result/error of whichever promise finishes FIRST.\n- **`Promise.any([p1, p2])`:** Resolves with value of FIRST fulfilled promise. Rejects with `AggregateError` only if ALL promises reject.",
+      "codeSnippet": "const p1 = Promise.resolve(\"Fast Success\");\nconst p2 = new Promise((_, r) => setTimeout(() => r(\"Error\"), 100));\n\n// Promise.allSettled\nPromise.allSettled([p1, p2]).then(results => {\n  console.log(results);\n  // [{status: 'fulfilled', value: 'Fast Success'}, {status: 'rejected', reason: 'Error'}]\n});\n\n// Promise.any\nPromise.any([p2, p1]).then(val => console.log(\"First Success:\", val)); // \"Fast Success\"",
+      "gotchas": "• Using `Promise.all` for batch requests where partial failure is acceptable; one single failed request aborts all results. Use `Promise.allSettled` instead.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#41"
     },
     {
@@ -530,6 +653,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "An async function always returns a Promise. The await operator pauses execution inside the async function until the awaited Promise settles, unwrapping its resolved value.",
+      "explanation": "**Syntactic Sugar for Promises:**\n- Marking a function `async` wraps its return value in `Promise.resolve()`.\n- `await` can only be used inside `async` functions (or top-level ES modules).\n- Under the hood, `await` yields execution back to the Event Loop, resuming execution as a Microtask when the Promise resolves.",
+      "codeSnippet": "async function fetchNumericData() {\n  return 42; // Wrapped automatically in Promise.resolve(42)\n}\n\nasync function main() {\n  const val = await fetchNumericData(); // Unwraps promise value\n  console.log(val); // 42\n}\nmain();",
+      "gotchas": "• Forgetting `await` when invoking an async function, receiving the raw pending Promise object instead of the unwrapped return value.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#42"
     },
     {
@@ -541,6 +667,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Handle errors in async/await using try/catch blocks or appending .catch() to the async call. Unhandled promise rejections occur when a rejected promise has no handler, triggering process.on('unhandledRejection') or browser warnings.",
+      "explanation": "**Error Handling in Async/Await:**\nIn async functions, rejected promises throw exceptions that can be caught using standard `try/catch` blocks. If unhandled, the rejection bubbles up and triggers an `unhandledrejection` event on `window` / `process`.",
+      "codeSnippet": "async function fetchUserData() {\n  try {\n    const res = await fetch(\"https://invalid-url.xyz\");\n    const data = await res.json();\n    return data;\n  } catch (err) {\n    console.error(\"Caught error gracefully:\", err.message);\n  }\n}\nfetchUserData();",
+      "gotchas": "• Omitting try/catch blocks around `await` calls, causing unhandled promise rejections that crash Node.js processes.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#43"
     },
     {
@@ -552,6 +681,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "forEach runs callbacks synchronously without awaiting them, firing requests concurrently without waiting. Use for...of for sequential awaits, and Promise.all() with map() for parallel awaits.",
+      "explanation": "**Why `await` fails in `forEach`:**\n`Array.prototype.forEach` expects a standard synchronous callback. It invokes callback functions back-to-back without inspecting or awaiting returned Promises.",
+      "codeSnippet": "const ids = [1, 2, 3];\nconst fetchItem = id => new Promise(res => setTimeout(() => res(`Item ${id}`), 100));\n\n// 1. SEQUENTIAL (One by one in order)\nasync function runSequential() {\n  for (const id of ids) {\n    const item = await fetchItem(id);\n    console.log(item);\n  }\n}\n\n// 2. PARALLEL (All concurrently)\nasync function runParallel() {\n  const items = await Promise.all(ids.map(id => fetchItem(id)));\n  console.log(items);\n}",
+      "gotchas": "• Expecting `forEach(async () => { await ... })` to pause loop execution.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#44"
     },
     {
@@ -563,6 +695,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Async race conditions happen when responses return out of order. AbortController creates an AbortSignal to cancel pending HTTP requests when new requests are triggered.",
+      "explanation": "**Race Condition Scenario:**\nUser types in a search box (\"A\" then \"AB\"). Request for \"A\" takes 2 seconds; request for \"AB\" takes 0.5 seconds. \"AB\" finishes first, then \"A\" finishes later and overwrites search results with stale data!\n\n**Fix with AbortController:**\nCancel the active in-flight request via `controller.abort()` whenever a new request is dispatched.",
+      "codeSnippet": "let currentController = null;\n\nasync function searchApi(query) {\n  // Abort previous in-flight request if present\n  if (currentController) currentController.abort();\n  \n  currentController = new AbortController();\n  \n  try {\n    const res = await fetch(`/api/search?q=${query}`, {\n      signal: currentController.signal\n    });\n    const data = await res.json();\n    console.log(\"Search result:\", data);\n  } catch (err) {\n    if (err.name === 'AbortError') console.log(\"Cancelled stale request!\");\n    else console.error(err);\n  }\n}",
+      "gotchas": "• Not handling `AbortError` in catch blocks when using AbortController.",
       "docRef": "javascript/answers/05-async-event-loop-and-promises.md#45"
     },
     {
@@ -574,6 +709,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "The DOM (Document Object Model) is a tree-structure object representation of an HTML document created by the browser, allowing JS to read and manipulate page structure, content, and styling.",
+      "explanation": "**DOM Interaction:**\nThe browser parses HTML documents into a DOM tree where nodes represent HTML tags, text nodes, and attributes. JavaScript accesses nodes via host objects like `document.querySelector`, modifies attributes/classes, and listens to events.",
+      "codeSnippet": "const btn = document.querySelector('#submit-btn');\nbtn.textContent = 'Processing...';\nbtn.classList.add('active');",
+      "gotchas": "• Directly querying the DOM in loops (`for (...) { document.getElementById(...) }`), causing layout thrashing. Cache DOM references!",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#46"
     },
     {
@@ -585,6 +723,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Event propagation has 3 phases: Capturing (down from window to target), Target, and Bubbling (up from target to window). Event delegation attaches one listener to a parent. target is element clicked; currentTarget is element with listener.",
+      "explanation": "**Phases:**\n1. **Capturing:** Event travels top-down from `window` $\\rightarrow$ `target`.\n2. **Target:** Event reaches target element.\n3. **Bubbling:** Event travels bottom-up from `target` $\\rightarrow$ `window`.\n\n**Event Delegation:**\nAttaching a single event listener on a parent container to manage events from multiple existing or dynamically added child elements via event bubbling.",
+      "codeSnippet": "// Event Delegation on parent <ul>\ndocument.querySelector('#item-list').addEventListener('click', (e) => {\n  if (e.target.tagName === 'LI') {\n    console.log(\"Clicked Item:\", e.target.textContent);\n    console.log(\"Handler attached to:\", e.currentTarget.id);\n  }\n});",
+      "gotchas": "• Confusing `event.target` (actual clicked node) with `event.currentTarget` (node carrying listener).",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#47"
     },
     {
@@ -596,6 +737,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "innerHTML parses and returns HTML tags (vulnerable to XSS). textContent returns raw unformatted text of all nodes. innerText returns visible rendered text (triggers layout recalculation).",
+      "explanation": "- **`innerHTML`:** Gets/sets raw HTML string. Parses HTML markup. Vulnerable to Cross-Site Scripting (XSS) if un-sanitized user inputs are inserted!\n- **`textContent`:** Gets/sets raw text of element and all descendants, including `<script>` and `<style>` tags. Fast.\n- **`innerText`:** Gets/sets rendered visible text. Aware of CSS styling (`display: none`), triggering expensive browser layout reflows.",
+      "codeSnippet": "const el = document.getElementById('content');\n// DANGEROUS XSS:\nel.innerHTML = `<img src=x onerror=\"alert('Hacked!')\">`;\n\n// SAFE:\nel.textContent = `<img src=x onerror=\"alert('Safe')\">`;",
+      "gotchas": "• Using `innerHTML` to set text received from user inputs without sanitization.",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#48"
     },
     {
@@ -607,6 +751,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "localStorage persists until manually cleared (5MB); sessionStorage persists until tab closes (5MB); cookies send with HTTP requests (4KB). HttpOnly cookies prevent XSS theft; SameSite mitigates CSRF.",
+      "explanation": "**Storage Comparison:**\n- **localStorage:** 5-10MB, persistent storage across sessions. Accessible via JS.\n- **sessionStorage:** 5-10MB, scoped to tab session. Accessible via JS.\n- **Cookies:** 4KB, automatically sent in HTTP headers.\n\n**Security Flags:**\n- **`HttpOnly`:** Prevents JavaScript access via `document.cookie` (Mitigates XSS token theft!).\n- **`Secure`:** Transmitted ONLY over HTTPS.\n- **`SameSite=Strict/Lax`:** Restricts cross-site request sending (Mitigates CSRF attack!).",
+      "codeSnippet": "// Storing JSON in localStorage\nlocalStorage.setItem('user', JSON.stringify({ id: 1 }));\nconst user = JSON.parse(localStorage.getItem('user'));",
+      "gotchas": "• Storing sensitive auth JWT tokens in `localStorage` where XSS scripts can read them via `localStorage.getItem()`. Store auth tokens in `HttpOnly` cookies!",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#49"
     },
     {
@@ -618,6 +765,9 @@
       "priority": "P0",
       "type": "C",
       "summary": "fetch() returns a Promise resolving to a Response object. It does NOT reject on 4xx/5xx HTTP status codes (check response.ok). CORS is a browser security mechanism blocking cross-origin requests unless server headers allow it.",
+      "explanation": "**fetch() Behavior:**\n- `fetch()` only rejects on network failures or request blocking.\n- HTTP error statuses (`404`, `500`) resolve successfully. Developers must check `response.ok` (status 200-299).\n\n**CORS (Cross-Origin Resource Sharing):**\nBrowser security feature enforcing Same-Origin Policy (SOP). Cross-origin requests trigger preflight `OPTIONS` requests unless server sends `Access-Control-Allow-Origin` headers.",
+      "codeSnippet": "async function loadData() {\n  const res = await fetch(\"https://api.example.com/data\");\n  if (!res.ok) {\n    throw new Error(`HTTP Error: ${res.status}`);\n  }\n  const data = await res.json();\n  return data;\n}",
+      "gotchas": "• Assuming `fetch()` rejects automatically when server returns a 404 or 500 status code.",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#50"
     },
     {
@@ -629,6 +779,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "CommonJS (module.exports / require) is synchronous, used in traditional Node.js, and evaluated at runtime. ES Modules (import / export) are asynchronous, statically analyzed at compile-time (enabling tree-shaking), and native to modern JS.",
+      "explanation": "**CJS vs ESM:**\n- **CommonJS (CJS):** `require()`, `module.exports`. Synchronous file loading. Evaluates dynamically at runtime.\n- **ES Modules (ESM):** `import`, `export`. Static analysis at parse time before execution. Supports top-level `await` and tree-shaking.",
+      "codeSnippet": "// CommonJS (CJS)\nconst fs = require('fs');\nmodule.exports = { calc: (x) => x * 2 };\n\n// ES Module (ESM)\nimport { useState } from 'react';\nexport const calc = (x) => x * 2;",
+      "gotchas": "• Trying to use `require()` inside ES modules or using top-level `import` conditionally inside functions.",
       "docRef": "javascript/answers/06-dom-storage-web-apis-and-modules.md#51"
     },
     {
@@ -640,6 +793,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`var` declarations are hoisted to the top of their enclosing function/global scope and initialized with `undefined`, whereas function declarations are hoisted along with their full implementation. Statements inside unexecuted conditional blocks still hoist `var` variable declarations.",
+      "explanation": "During the **Creation Phase** of an Execution Context, the JavaScript engine scans code and allocates memory:\n- **`var` Declarations:** Hoisted to top of function/global scope and initialized to `undefined`.\n- **Function Declarations:** Hoisted with their full definition body attached.\n- **Unexecuted Conditional Blocks (`if (false)`):** Lexical parsing hoists `var` declarations regardless of whether the enclosing runtime conditional branch actually executes. The variable exists in scope with value `undefined`.",
+      "codeSnippet": "console.log(a); // undefined (var declaration hoisted, value assignment remains below)\nconsole.log(foo()); // \"Hello from foo\" (Function declaration hoisted with body)\n\nvar a = 10;\n\nfunction foo() {\n  return \"Hello from foo\";\n}\n\nif (false) {\n  var b = 20;\n}\n\nconsole.log(b); // undefined (var b hoisted from inside if-block, but assignment skipped)\n\nvar bar = function() {\n  return \"Hello from bar\";\n};\nconsole.log(bar()); // \"Hello from bar\"",
+      "gotchas": "• **Function Expression Hoisting Gotcha:** Attempting to call `bar()` before line 14 throws `TypeError: bar is not a function` (NOT `ReferenceError`), because `bar` exists in memory as `undefined`, and invoking `undefined()` throws a `TypeError`.",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#52"
     },
     {
@@ -651,6 +807,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Using `var` in a loop creates a single shared function-scoped variable binding. When `setTimeout` callbacks run asynchronously after loop completion, all closures reference the final mutated value (`3, 3, 3`). Using `let` creates a new block-scoped binding per iteration (`0, 1, 2`).",
+      "explanation": "In JavaScript, closures maintain a reference to their outer Lexical Environment, not a snapshot copy of variable values at creation time.\n- **`var` in a `for` loop:** `var i` is function-scoped. The loop runs synchronously from `i = 0` to `i = 3`. All 3 `setTimeout` callbacks form closures over the **exact same reference** `i`. By the time the call stack clears and microtasks/macrotasks run 100ms later, `i` is `3`.\n- **`let` in a `for` loop:** `let j` creates a distinct, new block-scoped variable binding for **every single iteration**. Each callback closes over its own immutable iteration binding (`0`, `1`, `2`).",
+      "codeSnippet": "// ❌ Problematic (var) -> Output: 3, 3, 3\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log('var i:', i), 100);\n}\n\n// ✅ Fix 1: ES6 Block Scope (let) -> Output: 0, 1, 2\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log('let j:', j), 100);\n}\n\n// ✅ Fix 2: ES5 IIFE Closure Capture -> Output: 0, 1, 2\nfor (var k = 0; k < 3; k++) {\n  (function(capturedK) {\n    setTimeout(() => console.log('IIFE k:', capturedK), 100);\n  })(k);\n}\n\n// =========================================\n\n[ Call Stack ]                [ Macrotask Queue ]\nfor loop finishes (i = 3) --> [ cb1 (captures ref i=3) ]\n                              [ cb2 (captures ref i=3) ]\n                              [ cb3 (captures ref i=3) ]\n                              Outputs: 3, 3, 3",
+      "gotchas": "• Interviewers will ask: *\"What happens if delay is `0` (`setTimeout(..., 0)`)?\"*\n• **Answer:** Output is STILL `3, 3, 3`! `setTimeout(..., 0)` does NOT run synchronously; it pushes callbacks to the Macrotask Queue, which waits until the Call Stack is completely clear (after the loop finishes and `i` becomes `3`).",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#53"
     },
     {
@@ -662,6 +821,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Regular functions evaluate `this` dynamically at invocation time based on *how* they are called. Arrow functions do NOT have their own `this`; they capture `this` lexically from their enclosing parent scope at definition time.",
+      "explanation": "1. **Regular Functions:** Evaluates `this` at call-time using 4 binding rules:\n   - *Default Binding:* `fn()` $\nightarrow$ `global` (or `undefined` in strict mode).\n   - *Implicit Binding:* `obj.fn()` $\nightarrow$ `obj`.\n   - *Explicit Binding:* `fn.call(ctx)` $\nightarrow$ `ctx`.\n   - *New Binding:* `new Fn()` $\nightarrow$ newly constructed instance object.\n2. **Arrow Functions:** Skip `this` binding completely in the Execution Context. `this` is resolved along the Scope Chain lexically. `call()`, `apply()`, and `bind()` cannot alter an arrow function's `this`.",
+      "codeSnippet": "const user = {\n  name: 'Alice',\n  regularMethod: function() {\n    console.log('Regular:', this.name);\n  },\n  arrowMethod: () => {\n    console.log('Arrow:', this.name);\n  },\n  nestedMethod: function() {\n    const innerArrow = () => console.log('Nested Arrow:', this.name);\n    innerArrow();\n  }\n};\n\nuser.regularMethod(); // \"Regular: Alice\" (Implicit binding to user)\nuser.arrowMethod();   // \"Arrow: undefined\" (Lexical scope is global/module, where name is undefined)\nuser.nestedMethod();  // \"Nested Arrow: Alice\" (Lexical scope is nestedMethod, where this = user)\n\nconst detached = user.regularMethod;\ndetached();           // \"Regular: undefined\" (Default binding lost! In strict mode: TypeError)",
+      "gotchas": "• **Object Literal Trap:** Defining object methods using arrow functions (`const obj = { val: 10, inc: () => this.val++ }`) is a bug! Object literals `{}` do NOT create a new lexical scope block for arrow functions; `this` points to `window`/`globalThis`.",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#54"
     },
     {
@@ -673,6 +835,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Synchronous script execution completes first $",
+      "explanation": "The V8 Runtime Event Loop prioritizes execution queues in a strict hierarchy:\n1. **Call Stack (Synchronous Code):** Executes code sequentially until stack is empty.\n2. **Microtask Queue:** Drained completely after every stack execution before browser rendering or macrotasks run. Promises (`.then()`, `.catch()`, `.finally()`) and `queueMicrotask` inhabit this queue.\n3. **Macrotask Queue:** Tasks like `setTimeout`, `setInterval`, and DOM event handlers are dequeued one at a time per loop iteration.",
+      "codeSnippet": "console.log('1: Sync Start');\n\nsetTimeout(() => {\n  console.log('2: Macrotask (setTimeout)');\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log('3: Microtask 1');\n}).then(() => {\n  console.log('4: Microtask 2');\n});\n\nconsole.log('5: Sync End');\n\n// Complete Output Sequence:\n// 1: Sync Start\n// 5: Sync End\n// 3: Microtask 1\n// 4: Microtask 2\n// 2: Macrotask (setTimeout)\n\n// =========================================\n\n[ Step 1: Call Stack ]       --> Prints 1: Sync Start, 5: Sync End\n[ Step 2: Microtask Queue ]  --> Drains ALL: Prints 3: Microtask 1, 4: Microtask 2\n[ Step 3: Macrotask Queue ]  --> Executes 1 task: Prints 2: Macrotask (setTimeout)",
+      "gotchas": "• **Microtask Chaining / Starvation:** If a Microtask recursively schedules another Microtask (`function loop() { Promise.resolve().then(loop); }`), the Call Stack / Microtask loop will starve the Macrotask Queue and UI render thread forever, freezing the browser!",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#55"
     },
     {
@@ -684,6 +849,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "An `async` function executes synchronously up to the first `await` expression. The expression following `await` is evaluated synchronously, while the code after `await` is wrapped into a Microtask and paused until the awaited Promise resolves.",
+      "explanation": "Under the hood, `async/await` is syntactic sugar over Promises and Generators:\n1. When an `async` function is invoked, it runs synchronously until it hits an `await`.\n2. The code on the right-hand side of `await` evaluates **immediately (synchronously)**.\n3. The `async` function pauses and returns an implicit Promise to the caller.\n4. All statements following `await` are scheduled as a **Microtask** continuation when the awaited value resolves.",
+      "codeSnippet": "async function async1() {\n  console.log('2: async1 start');\n  await async2();\n  console.log('6: async1 end'); // Microtask continuation\n}\n\nasync function async2() {\n  console.log('3: async2');\n}\n\nconsole.log('1: script start');\n\nsetTimeout(() => {\n  console.log('8: setTimeout');\n}, 0);\n\nasync1();\n\nnew Promise((resolve) => {\n  console.log('4: promise executor');\n  resolve();\n}).then(() => {\n  console.log('7: promise then');\n});\n\nconsole.log('5: script end');\n\n// Output:\n// 1: script start\n// 2: async1 start\n// 3: async2\n// 4: promise executor\n// 5: script end\n// 6: async1 end\n// 7: promise then\n// 8: setTimeout",
+      "gotchas": "• **Promise Executor Synchronicity:** The function passed into `new Promise((resolve, reject) => { ... })` is called **synchronously** immediately upon creation. Only `.then()` callbacks are asynchronous microtasks.",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#56"
     },
     {
@@ -695,6 +863,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`Array.prototype.forEach` does NOT await Promises returned by its callback; it triggers async operations concurrently without waiting. Use `for...of` for sequential execution, `Promise.all()` for parallel execution, `try/catch` for error handling, and `AbortController` for race conditions.",
+      "explanation": "1. **`forEach` Async Bug:** `forEach` accepts a synchronous callback. When you mark the callback `async`, `forEach` invokes it, gets back a Promise, discards the Promise, and immediately proceeds to the next iteration.\n2. **Unhandled Rejection Bug:** Marking a function `async` without wrapping `await` calls in `try/catch` or attaching `.catch()` results in unhandled Promise rejections.\n3. **Race Condition Bug:** Rapid firing of async requests (e.g. search input) triggers multiple HTTP requests. If request #1 responds *after* request #2 due to network jitter, the UI displays stale data from request #1.",
+      "codeSnippet": "// ❌ BUG 1: await inside forEach (Returns before work is completed)\nasync function processBad(items) {\n  items.forEach(async (item) => {\n    await saveToDb(item); // Not awaited by processBad!\n  });\n  console.log('Finished!'); // Prints BEFORE items are saved\n}\n\n// ✅ FIX 1a: Sequential Execution (for...of)\nasync function processSequential(items) {\n  for (const item of items) {\n    await saveToDb(item);\n  }\n  console.log('Finished sequentially!');\n}\n\n// ✅ FIX 1b: Parallel Concurrent Execution (Promise.all)\nasync function processParallel(items) {\n  await Promise.all(items.map(item => saveToDb(item)));\n  console.log('Finished all in parallel!');\n}\n\n// ✅ FIX 2: Race Condition Fix using AbortController\nlet currentController = null;\n\nasync function fetchSearchResults(query) {\n  if (currentController) {\n    currentController.abort(); // Cancel previous inflight request\n  }\n  currentController = new AbortController();\n\n  try {\n    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {\n      signal: currentController.signal\n    });\n    const data = await res.json();\n    renderResults(data);\n  } catch (err) {\n    if (err.name !== 'AbortError') {\n      console.error('Fetch error:', err);\n    }\n  }\n}",
+      "gotchas": "• `items.map(async item => ...)` creates an array of Promises (`[Promise, Promise]`). Passing this array directly to `if (items.map(...))` evaluates as **truthy** immediately! You MUST pass it to `await Promise.all(...)`.",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#57"
     },
     {
@@ -706,6 +877,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Detaching an object method and passing it as a callback loses its implicit `this` context binding (`this` defaults to `undefined` or `window`). Closed-over variables inside long-lived callbacks (timers, event handlers) capture initial variable snapshots (stale closures).",
+      "explanation": "1. **Lost `this` Bug:** When passing `obj.method` as a callback parameter (e.g. `setTimeout(obj.method, 100)` or `elem.addEventListener('click', obj.method)`), only a reference to the raw function is passed. At call time, it is invoked as a standalone function `method()`, losing implicit binding to `obj`.\n2. **Stale Closure Bug:** A closure captures variables from its enclosing environment by reference at definition time. If a callback executes repeatedly or at a later point while outer state updates without re-creating the closure, the callback reads obsolete captured values.",
+      "codeSnippet": "// ❌ BUG 1: Lost 'this' in callback\nclass AutoCounter {\n  constructor() {\n    this.count = 0;\n  }\n  start() {\n    setTimeout(function() {\n      this.count++; // TypeError: Cannot read property 'count' of undefined / window\n      console.log(this.count);\n    }, 100);\n  }\n}\n\n// ✅ FIX 1: Arrow Function (Lexical this) or bind()\nclass FixedCounter {\n  constructor() {\n    this.count = 0;\n  }\n  start() {\n    setTimeout(() => {\n      this.count++; // Works! Inherits 'this' from FixedCounter instance\n      console.log('Count:', this.count);\n    }, 100);\n  }\n}\n\n// ❌ BUG 2: Stale Closure in Event Handler / Timer\nfunction createStaleTimer() {\n  let count = 0;\n  \n  setInterval(() => {\n    // If count was updated outside, this closure reads the captured count variable\n    console.log('Current count:', count); \n  }, 1000);\n\n  return { increment: () => count++ };\n}\n\n// ✅ FIX 2: Ref Object Pattern (Mutable Container Object)\nfunction createFreshTimer() {\n  const state = { count: 0 };\n  \n  setInterval(() => {\n    console.log('Fresh count:', state.count); // Reads updated property on shared object\n  }, 1000);\n\n  return { increment: () => state.count++ };\n}",
+      "gotchas": "• **React Hook Stale Closure Gotcha:** In React `useEffect(() => { const id = setInterval(() => console.log(count), 1000); return () => clearInterval(id); }, [])`, passing an empty dependency array `[]` causes the interval callback to capture `count = 0` permanently! Fix with `useEffect` dependencies or functional state updates `setCount(prev => prev + 1)`.",
       "docRef": "javascript/answers/07-output-and-debugging-questions.md#58"
     },
     {
@@ -717,6 +891,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`Array.prototype.reduce` executes a reducer callback across every element, accumulating a single return value. If `initialValue` is omitted, the first element becomes the accumulator and iteration starts at index 1. Calling it on an empty array without an initial value throws a `TypeError`.",
+      "explanation": "1. **Validation & Initial Value:**\n   - Verify `callback` is a callable function.\n   - Check if `initialValue` was passed using `arguments.length >= 2`. Checking `initialValue !== undefined` is a bug because a caller can legitimately pass `undefined` as their accumulator!\n2. **Empty Array Guard:**\n   - If the array is empty and no `initialValue` was provided, immediately throw `TypeError('Reduce of empty array with no initial value')`.\n3. **Iteration & Accumulation:**\n   - If `initialValue` is given, `acc = initialValue` and start index is `0`.\n   - If omitted, `acc = this[0]` and start index is `1`.\n   - Loop sequentially through the array, passing `(accumulator, currentValue, index, array)` into `callback`.",
+      "codeSnippet": "Array.prototype.myReduce = function(callback, initialValue) {\n  if (typeof callback !== 'function') {\n    throw new TypeError(callback + ' is not a function');\n  }\n\n  const hasInitial = arguments.length >= 2;\n\n  // Empty array without initial value throws TypeError\n  if (this.length === 0 && !hasInitial) {\n    throw new TypeError('Reduce of empty array with no initial value');\n  }\n\n  let acc = hasInitial ? initialValue : this[0];\n  let startIndex = hasInitial ? 0 : 1;\n\n  for (let i = startIndex; i < this.length; i++) {\n    acc = callback(acc, this[i], i, this);\n  }\n\n  return acc;\n};\n\n// Test Cases:\nconsole.log([1, 2, 3, 4].myReduce((acc, x) => acc + x, 0)); // 10\nconsole.log([1, 2, 3, 4].myReduce((acc, x) => acc * x));    // 24 (no initialValue)\nconsole.log([5].myReduce((acc, x) => acc + x));             // 5\n// [].myReduce((acc, x) => acc + x);                         // Throws TypeError!",
+      "gotchas": "• **The `undefined` Initial Value Trap:** Never write `if (!initialValue)` or `if (initialValue === undefined)`. If someone calls `[1, 2].reduce(fn, undefined)`, `arguments.length` is `2`, and `undefined` is their valid starting accumulator.\n• **Senior Follow-Up Flex (Sparse Arrays):** In full ECMAScript spec, sparse holes (e.g. `[1, , 3]`) are skipped via `if (i in this)`. Mentioning this to the interviewer demonstrates senior engine knowledge without cluttering your core solution.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#59"
     },
     {
@@ -728,6 +905,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`debounce` delays function execution until a specified quiet period has elapsed since the last invocation. Every incoming trigger clears the active timer and schedules a new one, suppressing rapid event bursts (e.g. search inputs, window resize).",
+      "explanation": "- **Closure Scope:** `debounce` returns an inner function that encloses a persistent `timerId` variable.\n- **Reset Mechanism:** On each call, `clearTimeout(timerId)` cancels the pending invocation before starting a new `setTimeout`.\n- **Context & Arguments:** The wrapped function must preserve `this` and any arguments passed to the event handler using `fn.apply(this, args)`.",
+      "codeSnippet": "Incoming Calls:  --[Key A]--[Key B]--[Key C]----------------------->\nTimer Cleared:       ❌        ❌      (Wait 300ms uninterrupted...)\nExecution:                                               🔥 [FIRE fn]\n\n// =========================================\n\nfunction debounce(fn, delay) {\n  let timerId = null;\n\n  return function(...args) {\n    // 1. Cancel previous pending timer\n    clearTimeout(timerId);\n\n    // 2. Restart delay countdown\n    timerId = setTimeout(() => {\n      fn.apply(this, args);\n    }, delay);\n  };\n}\n\n// Usage Example: Search Typeahead\nconst handleSearch = debounce(function(query) {\n  console.log('Searching API for:', query, '| Context:', this);\n}, 300);\n\n// Keypresses at 0ms, 100ms, 200ms -> Only 1 API call executes at 500ms",
+      "gotchas": "• **Preserving `this` Context:** If you write `setTimeout(function() { fn(...args); }, delay)`, `this` will default to `window` or `undefined` (in strict mode). An arrow function inherits `this` lexically from the outer wrapper, preserving the correct DOM element context.\n• **Interviewer Extension (Cancel & Immediate):** If asked to support `.cancel()`, simply attach `debounced.cancel = () => clearTimeout(timerId);` to the returned function.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#60"
     },
     {
@@ -739,6 +919,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`throttle` ensures a function executes at most once per specified time interval, providing steady, periodic execution during continuous events (e.g. scrolling, mouse movement). While `debounce` waits for silence, `throttle` guarantees a regulated execution rate.",
+      "explanation": "1. **Debounce vs Throttle:**\n   - **Debounce:** \"Wait until the user has stopped triggering for $N$ ms, then run once.\" (Search inputs, resize end).\n   - **Throttle:** \"Run at most once every $N$ ms while triggers continue.\" (Infinite scroll, scroll progress bars).\n2. **The Flag/Timer Pattern:**\n   - Maintain a boolean `inThrottle` inside a closure.\n   - If `inThrottle` is `false`: execute `fn` immediately (leading edge), set `inThrottle = true`, and schedule a `setTimeout` to flip `inThrottle` back to `false` after the interval.",
+      "codeSnippet": "// Approach 1: Flag / Timer Pattern (Most common in interviews)\nfunction throttle(fn, limit) {\n  let inThrottle = false;\n\n  return function(...args) {\n    if (!inThrottle) {\n      fn.apply(this, args);\n      inThrottle = true;\n      setTimeout(() => {\n        inThrottle = false;\n      }, limit);\n    }\n  };\n}\n\n// Approach 2: Timestamp Pattern (Guaranteed leading-edge clock check)\nfunction throttleByTime(fn, limit) {\n  let lastCall = 0;\n\n  return function(...args) {\n    const now = Date.now();\n    if (now - lastCall >= limit) {\n      lastCall = now;\n      fn.apply(this, args);\n    }\n  };\n}\n\n// Usage Example: Scroll listener\nwindow.addEventListener('scroll', throttle(() => {\n  console.log('Recalculating scroll position at most once every 200ms');\n}, 200));",
+      "gotchas": "• **The Trailing-Call Tradeoff:** The simple flag and timestamp patterns execute on the *leading edge* (first trigger) and drop calls that occur during the cooldown window. If the interviewer asks: *\"What if the user scrolls and stops, and we need the final position executed?\"*, explain that a hybrid version stores `lastArgs` and uses `setTimeout` to trigger the trailing call when cooldown finishes.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#61"
     },
     {
@@ -750,6 +933,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`Promise.all(promises)` takes an array/iterable of promises and returns a single Promise that resolves to an array of results in the **exact original order** when all input promises fulfill, or rejects immediately with the reason of the first rejected promise (fail-fast).",
+      "explanation": "1. **Validation & Edge Cases:** If the input array is empty, resolve immediately with `[]`.\n2. **Order Preservation:** Promises settle asynchronously at different speeds. You must assign each result to its specific input index `results[index] = value`, **not** `results.push(value)`.\n3. **Completion Counter:** Maintain a `completedCount`. Increment it on every resolved promise. When `completedCount === promises.length`, resolve the outer promise.\n4. **Wrap Non-Promises:** Wrap each item with `Promise.resolve(item)` to correctly handle plain values.",
+      "codeSnippet": "function promiseAll(promises) {\n  return new Promise((resolve, reject) => {\n    // 1. Validate input\n    if (!Array.isArray(promises)) {\n      return reject(new TypeError('Argument must be an array'));\n    }\n\n    // 2. Empty array resolves immediately\n    if (promises.length === 0) {\n      return resolve([]);\n    }\n\n    const results = [];\n    let completedCount = 0;\n\n    // 3. Process each item in parallel\n    promises.forEach((item, index) => {\n      Promise.resolve(item)\n        .then((value) => {\n          results[index] = value; // Preserve original input index!\n          completedCount++;\n\n          if (completedCount === promises.length) {\n            resolve(results);\n          }\n        })\n        .catch(reject); // Fast-reject on the very first error\n    });\n  });\n}\n\n// Test cases:\nconst p1 = Promise.resolve(42);\nconst p2 = new Promise((res) => setTimeout(() => res('slow'), 100));\nconst p3 = 'plain string';\n\npromiseAll([p1, p2, p3]).then(console.log); // [42, 'slow', 'plain string']\npromiseAll([p1, Promise.reject('Error!'), p2]).catch(console.error); // 'Error!'",
+      "gotchas": "• **The `results.length` vs `completedCount` Trap:** Never write `if (results.length === promises.length)`. If the 3rd promise resolves first and you assign `results[2] = val`, JavaScript arrays automatically report `.length = 3` even though indices 0 and 1 are empty! Always track completed items using an explicit integer counter (`completedCount`).",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#62"
     },
     {
@@ -761,6 +947,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "`memoize` caches the return values of expensive pure functions based on their serialized arguments using a closure-scoped `Map`. Subsequent calls with identical arguments skip computation and return the cached result in $O(1)$ time.",
+      "explanation": "- **Closure Cache:** The outer `memoize` function instantiates a private `cache = new Map()`. The returned wrapper function closes over and retains access to this cache across calls.\n- **Key Serialization:** Input arguments are serialized into a lookup key (typically via `JSON.stringify(args)`).",
+      "codeSnippet": "function memoize(fn) {\n  const cache = new Map();\n\n  return function(...args) {\n    const key = JSON.stringify(args);\n\n    if (cache.has(key)) {\n      return cache.get(key);\n    }\n\n    const result = fn.apply(this, args);\n    cache.set(key, result);\n    return result;\n  };\n}\n\n// Usage Example: Expensive computation\nconst factorial = memoize(function(n) {\n  if (n <= 1) return 1;\n  return n * factorial(n - 1);\n});\n\nconsole.log(factorial(100)); // Computed & cached\nconsole.log(factorial(100)); // Instant O(1) cache hit!",
+      "gotchas": "• **`JSON.stringify` Limitations:**\n  - In JavaScript, `JSON.stringify` does not handle circular references and treats `undefined` or functions inconsistently.\n  - Object key order difference: `{ a: 1, b: 2 }` and `{ b: 2, a: 1 }` produce different strings despite representing identical objects.\n  - *Interview Solution:* Mention that for complex object arguments in production, callers can pass a custom `keyResolver` function `(args) => ...` or use a nested `WeakMap`.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#63"
     },
     {
@@ -772,6 +961,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "An `EventEmitter` implements the Publish-Subscribe pattern. It maintains an internal map of event names to listener arrays (`Map<string, Function[]>`) to register (`on`), trigger (`emit`), remove (`off`), and execute one-time handlers (`once`).",
+      "explanation": "- **Event Store:** `Map<string, Function[]>` where keys are event names and values are arrays of subscriber callbacks.\n- **`once()` Wrapper:** Wraps the original listener in a temporary function that deregisters itself via `this.off()` before executing the callback.\n- **Safe Iteration in `emit()`:** Always iterate over a shallow clone `[...listeners]` so that if a listener calls `off()` during execution, it doesn't cause array-mutation indexing bugs.",
+      "codeSnippet": "class EventEmitter {\n  constructor() {\n    this.events = new Map();\n  }\n\n  // Register listener\n  on(event, listener) {\n    if (!this.events.has(event)) {\n      this.events.set(event, []);\n    }\n    this.events.get(event).push(listener);\n    return this; // Allows method chaining\n  }\n\n  // Remove listener\n  off(event, listener) {\n    if (!this.events.has(event)) return this;\n\n    const filtered = this.events.get(event).filter(\n      (fn) => fn !== listener && fn._original !== listener\n    );\n    this.events.set(event, filtered);\n    return this;\n  }\n\n  // One-time listener\n  once(event, listener) {\n    const wrapper = (...args) => {\n      this.off(event, wrapper);\n      listener.apply(this, args);\n    };\n    wrapper._original = listener; // Allows removing via off() before once fires\n    return this.on(event, wrapper);\n  }\n\n  // Trigger event listeners\n  emit(event, ...args) {\n    if (!this.events.has(event)) return false;\n\n    // Clone array to avoid bugs if a listener unbinds itself during iteration\n    const listeners = [...this.events.get(event)];\n    listeners.forEach((fn) => fn.apply(this, args));\n    return true;\n  }\n}\n\n// Test Run:\nconst emitter = new EventEmitter();\nconst onUserLogin = (user) => console.log('Welcome,', user);\n\nemitter.on('login', onUserLogin);\nemitter.once('login', () => console.log('This only prints on FIRST login!'));\n\nemitter.emit('login', 'Kaif');\n// Welcome, Kaif\n// This only prints on FIRST login!\n\nemitter.emit('login', 'Alex');\n// Welcome, Alex (once listener is gone!)",
+      "gotchas": "• **Array Mutation During Emission:** If a subscriber calls `emitter.off()` inside its callback while `emit()` is executing, mutating the array in-place skips the subsequent callback in the loop! Slicing or spreading `[...listeners]` prevents this.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#64"
     },
     {
@@ -783,6 +975,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Deep cloning creates a completely independent copy of nested objects and arrays. An interview-optimal deep clone checks for primitives, detects circular references using a `WeakMap`, and recursively clones object and array properties.",
+      "explanation": "1. **Primitives & Null:** If the value is primitive or `null`, return it directly.\n2. **Circular References:** Use a `WeakMap` tracker `(originalObj -> clonedObj)`. If an object has already been encountered in the traversal, return its existing clone to prevent infinite recursion.\n3. **Array vs Plain Object:** Initialize the new container based on `Array.isArray(value)` and recursively duplicate own enumerable keys.",
+      "codeSnippet": "function deepClone(value, map = new WeakMap()) {\n  // 1. Return primitives and null directly\n  if (value === null || typeof value !== 'object') {\n    return value;\n  }\n\n  // 2. Prevent infinite loops from circular references\n  if (map.has(value)) {\n    return map.get(value);\n  }\n\n  // 3. Initialize array or object container\n  const clone = Array.isArray(value) ? [] : {};\n  map.set(value, clone);\n\n  // 4. Recursively copy properties\n  for (const key of Object.keys(value)) {\n    clone[key] = deepClone(value[key], map);\n  }\n\n  return clone;\n}\n\n// Test Circular Reference:\nconst original = { a: 1, nested: { b: 2 } };\noriginal.self = original; // Circular loop!\n\nconst copied = deepClone(original);\nconsole.log(copied.nested.b); // 2\nconsole.log(copied.self === copied); // true (circularity correctly preserved!)",
+      "gotchas": "• **The `JSON.parse` Traps:** In an interview, always mention why `JSON.parse(JSON.stringify(obj))` is flawed: it drops functions and `undefined`, turns `NaN`/`Infinity` to `null`, converts `Date` to strings, and throws on circular references.\n• **Special Types (Date / RegExp):** If the interviewer asks about `Date` or `RegExp`, explain that you can handle them in one line: `if (value instanceof Date) return new Date(value);` and `if (value instanceof RegExp) return new RegExp(value.source, value.flags);`.",
       "docRef": "javascript/answers/08-coding-challenges-and-polyfills.md#65"
     },
     {
@@ -794,6 +989,9 @@
       "priority": "P0",
       "type": "P",
       "summary": "Array `push`/`pop` operate in $O(1)$ amortized time. `shift`/`unshift` operate in $O(n)$ time due to memory element re-indexing. `includes`/`indexOf` are $O(n)$ linear scans. `Map`/`Set` operations are $O(1)$ amortized lookups. `Array.prototype.sort()` is $O(n \\log n)$ (V8 Timsort).",
+      "explanation": "Understanding JavaScript engine internals (V8) prevents accidental performance traps in problem solving:\n- **`shift()` / `unshift()` Cost:** Operating at index 0 requires the V8 engine to re-index and shift every single remaining element in memory by 1 position ($O(n)$ operation). Calling `shift()` inside a loop creates an unintentional $O(n^2)$ algorithm!\n- **`Map` / `Set` vs `Object` / `Array`:** `Set.prototype.has()` and `Map.prototype.get()` use hash tables for $O(1)$ lookup time, whereas `Array.prototype.includes()` performs an $O(n)$ linear scan.\n- **`Array.prototype.sort()`:** Implements **Timsort** (hybrid insertion sort + merge sort), running in $O(n \\log n)$ time. Default sorting coerces elements to strings alphabetically (`[10, 2].sort()` yields `[10, 2]`), requiring an explicit numeric comparator function `(a, b) => a - b`.",
+      "codeSnippet": "// Benchmark Example: Array shift() vs Index Increment Pointer\nconst N = 100000;\nconst arr = new Array(N).fill(1);\n\n// ❌ Inefficient: shift() takes O(N^2) total time for N elements\nconsole.time('shift');\nconst arrCopy = [...arr];\nwhile (arrCopy.length > 0) {\n  arrCopy.shift(); // O(N) operation inside O(N) loop!\n}\nconsole.timeEnd('shift'); // ~2000ms!\n\n// ✅ Efficient: Pointer increment takes O(N) total time\nconsole.time('pointer');\nlet head = 0;\nwhile (head < arr.length) {\n  head++; // O(1) operation inside O(N) loop!\n}\nconsole.timeEnd('pointer'); // ~1ms!",
+      "gotchas": "• **Default Sort Trap:** `[10, 2, 5, 1, 20].sort()` outputs `[1, 10, 2, 20, 5]`! In JavaScript, `.sort()` converts numbers to UTF-16 strings by default. Always pass `(a, b) => a - b` for ascending numerical sorting.",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#66"
     },
     {
@@ -805,6 +1003,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: Hash Map Complement Lookup. | Mnemonic: \"Don't search forward for a pair; store the past and look back for the complement in $O(1)$.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 1: Two Sum](https://leetcode.com/problems/two-sum/)\n- **Description:** Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`. You may assume that each input would have exactly one solution, and you may not use the same element twice.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Hash Map Complement Lookup.\n- **Mnemonic:** *\"Don't search forward for a pair; store the past and look back for the complement in $O(1)$.\"*",
+      "codeSnippet": "var twoSum = function(nums, target) {\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = i + 1; j < nums.length; j++) {\n      if (nums[i] + nums[j] === target) {\n        return [i, j];\n      }\n    }\n  }\n  return [];\n};\n\n// =========================================\n\n/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]}\n */\nvar twoSum = function(nums, target) {\n  const map = new Map(); // value -> index\n\n  for (let i = 0; i < nums.length; i++) {\n    const complement = target - nums[i];\n\n    if (map.has(complement)) {\n      return [map.get(complement), i];\n    }\n\n    map.set(nums[i], i);\n  }\n\n  return [];\n};",
+      "gotchas": "• **Same Element Reuse:** Check `map.has(complement)` *before* setting `map.set(nums[i], i)` so an element like `nums[i] = 3` with `target = 6` does not match itself.",
       "leetcodeUrl": "https://leetcode.com/problems/two-sum/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#67"
     },
@@ -817,6 +1018,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: 26-Element Fixed Frequency Array. | Mnemonic: \"If character counts cancel to zero, they are anagrams.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 242: Valid Anagram](https://leetcode.com/problems/valid-anagram/)\n- **Description:** Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** 26-Element Fixed Frequency Array.\n- **Mnemonic:** *\"If character counts cancel to zero, they are anagrams.\"*",
+      "codeSnippet": "var isAnagram = function(s, t) {\n  if (s.length !== t.length) return false;\n  return s.split('').sort().join('') === t.split('').sort().join('');\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @param {string} t\n * @return {boolean}\n */\nvar isAnagram = function(s, t) {\n  if (s.length !== t.length) return false;\n\n  const count = new Array(26).fill(0);\n\n  for (let i = 0; i < s.length; i++) {\n    count[s.charCodeAt(i) - 97]++;\n    count[t.charCodeAt(i) - 97]--;\n  }\n\n  for (let i = 0; i < 26; i++) {\n    if (count[i] !== 0) return false;\n  }\n\n  return true;\n};",
+      "gotchas": "• **Length Mismatch Guard:** Always verify `if (s.length !== t.length) return false` on line 1 for an instant $O(1)$ fast-path exit.",
       "leetcodeUrl": "https://leetcode.com/problems/valid-anagram/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#68"
     },
@@ -829,6 +1033,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: Canonical Key Hashing with Map. | Mnemonic: \"All anagrams share the same sorted canonical signature or frequency string.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 49: Group Anagrams](https://leetcode.com/problems/group-anagrams/)\n- **Description:** Given an array of strings `strs`, group the anagrams together in any order.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Canonical Key Hashing with Map.\n- **Mnemonic:** *\"All anagrams share the same sorted canonical signature or frequency string.\"*",
+      "codeSnippet": "var groupAnagrams = function(strs) {\n  const visited = new Array(strs.length).fill(false);\n  const result = [];\n\n  for (let i = 0; i < strs.length; i++) {\n    if (visited[i]) continue;\n    const group = [strs[i]];\n    visited[i] = true;\n\n    for (let j = i + 1; j < strs.length; j++) {\n      if (!visited[j] && isAnagram(strs[i], strs[j])) {\n        group.push(strs[j]);\n        visited[j] = true;\n      }\n    }\n    result.push(group);\n  }\n  return result;\n};\n\n// =========================================\n\n/**\n * @param {string[]} strs\n * @return {string[][]}\n */\nvar groupAnagrams = function(strs) {\n  const map = new Map();\n\n  for (const s of strs) {\n    // Generate canonical sorted key\n    const key = s.split('').sort().join('');\n\n    if (!map.has(key)) {\n      map.set(key, []);\n    }\n    map.get(key).push(s);\n  }\n\n  return Array.from(map.values());\n};",
+      "gotchas": "• **Alternative $O(n \\cdot k)$ Optimal Key:** Instead of sorting characters, you can build a 26-count delimiter string (e.g., `#1#0#0...#1`) to achieve linear $O(n \\cdot k)$ time. In practice on LeetCode, `s.split('').sort().join('')` runs faster in V8 due to small string lengths ($k \\le 100$).",
       "leetcodeUrl": "https://leetcode.com/problems/group-anagrams/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#69"
     },
@@ -841,6 +1048,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: Two-Pass Frequency Counting. | Mnemonic: \"Count in pass 1; identify the earliest count of 1 in pass 2.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 387: First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)\n- **Description:** Given a string `s`, find the first non-repeating character in it and return its index. If it does not exist, return `-1`.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Two-Pass Frequency Counting.\n- **Mnemonic:** *\"Count in pass 1; identify the earliest count of 1 in pass 2.\"*",
+      "codeSnippet": "var firstUniqChar = function(s) {\n  for (let i = 0; i < s.length; i++) {\n    if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {\n      return i;\n    }\n  }\n  return -1;\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @return {number}\n */\nvar firstUniqChar = function(s) {\n  const count = new Array(26).fill(0);\n\n  // Pass 1: Build frequency table\n  for (let i = 0; i < s.length; i++) {\n    count[s.charCodeAt(i) - 97]++;\n  }\n\n  // Pass 2: Find first character with frequency 1\n  for (let i = 0; i < s.length; i++) {\n    if (count[s.charCodeAt(i) - 97] === 1) {\n      return i;\n    }\n  }\n\n  return -1;\n};",
+      "gotchas": "• **All duplicates (`\"aabb\"`):** Loop finishes without returning, hitting `-1`.\n• **Single character (`\"z\"`):** Immediately returns index `0`.",
       "leetcodeUrl": "https://leetcode.com/problems/first-unique-character-in-a-string/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#70"
     },
@@ -853,6 +1063,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: Set Membership & In-Place Deletion. | Mnemonic: \"Load smaller array into a Set; delete as you match to enforce uniqueness.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 349: Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)\n- **Description:** Given two integer arrays `nums1` and `nums2`, return an array of their intersection. Each element in the result must be unique.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Set Membership & In-Place Deletion.\n- **Mnemonic:** *\"Load smaller array into a Set; delete as you match to enforce uniqueness.\"*",
+      "codeSnippet": "var intersection = function(nums1, nums2) {\n  const matches = nums1.filter(x => nums2.includes(x));\n  return Array.from(new Set(matches));\n};\n\n// =========================================\n\n/**\n * @param {number[]} nums1\n * @param {number[]} nums2\n * @return {number[]}\n */\nvar intersection = function(nums1, nums2) {\n  const set1 = new Set(nums1);\n  const result = [];\n\n  for (const num of nums2) {\n    if (set1.has(num)) {\n      result.push(num);\n      set1.delete(num); // Guarantees uniqueness in O(1)!\n    }\n  }\n\n  return result;\n};",
+      "gotchas": "• **Intersection with Duplicates (LC 350):** If duplicate counts matter (`[2, 2]` intersecting `[2, 2]` must yield `[2, 2]`), use a frequency map counter instead of a Set.",
       "leetcodeUrl": "https://leetcode.com/problems/intersection-of-two-arrays/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#71"
     },
@@ -865,6 +1078,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: Two Pointers Inward Traversal. | Mnemonic: \"Meet in the middle while skipping non-alphanumerics.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 125: Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)\n- **Description:** A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Two Pointers Inward Traversal.\n- **Mnemonic:** *\"Meet in the middle while skipping non-alphanumerics.\"*",
+      "codeSnippet": "var isPalindrome = function(s) {\n  const clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');\n  return clean === clean.split('').reverse().join('');\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isPalindrome = function(s) {\n  let left = 0;\n  let right = s.length - 1;\n\n  function isAlphanumeric(code) {\n    return (\n      (code >= 48 && code <= 57) || // 0-9\n      (code >= 65 && code <= 90) || // A-Z\n      (code >= 97 && code <= 122)   // a-z\n    );\n  }\n\n  while (left < right) {\n    while (left < right && !isAlphanumeric(s.charCodeAt(left))) left++;\n    while (left < right && !isAlphanumeric(s.charCodeAt(right))) right--;\n\n    if (s[left].toLowerCase() !== s[right].toLowerCase()) {\n      return false;\n    }\n\n    left++;\n    right--;\n  }\n\n  return true;\n};",
+      "gotchas": "• **Empty string or all spaces (`\"   \"`):** Pointers bypass spaces and cross over, safely returning `true`.",
       "leetcodeUrl": "https://leetcode.com/problems/valid-palindrome/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#72"
     },
@@ -877,6 +1093,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: Regex Tokenization & Reversal. | Mnemonic: \"Trim ends, split on whitespace chunks `/\\s+/`, reverse, and join.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 151: Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)\n- **Description:** Given an input string `s`, reverse the order of the words. Return a string of the words in reverse order concatenated by a single space.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Regex Tokenization & Reversal.\n- **Mnemonic:** *\"Trim ends, split on whitespace chunks `/\\s+/`, reverse, and join.\"*",
+      "codeSnippet": "var reverseWords = function(s) {\n  const words = s.split(' ');\n  const filtered = [];\n  for (let i = words.length - 1; i >= 0; i--) {\n    if (words[i].length > 0) filtered.push(words[i]);\n  }\n  return filtered.join(' ');\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @return {string}\n */\nvar reverseWords = function(s) {\n  return s.trim().split(/\\s+/).reverse().join(' ');\n};",
+      "gotchas": "• **Multiple spaces between words (`\"a   good   example\"`):** `/\\s+/` handles arbitrary spacing cleanly.",
       "leetcodeUrl": "https://leetcode.com/problems/reverse-words-in-a-string/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#73"
     },
@@ -889,6 +1108,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: Same-Direction Read/Write Pointers. | Mnemonic: \"Read every element; swap non-zeros forward into the write index.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 283: Move Zeroes](https://leetcode.com/problems/move-zeroes/)\n- **Description:** Given an integer array `nums`, move all `0`'s to the end of it while maintaining the relative order of the non-zero elements. You must do this **in-place** without returning anything.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Same-Direction Read/Write Pointers.\n- **Mnemonic:** *\"Read every element; swap non-zeros forward into the write index.\"*",
+      "codeSnippet": "var moveZeroes = function(nums) {\n  const temp = [];\n  for (const x of nums) if (x !== 0) temp.push(x);\n  while (temp.length < nums.length) temp.push(0);\n  for (let i = 0; i < nums.length; i++) nums[i] = temp[i];\n};\n\n// =========================================\n\n/**\n * @param {number[]} nums\n * @return {void} Do not return anything, modify nums in-place instead.\n */\nvar moveZeroes = function(nums) {\n  let write = 0;\n\n  for (let read = 0; read < nums.length; read++) {\n    if (nums[read] !== 0) {\n      if (read !== write) {\n        const temp = nums[write];\n        nums[write] = nums[read];\n        nums[read] = temp;\n      }\n      write++;\n    }\n  }\n};",
+      "gotchas": "• **Do not return `nums`:** LeetCode verifies the modified array in-place. Returning a value is ignored, but allocating a copy fails memory bounds.",
       "leetcodeUrl": "https://leetcode.com/problems/move-zeroes/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#74"
     },
@@ -901,6 +1123,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: 3-Pointer Back-to-Front In-Place Merge. | Mnemonic: \"Start from the back where the empty space lives.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 88: Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)\n- **Description:** Merge two sorted integer arrays `nums1` and `nums2` into `nums1` as one sorted array in-place. `nums1` has a length of $m + n$, where the last $n$ elements are set to `0`.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** 3-Pointer Back-to-Front In-Place Merge.\n- **Mnemonic:** *\"Start from the back where the empty space lives.\"*",
+      "codeSnippet": "var merge = function(nums1, m, nums2, n) {\n  for (let i = 0; i < n; i++) {\n    nums1[m + i] = nums2[i];\n  }\n  nums1.sort((a, b) => a - b);\n};\n\n// =========================================\n\n/**\n * @param {number[]} nums1\n * @param {number} m\n * @param {number[]} nums2\n * @param {number} n\n * @return {void} Do not return anything, modify nums1 in-place instead.\n */\nvar merge = function(nums1, m, nums2, n) {\n  let p1 = m - 1;\n  let p2 = n - 1;\n  let p = m + n - 1;\n\n  while (p2 >= 0) {\n    if (p1 >= 0 && nums1[p1] > nums2[p2]) {\n      nums1[p] = nums1[p1];\n      p1--;\n    } else {\n      nums1[p] = nums2[p2];\n      p2--;\n    }\n    p--;\n  }\n};",
+      "gotchas": "• **Loop Condition:** Only `while (p2 >= 0)` is needed. If `p2 < 0`, remaining elements in `nums1` are already in their correct sorted positions.",
       "leetcodeUrl": "https://leetcode.com/problems/merge-sorted-array/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#75"
     },
@@ -913,6 +1138,9 @@
       "priority": "P0",
       "type": "Q",
       "summary": "Pattern: Dynamic Sliding Window with Last-Seen Index Map. | Mnemonic: \"Expand right; on duplicate, jump left forward past its earlier position.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 3: Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)\n- **Description:** Given a string `s`, find the length of the longest substring without duplicate characters.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Dynamic Sliding Window with Last-Seen Index Map.\n- **Mnemonic:** *\"Expand right; on duplicate, jump left forward past its earlier position.\"*",
+      "codeSnippet": "var lengthOfLongestSubstring = function(s) {\n  let maxLen = 0;\n  for (let i = 0; i < s.length; i++) {\n    const seen = new Set();\n    for (let j = i; j < s.length; j++) {\n      if (seen.has(s[j])) break;\n      seen.add(s[j]);\n      maxLen = Math.max(maxLen, j - i + 1);\n    }\n  }\n  return maxLen;\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @return {number}\n */\nvar lengthOfLongestSubstring = function(s) {\n  let maxLen = 0;\n  let left = 0;\n  const lastSeen = new Map(); // char -> last seen index\n\n  for (let right = 0; right < s.length; right++) {\n    const char = s[right];\n\n    if (lastSeen.has(char)) {\n      // Jump left forward past duplicate (never backwards!)\n      left = Math.max(left, lastSeen.get(char) + 1);\n    }\n\n    lastSeen.set(char, right);\n    maxLen = Math.max(maxLen, right - left + 1);\n  }\n\n  return maxLen;\n};",
+      "gotchas": "• **The `\"abba\"` Trap:** When reaching the second `'a'` at index 3, `lastSeen.get('a')` is 0. Without `Math.max(left, ...)`, `left` rewinds from 2 back to 1, corrupting window integrity.",
       "leetcodeUrl": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#76"
     },
@@ -925,6 +1153,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: LIFO Stack Matching. | Mnemonic: \"The most recently opened bracket must be closed first.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 20: Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)\n- **Description:** Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** LIFO Stack Matching.\n- **Mnemonic:** *\"The most recently opened bracket must be closed first.\"*",
+      "codeSnippet": "var isValid = function(s) {\n  let prevLen = -1;\n  while (s.length !== prevLen) {\n    prevLen = s.length;\n    s = s.replace('()', '').replace('[]', '').replace('{}', '');\n  }\n  return s.length === 0;\n};\n\n// =========================================\n\n/**\n * @param {string} s\n * @return {boolean}\n */\nvar isValid = function(s) {\n  if (s.length % 2 !== 0) return false;\n\n  const stack = [];\n  const map = {\n    ')': '(',\n    '}': '{',\n    ']': '['\n  };\n\n  for (let i = 0; i < s.length; i++) {\n    const ch = s[i];\n    if (map[ch]) {\n      // Closing bracket: pop and compare\n      if (stack.pop() !== map[ch]) return false;\n    } else {\n      // Opening bracket: push to stack\n      stack.push(ch);\n    }\n  }\n\n  return stack.length === 0;\n};",
+      "gotchas": "• **Unclosed Brackets (`\"(((\"`):** Loop finishes without mismatch, but `stack.length === 0` correctly evaluates to `false`.",
       "leetcodeUrl": "https://leetcode.com/problems/valid-parentheses/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#77"
     },
@@ -937,6 +1168,9 @@
       "priority": "P1",
       "type": "Q",
       "summary": "Pattern: Two Stacks (`inStack` & `outStack`) with Lazy Reversal. | Mnemonic: \"Push to inStack; transfer to outStack only when outStack is empty.\"",
+      "explanation": "- **LeetCode Link:** [LeetCode 232: Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)\n- **Description:** Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support `push`, `pop`, `peek`, and `empty`.\n\n**🧠 Solution Summary & Pattern Mnemonic**\n- **Pattern:** Two Stacks (`inStack` & `outStack`) with Lazy Reversal.\n- **Mnemonic:** *\"Push to inStack; transfer to outStack only when outStack is empty.\"*",
+      "codeSnippet": "var MyQueue = function() {\n  this.s1 = [];\n  this.s2 = [];\n};\n\nMyQueue.prototype.push = function(x) {\n  while (this.s1.length > 0) this.s2.push(this.s1.pop());\n  this.s1.push(x);\n  while (this.s2.length > 0) this.s1.push(this.s2.pop());\n};\nMyQueue.prototype.pop = function() { return this.s1.pop(); };\nMyQueue.prototype.peek = function() { return this.s1[this.s1.length - 1]; };\nMyQueue.prototype.empty = function() { return this.s1.length === 0; };\n\n// =========================================\n\nvar MyQueue = function() {\n  this.inStack = [];\n  this.outStack = [];\n};\n\n/** \n * @param {number} x\n * @return {void}\n */\nMyQueue.prototype.push = function(x) {\n  this.inStack.push(x);\n};\n\n/**\n * @return {number}\n */\nMyQueue.prototype.pop = function() {\n  this.peek(); // Ensures outStack is loaded\n  return this.outStack.pop();\n};\n\n/**\n * @return {number}\n */\nMyQueue.prototype.peek = function() {\n  if (this.outStack.length === 0) {\n    while (this.inStack.length > 0) {\n      this.outStack.push(this.inStack.pop());\n    }\n  }\n  return this.outStack[this.outStack.length - 1];\n};\n\n/**\n * @return {boolean}\n */\nMyQueue.prototype.empty = function() {\n  return this.inStack.length === 0 && this.outStack.length === 0;\n};",
+      "gotchas": "• **Amortized Analysis:** Interviewers love asking why `peek()` is $O(1)$ amortized when the `while` loop runs in $O(n)$ in the worst case. Explain that every element enters `inStack` once and `outStack` once, totaling $\\le 2$ operations per element across its lifetime.",
       "leetcodeUrl": "https://leetcode.com/problems/implement-queue-using-stacks/",
       "docRef": "javascript/answers/09-dsa-in-javascript.md#78"
     }

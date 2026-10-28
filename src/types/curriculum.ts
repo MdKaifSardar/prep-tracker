@@ -29,6 +29,7 @@ export interface CurriculumItem {
   priority?: "P0" | "P1";   // (For Q&A)
   type: ItemType;
   summary: string;          // TL;DR concept or syntax rule
+  explanation?: string;     // Core Concept & Explanation breakdown
   codeSnippet?: string;     // Code implementation / template
   gotchas?: string;         // Traps, edge cases, or memory quirks
   leetcodeUrl?: string;     // Official problem link (for DSA)

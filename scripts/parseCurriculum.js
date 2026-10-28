@@ -29,80 +29,90 @@ function parseJavaScript() {
     { id: '9', file: '09-dsa-in-javascript.md', name: '9. DSA in JavaScript', range: '#66 – #78', start: 66, end: 78 },
   ];
 
-  // Extract answer metadata (TLDR, LeetCode link, gotchas)
+  // Extract full answer metadata (TLDR, Explanation, Code Blocks, Gotchas, LeetCode link)
   const answersMeta = new Map();
   for (const sec of SECTIONS) {
     const fPath = path.join(answersDir, sec.file);
-    const content = fs.readFileSync(fPath, 'utf-8');
-    const lines = content.split('\n');
+    let content = fs.readFileSync(fPath, 'utf-8').replace(/\r\n/g, '\n');
 
-    let currentQ = null;
-    let tldrLines = [];
-    let collectingTldr = false;
+    // Match all question headers
+    const headerRegex = /(?:^|\n)###\s*(\d+)\.\s*(🔴 P0|🟠 P1)\s*\[([CQDP])\]\s*([^\n]+)/g;
+    let match;
+    const qHeaders = [];
 
-    for (const line of lines) {
-      const trimmed = line.trim();
-      const headingMatch = trimmed.match(/^###\s*(\d+)\.\s*(🔴 P0|🟠 P1)\s*\[([CQDP])\]\s*(.+)$/);
-      if (headingMatch) {
-        if (currentQ !== null && tldrLines.length > 0) {
-          const prev = answersMeta.get(currentQ) || {};
-          prev.tldr = tldrLines.join(' ').replace(/^>\s*\*\*TL;DR:\*\*\s*/i, '').trim();
-          answersMeta.set(currentQ, prev);
-        }
-        currentQ = parseInt(headingMatch[1], 10);
-        tldrLines = [];
-        collectingTldr = false;
-
-        const meta = answersMeta.get(currentQ) || {};
-        meta.docRef = `javascript/answers/${sec.file}#${currentQ}`;
-        answersMeta.set(currentQ, meta);
-        continue;
-      }
-
-      if (currentQ !== null) {
-        const lcMatch = trimmed.match(/https:\/\/leetcode\.com\/problems\/[a-zA-Z0-9-]+\/?/);
-        if (lcMatch) {
-          const meta = answersMeta.get(currentQ) || {};
-          meta.leetcodeUrl = lcMatch[0];
-          answersMeta.set(currentQ, meta);
-        }
-
-        if (trimmed.startsWith('> **TL;DR:**') || trimmed.startsWith('> **TL;DR**')) {
-          collectingTldr = true;
-          tldrLines.push(trimmed);
-        } else if (collectingTldr) {
-          if (trimmed.startsWith('>') && !trimmed.startsWith('---')) {
-            tldrLines.push(trimmed.replace(/^>\s*/, ''));
-          } else {
-            collectingTldr = false;
-            const meta = answersMeta.get(currentQ) || {};
-            meta.tldr = tldrLines.join(' ').replace(/^>\s*\*\*TL;DR:\*\*\s*/i, '').trim();
-            answersMeta.set(currentQ, meta);
-          }
-        }
-
-        if (trimmed.includes('- **Pattern:**')) {
-          const pattern = trimmed.replace(/.*-\s*\*\*Pattern:\*\*\s*/, '').trim();
-          const meta = answersMeta.get(currentQ) || {};
-          meta.pattern = pattern;
-          answersMeta.set(currentQ, meta);
-        }
-        if (trimmed.includes('- **Mnemonic:**')) {
-          const mnemonic = trimmed.replace(/.*-\s*\*\*Mnemonic:\*\*\s*/, '').trim();
-          const meta = answersMeta.get(currentQ) || {};
-          meta.mnemonic = mnemonic;
-          if (!meta.tldr) {
-            meta.tldr = `${meta.pattern ? `Pattern: ${meta.pattern} | ` : ''}Mnemonic: ${mnemonic}`.replace(/\*+/g, '');
-          }
-          answersMeta.set(currentQ, meta);
-        }
-      }
+    while ((match = headerRegex.exec(content)) !== null) {
+      qHeaders.push({
+        qNum: parseInt(match[1], 10),
+        startIndex: match.index + match[0].length,
+      });
     }
 
-    if (currentQ !== null && tldrLines.length > 0) {
-      const meta = answersMeta.get(currentQ) || {};
-      meta.tldr = tldrLines.join(' ').replace(/^>\s*\*\*TL;DR:\*\*\s*/i, '').trim();
-      answersMeta.set(currentQ, meta);
+    for (let i = 0; i < qHeaders.length; i++) {
+      const q = qHeaders[i];
+      let endIndex = content.length;
+      if (i + 1 < qHeaders.length) {
+        // find position of next header
+        const nextHeader = content.indexOf(`### ${qHeaders[i + 1].qNum}.`, q.startIndex);
+        if (nextHeader !== -1) endIndex = nextHeader;
+      }
+
+      const qBlock = content.slice(q.startIndex, endIndex).trim();
+
+      // 1. TL;DR
+      let tldr = '';
+      const tldrMatch = qBlock.match(/>\s*\*\*TL;DR:\*\*\s*([^\n]+(?:\n>[^\n]+)*)/i);
+      if (tldrMatch) {
+        tldr = tldrMatch[1].replace(/\n>\s*/g, ' ').trim();
+      } else {
+        const patternMatch = qBlock.match(/-\s*\*\*Pattern:\*\*\s*([^\n]+)/);
+        const mnemonicMatch = qBlock.match(/-\s*\*\*Mnemonic:\*\*\s*([^\n]+)/);
+        if (patternMatch || mnemonicMatch) {
+          const p = patternMatch ? patternMatch[1].trim() : '';
+          const m = mnemonicMatch ? mnemonicMatch[1].trim().replace(/\*+/g, '') : '';
+          tldr = `${p ? `Pattern: ${p} | ` : ''}${m ? `Mnemonic: ${m}` : ''}`;
+        }
+      }
+
+      // 2. LeetCode Link
+      const lcMatch = qBlock.match(/https:\/\/leetcode\.com\/problems\/[a-zA-Z0-9-]+\/?/);
+      const leetcodeUrl = lcMatch ? lcMatch[0] : null;
+
+      // 3. Code Blocks
+      const codeBlocks = [];
+      const codeRegex = /```(?:javascript|js)?\n([\s\S]*?)```/g;
+      let cMatch;
+      while ((cMatch = codeRegex.exec(qBlock)) !== null) {
+        codeBlocks.push(cMatch[1].trim());
+      }
+      const codeSnippet = codeBlocks.length > 0 ? codeBlocks.join('\n\n// =========================================\n\n') : undefined;
+
+      // 4. Explanation
+      let explanation = '';
+      const expMatch = qBlock.match(/\*\*💡 Core Concept & Explanation\*\*([\s\S]*?)(?=\*\*🛠️|```|\*\*⚠️|---|$)/i);
+      if (expMatch) {
+        explanation = expMatch[1].trim();
+      } else {
+        const dsaMatch = qBlock.match(/\*\*📜 Problem Statement.*?\*\*([\s\S]*?)(?=\*\*🐢|```|\*\*⚠️|---|$)/i);
+        if (dsaMatch) {
+          explanation = dsaMatch[1].trim();
+        }
+      }
+
+      // 5. Gotchas
+      let gotchas = '';
+      const gotchaMatch = qBlock.match(/\*\*⚠️\s*(?:Interview Pitfall|Edge Cases).*?\*\*([\s\S]*?)(?=---|###|$)/i);
+      if (gotchaMatch) {
+        gotchas = gotchaMatch[1].trim().replace(/^[-*]\s*/gm, '• ');
+      }
+
+      answersMeta.set(q.qNum, {
+        tldr: tldr || 'Refer to master answer key.',
+        explanation: explanation || undefined,
+        codeSnippet: codeSnippet || undefined,
+        gotchas: gotchas || undefined,
+        leetcodeUrl: leetcodeUrl || undefined,
+        docRef: `javascript/answers/${sec.file}#${q.qNum}`,
+      });
     }
   }
 
@@ -133,6 +143,9 @@ function parseJavaScript() {
       priority,
       type,
       summary: meta.tldr || 'Refer to master answer key.',
+      explanation: meta.explanation || undefined,
+      codeSnippet: meta.codeSnippet || undefined,
+      gotchas: meta.gotchas || undefined,
       leetcodeUrl: meta.leetcodeUrl || undefined,
       docRef: meta.docRef || `javascript/answers/${sec.file}#${qNum}`,
     });

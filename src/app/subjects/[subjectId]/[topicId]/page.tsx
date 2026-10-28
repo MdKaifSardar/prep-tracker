@@ -16,7 +16,8 @@ import {
 } from "firebase/firestore";
 import { getSubjectManifest } from "@/lib/curriculum";
 import { CurriculumItem, TopicManifest } from "@/types/curriculum";
-import { ArrowLeft, ExternalLink, CheckSquare, Square, ChevronDown, ChevronUp, Copy, Check, BookOpen } from "lucide-react";
+import CodeBlock from "@/components/CodeBlock";
+import { ArrowLeft, ExternalLink, CheckSquare, Square } from "lucide-react";
 
 export default function DedicatedTopicPage() {
   const params = useParams();
@@ -37,8 +38,6 @@ export default function DedicatedTopicPage() {
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [filterPriority, setFilterPriority] = useState<"ALL" | "P0" | "P1">("ALL");
   const [filterStatus, setFilterStatus] = useState<"ALL" | "UNCOMPLETED" | "COMPLETED">("ALL");
-  const [expandedTldrs, setExpandedTldrs] = useState<Set<string>>(new Set());
-  const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
 
   // Firestore Realtime Listener: Exactly 1 single document read per subject!
@@ -145,31 +144,6 @@ export default function DedicatedTopicPage() {
     } finally {
       setIsSyncing(false);
     }
-  };
-
-  // Toggle TLDR disclosure
-  const toggleTldr = (id: string) => {
-    setExpandedTldrs((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
-  const toggleAllTldrs = () => {
-    if (expandedTldrs.size > 0) {
-      setExpandedTldrs(new Set());
-    } else {
-      setExpandedTldrs(new Set(topicItems.map((i) => i.id)));
-    }
-  };
-
-  // Copy code snippet helper
-  const handleCopyCode = (id: string, code: string) => {
-    navigator.clipboard.writeText(code);
-    setCopiedCodeId(id);
-    setTimeout(() => setCopiedCodeId(null), 2000);
   };
 
   if (!manifest || !currentTopic) {
@@ -349,7 +323,67 @@ export default function DedicatedTopicPage() {
           </p>
         </header>
 
-        {/* Filters Toolbar (For Q&A Archetype) */}
+        {/* Markdown-Style In-Page Index */}
+        <nav aria-label="In-page index" style={{
+          marginBottom: "1.75rem",
+          padding: "1rem 1.25rem",
+          background: "rgba(15, 23, 42, 0.4)",
+          border: "1px solid var(--border-subtle)",
+          borderRadius: "var(--radius-md)",
+        }}>
+          <div style={{
+            fontSize: "0.82rem",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+            color: "var(--text-muted)",
+            marginBottom: "0.6rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}>
+            <span>📑 In-Page Topic Index</span>
+            <span style={{ fontSize: "0.75rem", fontWeight: 400, color: "var(--text-muted)" }}>
+              ({topicItems.length} items)
+            </span>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "0.35rem 1.25rem",
+            fontSize: "0.85rem",
+          }}>
+            {topicItems.map((item) => {
+              const targetId = isHandbook ? `ref-${item.id}` : `q-${item.order}`;
+              const isDone = completedIds.has(item.id);
+              return (
+                <a
+                  key={item.id}
+                  href={`#${targetId}`}
+                  style={{
+                    color: isDone ? "#34d399" : "var(--text-secondary)",
+                    textDecoration: "none",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "inline-block",
+                    padding: "0.15rem 0",
+                    transition: "color 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-primary)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = isDone ? "#34d399" : "var(--text-secondary)")}
+                >
+                  <span style={{ opacity: 0.6, marginRight: "0.4rem", fontFamily: "var(--font-mono)" }}>
+                    {isHandbook ? "•" : `#${item.order}`}
+                  </span>
+                  {item.title}
+                </a>
+              );
+            })}
+          </div>
+        </nav>
+
         {!isHandbook && (
           <div style={{
             display: "flex",
@@ -357,8 +391,8 @@ export default function DedicatedTopicPage() {
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: "0.75rem",
-            marginBottom: "1.75rem",
-            padding: "0.75rem 1rem",
+            marginBottom: "2rem",
+            padding: "0.6rem 0.85rem",
             background: "rgba(15, 23, 42, 0.4)",
             border: "1px solid var(--border-subtle)",
             borderRadius: "var(--radius-md)",
@@ -407,43 +441,34 @@ export default function DedicatedTopicPage() {
               </button>
             </div>
 
-            <button
-              onClick={toggleAllTldrs}
-              style={{
-                background: "rgba(255, 255, 255, 0.06)",
-                color: "var(--text-muted)",
-                padding: "0.35rem 0.65rem",
-                borderRadius: "4px",
-                fontSize: "0.75rem",
-              }}
-            >
-              {expandedTldrs.size > 0 ? "Collapse All TL;DRs" : "Expand All TL;DRs"}
-            </button>
+            <span style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>
+              Showing {displayedItems.length} of {topicItems.length} items
+            </span>
           </div>
         )}
 
         {/* ------------------------------------------------------------- */}
-        {/* ARCHETYPE A: INTERVIEW Q&A (e.g. JavaScript) */}
+        {/* ARCHETYPE A: INTERVIEW Q&A (Full Content & Syntax Highlighting) */}
         {/* ------------------------------------------------------------- */}
         {!isHandbook && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "3rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", marginBottom: "3.5rem" }}>
             {displayedItems.map((q) => {
               const isDone = completedIds.has(q.id);
-              const isExpanded = expandedTldrs.has(q.id);
 
               return (
                 <article
                   key={q.id}
                   id={`q-${q.order}`}
                   style={{
-                    background: isDone ? "rgba(16, 185, 129, 0.03)" : "rgba(15, 23, 42, 0.45)",
-                    border: `1px solid ${isDone ? "rgba(16, 185, 129, 0.25)" : "var(--border-subtle)"}`,
+                    background: isDone ? "rgba(16, 185, 129, 0.025)" : "rgba(15, 23, 42, 0.45)",
+                    border: `1px solid ${isDone ? "rgba(16, 185, 129, 0.3)" : "var(--border-subtle)"}`,
                     borderRadius: "var(--radius-md)",
-                    padding: "1rem 1.25rem",
+                    padding: "1.5rem",
                     transition: "all 0.15s ease",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "flex-start", gap: "0.85rem" }}>
+                  {/* Question Header: ### QNum. 🔴 P0 [Type] Title */}
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "0.85rem", marginBottom: "1rem" }}>
                     <button
                       onClick={() => handleToggleItem(q.id, q.title, q.order)}
                       style={{
@@ -458,17 +483,17 @@ export default function DedicatedTopicPage() {
                       }}
                       title={isDone ? "Mark as uncompleted" : "Mark as completed (auto-logs to streak)"}
                     >
-                      {isDone ? <CheckSquare size={20} /> : <Square size={20} />}
+                      {isDone ? <CheckSquare size={22} /> : <Square size={22} />}
                     </button>
 
                     <div style={{ flex: 1 }}>
-                      <div style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.45rem" }}>
-                        <span style={{ fontWeight: 800, color: isDone ? "#34d399" : "var(--text-primary)", fontSize: "1.05rem" }}>
+                      <div style={{ display: "flex", alignItems: "baseline", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.35rem" }}>
+                        <span style={{ fontWeight: 800, color: isDone ? "#34d399" : "var(--text-primary)", fontSize: "1.15rem" }}>
                           ### {q.order}.
                         </span>
 
                         <span style={{
-                          fontSize: "0.78rem",
+                          fontSize: "0.8rem",
                           fontWeight: 700,
                           color: q.priority === "P0" ? "#fca5a5" : "#fed7aa",
                         }}>
@@ -487,8 +512,8 @@ export default function DedicatedTopicPage() {
                         </span>
 
                         <h3 style={{
-                          fontSize: "0.98rem",
-                          fontWeight: 600,
+                          fontSize: "1.05rem",
+                          fontWeight: 700,
                           color: isDone ? "var(--text-secondary)" : "var(--text-primary)",
                           textDecoration: isDone ? "line-through" : "none",
                           lineHeight: 1.5,
@@ -506,10 +531,10 @@ export default function DedicatedTopicPage() {
                               display: "inline-flex",
                               alignItems: "center",
                               gap: "0.25rem",
-                              fontSize: "0.78rem",
+                              fontSize: "0.8rem",
                               color: "#f59e0b",
                               textDecoration: "none",
-                              marginLeft: "0.3rem",
+                              marginLeft: "0.4rem",
                               fontWeight: 600,
                             }}
                             title="Open official LeetCode problem"
@@ -518,46 +543,89 @@ export default function DedicatedTopicPage() {
                           </a>
                         )}
                       </div>
-
-                      {q.summary && (
-                        <div style={{ marginTop: "0.6rem" }}>
-                          <button
-                            onClick={() => toggleTldr(q.id)}
-                            style={{
-                              background: "none",
-                              border: "none",
-                              cursor: "pointer",
-                              color: "var(--accent-primary)",
-                              fontSize: "0.8rem",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: "0.3rem",
-                              fontWeight: 600,
-                              padding: 0,
-                            }}
-                          >
-                            {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                            {isExpanded ? "Hide Answer / TL;DR" : "> **TL;DR:** (Click to reveal)"}
-                          </button>
-
-                          {isExpanded && (
-                            <blockquote style={{
-                              marginTop: "0.6rem",
-                              padding: "0.75rem 1rem",
-                              background: "rgba(99, 102, 241, 0.08)",
-                              borderLeft: "3px solid var(--accent-primary)",
-                              borderRadius: "0 6px 6px 0",
-                              fontSize: "0.88rem",
-                              color: "#e0e7ff",
-                              lineHeight: 1.6,
-                            }}>
-                              <strong>TL;DR:</strong> {q.summary}
-                            </blockquote>
-                          )}
-                        </div>
-                      )}
                     </div>
                   </div>
+
+                  {/* 1. TL;DR Blockquote (Markdown Style) */}
+                  {q.summary && (
+                    <blockquote style={{
+                      padding: "0.75rem 1rem",
+                      background: "rgba(99, 102, 241, 0.07)",
+                      borderLeft: "3px solid var(--accent-primary)",
+                      borderRadius: "0 6px 6px 0",
+                      fontSize: "0.9rem",
+                      color: "#e0e7ff",
+                      lineHeight: 1.6,
+                      marginBottom: "1.25rem",
+                    }}>
+                      <strong>TL;DR:</strong> {q.summary}
+                    </blockquote>
+                  )}
+
+                  {/* 2. Core Concept & Explanation */}
+                  {q.explanation && (
+                    <div style={{ marginBottom: "1.25rem" }}>
+                      <h4 style={{
+                        fontSize: "0.88rem",
+                        fontWeight: 700,
+                        color: "var(--text-secondary)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.03em",
+                        marginBottom: "0.5rem",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                      }}>
+                        💡 Core Concept & Explanation
+                      </h4>
+                      <div style={{
+                        fontSize: "0.92rem",
+                        color: "var(--text-secondary)",
+                        lineHeight: 1.7,
+                        whiteSpace: "pre-line",
+                      }}>
+                        {q.explanation}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 3. Code Implementation with Syntax Highlighting */}
+                  {q.codeSnippet && (
+                    <div style={{ marginBottom: "1.25rem" }}>
+                      <h4 style={{
+                        fontSize: "0.88rem",
+                        fontWeight: 700,
+                        color: "var(--text-secondary)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.03em",
+                        marginBottom: "0.25rem",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                      }}>
+                        🛠️ Code / Implementation
+                      </h4>
+                      <CodeBlock code={q.codeSnippet} language="javascript" title="JavaScript Solution & Logic" />
+                    </div>
+                  )}
+
+                  {/* 4. Interview Pitfalls & Gotchas Alert */}
+                  {q.gotchas && (
+                    <div style={{
+                      padding: "0.85rem 1.1rem",
+                      background: "rgba(239, 68, 68, 0.07)",
+                      borderLeft: "3px solid #ef4444",
+                      borderRadius: "0 6px 6px 0",
+                      fontSize: "0.88rem",
+                      color: "#fecaca",
+                      lineHeight: 1.6,
+                    }}>
+                      <strong style={{ color: "#f87171" }}>⚠️ Interview Pitfall / Pro-Tip:</strong>
+                      <div style={{ marginTop: "0.3rem", whiteSpace: "pre-line" }}>
+                        {q.gotchas}
+                      </div>
+                    </div>
+                  )}
                 </article>
               );
             })}
@@ -565,31 +633,32 @@ export default function DedicatedTopicPage() {
         )}
 
         {/* ------------------------------------------------------------- */}
-        {/* ARCHETYPE B: REVISION HANDBOOK (e.g. JS Fundamentals) */}
+        {/* ARCHETYPE B: REVISION HANDBOOK (Syntax Cards with Highlighting) */}
         {/* ------------------------------------------------------------- */}
         {isHandbook && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem", marginBottom: "3rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", marginBottom: "3.5rem" }}>
             {topicItems.map((item) => (
               <section
                 key={item.id}
+                id={`ref-${item.id}`}
                 style={{
                   background: "rgba(15, 23, 42, 0.45)",
                   border: "1px solid var(--border-subtle)",
                   borderRadius: "var(--radius-md)",
-                  padding: "1.25rem 1.5rem",
+                  padding: "1.5rem",
                 }}
               >
                 {/* Reference Block Title */}
                 <h3 style={{
-                  fontSize: "1.15rem",
+                  fontSize: "1.2rem",
                   fontWeight: 700,
                   color: "var(--text-primary)",
-                  marginBottom: "0.6rem",
+                  marginBottom: "0.75rem",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.5rem",
                 }}>
-                  <span style={{ color: "var(--accent-cyan)", fontFamily: "var(--font-mono)", fontSize: "0.9rem" }}>
+                  <span style={{ color: "var(--accent-cyan)", fontFamily: "var(--font-mono)", fontSize: "0.95rem" }}>
                     ###
                   </span>
                   {item.title}
@@ -598,57 +667,19 @@ export default function DedicatedTopicPage() {
                 {/* Explanation text */}
                 {item.summary && (
                   <p style={{
-                    fontSize: "0.9rem",
+                    fontSize: "0.92rem",
                     color: "var(--text-secondary)",
-                    lineHeight: 1.6,
+                    lineHeight: 1.65,
                     marginBottom: "1rem",
                   }}>
                     {item.summary}
                   </p>
                 )}
 
-                {/* Copy-Paste Syntax Code Block */}
+                {/* Syntax Highlighted Code Template */}
                 {item.codeSnippet && (
-                  <div style={{
-                    position: "relative",
-                    background: "#05070a",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    borderRadius: "var(--radius-sm)",
-                    padding: "1rem",
-                    marginBottom: "1rem",
-                    overflowX: "auto",
-                  }}>
-                    <button
-                      onClick={() => handleCopyCode(item.id, item.codeSnippet || "")}
-                      style={{
-                        position: "absolute",
-                        top: "0.6rem",
-                        right: "0.6rem",
-                        background: "rgba(255, 255, 255, 0.08)",
-                        border: "none",
-                        borderRadius: "4px",
-                        padding: "0.3rem 0.5rem",
-                        color: copiedCodeId === item.id ? "#34d399" : "var(--text-muted)",
-                        fontSize: "0.75rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.3rem",
-                        cursor: "pointer",
-                      }}
-                      title="Copy syntax template to clipboard"
-                    >
-                      {copiedCodeId === item.id ? <Check size={13} /> : <Copy size={13} />}
-                      <span>{copiedCodeId === item.id ? "Copied" : "Copy"}</span>
-                    </button>
-                    <pre style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.85rem",
-                      color: "#38bdf8",
-                      lineHeight: 1.5,
-                      margin: 0,
-                    }}>
-                      <code>{item.codeSnippet}</code>
-                    </pre>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <CodeBlock code={item.codeSnippet} language="javascript" title="Algorithmic Syntax Template" />
                   </div>
                 )}
 
