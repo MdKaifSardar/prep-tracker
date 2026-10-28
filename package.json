@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:bank": "node scripts/parseJsQuestions.js"
+    "sync:bank": "node scripts/parseCurriculum.js"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

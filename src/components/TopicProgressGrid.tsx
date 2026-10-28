@@ -198,10 +198,10 @@ export default function TopicProgressGrid({
                 </span>
               </div>
 
-              {/* Link to Dedicated Question Bank */}
+              {/* Links to Dedicated Subject Views */}
               {t.id === "javascript" && (
                 <Link
-                  href="/topics/javascript"
+                  href="/subjects/javascript"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -215,7 +215,28 @@ export default function TopicProgressGrid({
                     fontWeight: 600,
                   }}
                 >
-                  <span>📖 Browse Question Bank (78 Qs)</span>
+                  <span>📖 Master Question Bank (78 Qs)</span>
+                  <span>→</span>
+                </Link>
+              )}
+
+              {t.id === "js-fundamentals" && (
+                <Link
+                  href="/subjects/js-fundamentals"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginTop: "0.85rem",
+                    paddingTop: "0.75rem",
+                    borderTop: "1px solid var(--border-subtle)",
+                    fontSize: "0.8rem",
+                    color: "var(--accent-cyan)",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  <span>📘 Revision Handbook (12 Ch)</span>
                   <span>→</span>
                 </Link>
               )}

@@ -4,7 +4,8 @@ import seedJson from "./seedHistoricalData.json";
 
 export const DEFAULT_TOPICS: Topic[] = [
   { id: "dsa", name: "DSA", target: 134, baselineCompleted: 57, order: 1, color: "#3b82f6" },
-  { id: "javascript", name: "JavaScript", target: 84, baselineCompleted: 61, order: 2, color: "#eab308" },
+  { id: "javascript", name: "JavaScript", target: 78, baselineCompleted: 61, order: 2, color: "#eab308" },
+  { id: "js-fundamentals", name: "JS DSA Fundamentals", target: 12, baselineCompleted: 0, order: 2.5, color: "#06b6d4" },
   { id: "react", name: "React", target: 75, baselineCompleted: 31, order: 3, color: "#06b6d4" },
   { id: "typescript", name: "TypeScript", target: 50, baselineCompleted: 0, order: 4, color: "#3178c6" },
   { id: "nodejs", name: "NodeJS", target: 100, baselineCompleted: 0, order: 5, color: "#22c55e" },
