@@ -221,3 +221,32 @@ input, select, textarea {
   color: var(--accent-amber);
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
+
+/* Markdown & LaTeX Math Styling */
+.markdown-body {
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.markdown-body > p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+
+.katex {
+  font-size: 1.05em;
+  color: #38bdf8;
+}
+
+.katex-display {
+  margin: 0.75rem 0 !important;
+  padding: 0.5rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+}
+

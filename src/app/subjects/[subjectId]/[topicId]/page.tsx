@@ -17,6 +17,7 @@ import {
 import { getSubjectManifest } from "@/lib/curriculum";
 import { CurriculumItem, TopicManifest } from "@/types/curriculum";
 import CodeBlock from "@/components/CodeBlock";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ArrowLeft, ExternalLink, CheckSquare, Square } from "lucide-react";
 
 export default function DedicatedTopicPage() {
@@ -558,7 +559,10 @@ export default function DedicatedTopicPage() {
                       lineHeight: 1.6,
                       marginBottom: "1.25rem",
                     }}>
-                      <strong>TL;DR:</strong> {q.summary}
+                      <strong style={{ color: "var(--accent-primary)", display: "inline-block", marginRight: "0.4rem" }}>
+                        TL;DR:
+                      </strong>
+                      <MarkdownRenderer content={q.summary} />
                     </blockquote>
                   )}
 
@@ -578,14 +582,7 @@ export default function DedicatedTopicPage() {
                       }}>
                         💡 Core Concept & Explanation
                       </h4>
-                      <div style={{
-                        fontSize: "0.92rem",
-                        color: "var(--text-secondary)",
-                        lineHeight: 1.7,
-                        whiteSpace: "pre-line",
-                      }}>
-                        {q.explanation}
-                      </div>
+                      <MarkdownRenderer content={q.explanation} />
                     </div>
                   )}
 
@@ -620,10 +617,10 @@ export default function DedicatedTopicPage() {
                       color: "#fecaca",
                       lineHeight: 1.6,
                     }}>
-                      <strong style={{ color: "#f87171" }}>⚠️ Interview Pitfall / Pro-Tip:</strong>
-                      <div style={{ marginTop: "0.3rem", whiteSpace: "pre-line" }}>
-                        {q.gotchas}
-                      </div>
+                      <strong style={{ color: "#f87171", display: "block", marginBottom: "0.35rem" }}>
+                        ⚠️ Interview Pitfall / Pro-Tip:
+                      </strong>
+                      <MarkdownRenderer content={q.gotchas} />
                     </div>
                   )}
                 </article>
@@ -666,14 +663,9 @@ export default function DedicatedTopicPage() {
 
                 {/* Explanation text */}
                 {item.summary && (
-                  <p style={{
-                    fontSize: "0.92rem",
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.65,
-                    marginBottom: "1rem",
-                  }}>
-                    {item.summary}
-                  </p>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <MarkdownRenderer content={item.summary} />
+                  </div>
                 )}
 
                 {/* Syntax Highlighted Code Template */}
@@ -694,7 +686,10 @@ export default function DedicatedTopicPage() {
                     color: "#fef3c7",
                     lineHeight: 1.6,
                   }}>
-                    <strong>⚠️ Don't Forget:</strong> {item.gotchas.replace(/^⚠️\s*\*\*Don't Forget.*?\*\*:\s*/i, "")}
+                    <strong style={{ display: "block", marginBottom: "0.25rem", color: "var(--accent-amber)" }}>
+                      ⚠️ Don't Forget:
+                    </strong>
+                    <MarkdownRenderer content={item.gotchas.replace(/^⚠️\s*\*\*Don't Forget.*?\*\*:\s*/i, "")} />
                   </blockquote>
                 )}
               </section>
