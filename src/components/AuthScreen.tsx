@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useAuth } from "@/lib/authContext";
-import { ShieldAlert, Sparkles, CheckCircle2 } from "lucide-react";
+import { ShieldAlert, Sparkles, CheckCircle2, Zap } from "lucide-react";
 
 export default function AuthScreen() {
   const { user, isAuthorized, signInWithGoogle, logOut } = useAuth();
@@ -56,7 +56,7 @@ export default function AuthScreen() {
           margin: "0 auto 1.5rem",
           boxShadow: "0 0 25px rgba(99, 102, 241, 0.4)",
         }}>
-          ⚡
+          <Zap size={28} fill="#fff" color="#fff" />
         </div>
 
         {/* Not Signed In */}

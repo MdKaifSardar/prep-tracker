@@ -24,6 +24,7 @@ import TopicProgressGrid from "@/components/TopicProgressGrid";
 import QuickLogModal from "@/components/QuickLogModal";
 import RecentLogsList from "@/components/RecentLogsList";
 import AuthScreen from "@/components/AuthScreen";
+import { Zap } from "lucide-react";
 
 export default function DashboardPage() {
   const { user, loading: authLoading, isAuthorized } = useAuth();
@@ -285,7 +286,9 @@ service cloud.firestore {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
-            <span>⚡ {seedNotice}</span>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <Zap size={14} /> {seedNotice}
+            </span>
             <button
               onClick={() => setSeedNotice(null)}
               style={{ color: "var(--text-muted)", fontWeight: 700 }}

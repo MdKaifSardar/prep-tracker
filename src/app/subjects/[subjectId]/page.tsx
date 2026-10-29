@@ -7,7 +7,7 @@ import { useAuth } from "@/lib/authContext";
 import { db } from "@/lib/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 import { getSubjectManifest } from "@/lib/curriculum";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle, Zap, FolderTree, Layers } from "lucide-react";
 
 export default function SubjectMasterIndexPage() {
   const params = useParams();
@@ -143,8 +143,19 @@ export default function SubjectMasterIndexPage() {
               background: isHandbook ? "rgba(6, 182, 212, 0.15)" : "rgba(234, 179, 8, 0.15)",
               color: isHandbook ? "#38bdf8" : "#facc15",
               border: `1px solid ${isHandbook ? "rgba(6, 182, 212, 0.3)" : "rgba(234, 179, 8, 0.3)"}`,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
             }}>
-              {isHandbook ? "📘 Revision Handbook" : "⚡ Technical Interview Q&A"}
+              {isHandbook ? (
+                <>
+                  <BookOpen size={13} /> Revision Handbook
+                </>
+              ) : (
+                <>
+                  <Zap size={13} /> Technical Interview Q&A
+                </>
+              )}
             </span>
           </div>
 
@@ -174,7 +185,9 @@ export default function SubjectMasterIndexPage() {
               gap: "1.25rem",
             }}>
               <div>
-                <strong style={{ color: "var(--text-secondary)" }}>Priority Legend:</strong> 🔴 P0 = must-knowROI &nbsp;·&nbsp; 🟠 P1 = daily baseline
+                <strong style={{ color: "var(--text-secondary)" }}>Priority Legend:</strong>{" "}
+                <span style={{ color: "var(--accent-rose)", fontWeight: 700 }}>●</span> P0 = must-know ROI &nbsp;·&nbsp;{" "}
+                <span style={{ color: "var(--accent-amber)", fontWeight: 700 }}>●</span> P1 = daily baseline
               </div>
               <div>
                 <strong style={{ color: "var(--text-secondary)" }}>Types:</strong> [C] Concept &nbsp;·&nbsp; [Q] Code &nbsp;·&nbsp; [D] Design &nbsp;·&nbsp; [P] Perf
@@ -183,11 +196,20 @@ export default function SubjectMasterIndexPage() {
           )}
         </header>
 
-        {/* 📚 Master Index Table & Mobile Cards */}
+        {/* Master Index Table & Mobile Cards */}
         <section style={{ marginBottom: "3rem" }}>
           <div style={{ marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-              📚 {isHandbook ? "Chapter Navigation Index" : "Section & Pattern Index"}
+            <h2 style={{
+              fontSize: "1.3rem",
+              fontWeight: 700,
+              color: "var(--text-primary)",
+              letterSpacing: "-0.02em",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}>
+              <FolderTree size={20} style={{ color: "var(--accent-primary)" }} />
+              <span>{isHandbook ? "Chapter Navigation Index" : "Section & Pattern Index"}</span>
             </h2>
             <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "0.25rem" }}>
               {isHandbook

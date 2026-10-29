@@ -31,6 +31,13 @@ import {
   BookOpen,
   List,
   X,
+  ChevronLeft,
+  ChevronRight,
+  SkipBack,
+  SkipForward,
+  Layers,
+  CheckCircle2,
+  Zap,
 } from "lucide-react";
 
 export default function DedicatedTopicPage() {
@@ -400,11 +407,11 @@ export default function DedicatedTopicPage() {
   );
 
   return (
-    <div style={{ minHeight: "100vh", paddingBottom: "5rem", background: "var(--bg-app)" }}>
+    <div style={{ minHeight: "100vh", background: "var(--bg-app)" }}>
       {/* Off-Canvas Backdrop (Mobile & Tablet) */}
-      {(isMobileLeftOpen || isMobileRightOpen) && (
+      {!isDesktop && (
         <div
-          className="drawer-backdrop"
+          className={`drawer-backdrop ${isMobileLeftOpen || isMobileRightOpen ? "drawer-open" : "drawer-closed"}`}
           onClick={() => {
             setIsMobileLeftOpen(false);
             setIsMobileRightOpen(false);
@@ -413,8 +420,8 @@ export default function DedicatedTopicPage() {
       )}
 
       {/* Mobile Off-Canvas Drawer: Topics */}
-      {isMobileLeftOpen && (
-        <aside className="mobile-drawer mobile-drawer-left sidebar-scroll" style={{ padding: "1.25rem 1rem" }}>
+      {!isDesktop && (
+        <aside className={`mobile-drawer mobile-drawer-left sidebar-scroll ${isMobileLeftOpen ? "drawer-open" : ""}`} style={{ padding: "1.25rem 1rem" }}>
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -453,8 +460,8 @@ export default function DedicatedTopicPage() {
       )}
 
       {/* Mobile Off-Canvas Drawer: In-Page Outline */}
-      {isMobileRightOpen && (
-        <aside className="mobile-drawer mobile-drawer-right sidebar-scroll" style={{ padding: "1.25rem 1rem" }}>
+      {!isDesktop && (
+        <aside className={`mobile-drawer mobile-drawer-right sidebar-scroll ${isMobileRightOpen ? "drawer-open" : ""}`} style={{ padding: "1.25rem 1rem" }}>
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -562,11 +569,15 @@ export default function DedicatedTopicPage() {
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.35rem",
               }}
               title="Return to Master Index"
             >
-              <span className="hide-on-mobile">📋 {isHandbook ? "Handbook Index" : "Master Index"}</span>
-              <span className="show-on-mobile">📋 {manifest.name.replace(/Interview.*/i, "").trim()}</span>
+              <Layers size={14} style={{ flexShrink: 0 }} />
+              <span className="hide-on-mobile">{isHandbook ? "Handbook Index" : "Master Index"}</span>
+              <span className="show-on-mobile">{manifest.name.replace(/Interview.*/i, "").trim()}</span>
             </Link>
           </div>
 
@@ -654,64 +665,54 @@ export default function DedicatedTopicPage() {
         maxWidth: "1650px",
         margin: "0 auto",
         position: "relative",
-        alignItems: "flex-start",
+        alignItems: "stretch",
+        minHeight: "calc(100vh - 52px)",
       }}>
         {/* ========================================================= */}
         {/* 1. DESKTOP LEFT SIDEBAR: MASTER TOPICS INDEX (>= 1200px)  */}
         {/* ========================================================= */}
-        {isDesktop && !isLeftCollapsed && (
+        {isDesktop && (
           <aside
-            className="sidebar-scroll"
+            className={`sidebar-desktop sidebar-desktop-left sidebar-scroll ${
+              isLeftCollapsed ? "sidebar-desktop-collapsed" : "sidebar-desktop-expanded"
+            }`}
             aria-label="Topics Navigation"
-            style={{
-              width: "270px",
-              minWidth: "270px",
-              position: "sticky",
-              top: "51px",
-              height: "calc(100vh - 51px)",
-              overflowY: "auto",
-              borderRight: "1px solid var(--border-subtle)",
-              background: "rgba(10, 15, 29, 0.5)",
-              padding: "1.25rem 0.85rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.4rem",
-              zIndex: 20,
-            }}
           >
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingBottom: "0.75rem",
-              marginBottom: "0.5rem",
-              borderBottom: "1px solid var(--border-subtle)",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
-                <BookOpen size={15} style={{ color: "var(--accent-primary)" }} />
-                <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--text-muted)" }}>
-                  Topics ({manifest.topics.length})
-                </span>
+            <div className="sidebar-content-inner">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingBottom: "0.75rem",
+                marginBottom: "0.5rem",
+                borderBottom: "1px solid var(--border-subtle)",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                  <BookOpen size={15} style={{ color: "var(--accent-primary)" }} />
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--text-muted)" }}>
+                    Topics ({manifest.topics.length})
+                  </span>
+                </div>
+                <button
+                  onClick={toggleLeftSidebar}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "var(--text-muted)",
+                    padding: "0.2rem",
+                    display: "flex",
+                    alignItems: "center",
+                    borderRadius: "4px",
+                  }}
+                  title="Collapse sidebar"
+                >
+                  <PanelLeftClose size={16} />
+                </button>
               </div>
-              <button
-                onClick={toggleLeftSidebar}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  color: "var(--text-muted)",
-                  padding: "0.2rem",
-                  display: "flex",
-                  alignItems: "center",
-                  borderRadius: "4px",
-                }}
-                title="Collapse sidebar"
-              >
-                <PanelLeftClose size={16} />
-              </button>
-            </div>
 
-            {renderTopicsNav()}
+              {renderTopicsNav()}
+            </div>
           </aside>
         )}
 
@@ -721,10 +722,10 @@ export default function DedicatedTopicPage() {
         <main style={{
           flex: 1,
           minWidth: 0,
-          padding: isDesktop ? "2rem 2.5rem 4rem 2.5rem" : "1.25rem 1rem 4rem 1rem",
+          padding: isDesktop ? "2rem 2.5rem 6rem 2.5rem" : "1.25rem 1rem 6rem 1rem",
           maxWidth: isDesktop ? (isLeftCollapsed && isRightCollapsed ? "1060px" : "900px") : "100%",
           margin: "0 auto",
-          transition: "max-width 0.25s ease",
+          transition: "max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
         }}>
           {/* Markdown-Style Top Navigation Bar */}
           <nav style={{
@@ -740,30 +741,58 @@ export default function DedicatedTopicPage() {
             {prevTopic ? (
               <Link
                 href={`/subjects/${subjectId}/${prevTopic.id}`}
-                style={{ color: "var(--text-secondary)", textDecoration: "none", fontWeight: 600 }}
+                style={{
+                  color: "var(--text-secondary)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.35rem",
+                }}
               >
-                ⬅️ Previous: {prevTopic.name.replace(/^\d+\.\s*/, "")}
+                <ChevronLeft size={14} />
+                <span className="hide-on-mobile">Previous: </span>{prevTopic.name.replace(/^\d+\.\s*/, "")}
               </Link>
             ) : (
-              <span style={{ color: "var(--text-muted)" }}>⏮️ (start)</span>
+              <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+                <SkipBack size={13} /> (start)
+              </span>
             )}
 
             <Link
               href={`/subjects/${subjectId}`}
-              style={{ color: "var(--accent-primary)", textDecoration: "none", fontWeight: 700 }}
+              style={{
+                color: "var(--accent-primary)",
+                textDecoration: "none",
+                fontWeight: 700,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.35rem",
+                fontSize: "0.85rem",
+              }}
             >
-              [📋 Index]
+              <Layers size={14} /> Index
             </Link>
 
             {nextTopic ? (
               <Link
                 href={`/subjects/${subjectId}/${nextTopic.id}`}
-                style={{ color: "var(--text-secondary)", textDecoration: "none", fontWeight: 600 }}
+                style={{
+                  color: "var(--text-secondary)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.35rem",
+                }}
               >
-                Next: {nextTopic.name.replace(/^\d+\.\s*/, "")} ➡️
+                <span className="hide-on-mobile">Next: </span>{nextTopic.name.replace(/^\d+\.\s*/, "")}
+                <ChevronRight size={14} />
               </Link>
             ) : (
-              <span style={{ color: "var(--text-muted)" }}>(end) ⏭️</span>
+              <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+                (end) <SkipForward size={13} />
+              </span>
             )}
           </nav>
 
@@ -1125,13 +1154,16 @@ export default function DedicatedTopicPage() {
                 fontWeight: 600,
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.3rem",
+                gap: "0.35rem",
               }}
             >
-              ⬅️ <span className="hide-on-mobile">Prev: </span>{prevTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)}
+              <ChevronLeft size={14} />
+              <span className="hide-on-mobile">Prev: </span>{prevTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)}
             </Link>
           ) : (
-            <span style={{ color: "var(--text-muted)" }}>⏮️ (start)</span>
+            <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+              <SkipBack size={13} /> (start)
+            </span>
           )}
 
           <Link
@@ -1140,13 +1172,16 @@ export default function DedicatedTopicPage() {
               color: "var(--accent-primary)",
               textDecoration: "none",
               fontWeight: 700,
-              padding: "0.25rem 0.5rem",
+              padding: "0.3rem 0.65rem",
               borderRadius: "4px",
               background: "rgba(99, 102, 241, 0.08)",
-              fontSize: "0.8rem",
+              fontSize: "0.82rem",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
             }}
           >
-            [📋 Index]
+            <Layers size={13} /> Index
           </Link>
 
           {nextTopic ? (
@@ -1158,13 +1193,16 @@ export default function DedicatedTopicPage() {
                 fontWeight: 600,
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.3rem",
+                gap: "0.35rem",
               }}
             >
-              <span className="hide-on-mobile">Next: </span>{nextTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)} ➡️
+              <span className="hide-on-mobile">Next: </span>{nextTopic.name.replace(/^\d+\.\s*/, "").slice(0, 16)}
+              <ChevronRight size={14} />
             </Link>
           ) : (
-            <span style={{ color: "var(--text-muted)" }}>(end) ⏭️</span>
+            <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+              (end) <SkipForward size={13} />
+            </span>
           )}
         </nav>
       </main>
@@ -1172,59 +1210,48 @@ export default function DedicatedTopicPage() {
       {/* ========================================================= */}
       {/* 3. DESKTOP RIGHT SIDEBAR: IN-PAGE OUTLINE (>= 1200px)     */}
       {/* ========================================================= */}
-      {isDesktop && !isRightCollapsed && (
+      {isDesktop && (
         <aside
-          className="sidebar-scroll"
+          className={`sidebar-desktop sidebar-desktop-right sidebar-scroll ${
+            isRightCollapsed ? "sidebar-desktop-collapsed" : "sidebar-desktop-expanded"
+          }`}
           aria-label="In-page outline"
-          style={{
-            width: "260px",
-            minWidth: "260px",
-            position: "sticky",
-            top: "51px",
-            height: "calc(100vh - 51px)",
-            overflowY: "auto",
-            borderLeft: "1px solid var(--border-subtle)",
-            background: "rgba(10, 15, 29, 0.5)",
-            padding: "1.25rem 0.85rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.4rem",
-            zIndex: 20,
-          }}
         >
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingBottom: "0.75rem",
-            marginBottom: "0.5rem",
-            borderBottom: "1px solid var(--border-subtle)",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
-              <List size={15} style={{ color: "var(--accent-cyan)" }} />
-              <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--text-muted)" }}>
-                On This Page ({topicItems.length})
-              </span>
+          <div className="sidebar-content-inner">
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingBottom: "0.75rem",
+              marginBottom: "0.5rem",
+              borderBottom: "1px solid var(--border-subtle)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                <List size={15} style={{ color: "var(--accent-cyan)" }} />
+                <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--text-muted)" }}>
+                  On This Page ({topicItems.length})
+                </span>
+              </div>
+              <button
+                onClick={toggleRightSidebar}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "var(--text-muted)",
+                  padding: "0.2rem",
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "4px",
+                }}
+                title="Collapse outline"
+              >
+                <PanelRightClose size={16} />
+              </button>
             </div>
-            <button
-              onClick={toggleRightSidebar}
-              style={{
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-                color: "var(--text-muted)",
-                padding: "0.2rem",
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "4px",
-              }}
-              title="Collapse outline"
-            >
-              <PanelRightClose size={16} />
-            </button>
-          </div>
 
-          {renderOutlineNav()}
+            {renderOutlineNav()}
+          </div>
         </aside>
       )}
     </div>

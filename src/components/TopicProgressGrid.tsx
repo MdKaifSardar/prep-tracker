@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Topic, DailyLog } from "@/types";
-import { PlusCircle, Target, CheckCircle, Clock, Edit2 } from "lucide-react";
+import { PlusCircle, Target, CheckCircle, Clock, Edit2, BookOpen, CheckCircle2, ArrowRight } from "lucide-react";
 
 interface TopicProgressGridProps {
   topics: Topic[];
@@ -194,7 +194,13 @@ export default function TopicProgressGrid({
               {/* Remaining badge */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--text-muted)" }}>
                 <span>
-                  {remaining === 0 ? "Target completed! 🎉" : `${remaining} problems remaining`}
+                  {remaining === 0 ? (
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", color: "var(--accent-emerald)" }}>
+                      <CheckCircle2 size={13} /> Target completed!
+                    </span>
+                  ) : (
+                    `${remaining} problems remaining`
+                  )}
                 </span>
               </div>
 
@@ -215,8 +221,10 @@ export default function TopicProgressGrid({
                     fontWeight: 600,
                   }}
                 >
-                  <span>📖 Master Question Bank (78 Qs)</span>
-                  <span>→</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                    <BookOpen size={13} /> Master Question Bank (78 Qs)
+                  </span>
+                  <ArrowRight size={13} />
                 </Link>
               )}
 
@@ -236,8 +244,10 @@ export default function TopicProgressGrid({
                     fontWeight: 600,
                   }}
                 >
-                  <span>📘 Revision Handbook (12 Ch)</span>
-                  <span>→</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                    <BookOpen size={13} /> Revision Handbook (12 Ch)
+                  </span>
+                  <ArrowRight size={13} />
                 </Link>
               )}
             </div>

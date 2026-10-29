@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useAuth } from "@/lib/authContext";
-import { PlusCircle, LogOut, Flame, Database } from "lucide-react";
+import { PlusCircle, LogOut, Flame, Database, Zap } from "lucide-react";
 
 interface NavbarProps {
   onOpenLogModal: () => void;
@@ -50,7 +50,7 @@ export default function Navbar({ onOpenLogModal, onSeedData, streak }: NavbarPro
             fontSize: "1.1rem",
             boxShadow: "0 0 15px rgba(99, 102, 241, 0.4)",
           }}>
-            ⚡
+            <Zap size={20} fill="#fff" color="#fff" />
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
