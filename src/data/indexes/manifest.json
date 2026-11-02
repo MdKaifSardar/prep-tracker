@@ -1,0 +1,90 @@
+[
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "interview_qa",
+    "totalQuestions": 78,
+    "sectionCount": 16,
+    "fileSizeKb": "38.1"
+  },
+  {
+    "id": "sql",
+    "name": "SQL & Query Engineering",
+    "category": "interview_qa",
+    "totalQuestions": 80,
+    "sectionCount": 10,
+    "fileSizeKb": "37.8"
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js & Express.js",
+    "category": "interview_qa",
+    "totalQuestions": 72,
+    "sectionCount": 15,
+    "fileSizeKb": "34.9"
+  },
+  {
+    "id": "react",
+    "name": "React & Next.js",
+    "category": "interview_qa",
+    "totalQuestions": 75,
+    "sectionCount": 10,
+    "fileSizeKb": "34.2"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "category": "interview_qa",
+    "totalQuestions": 100,
+    "sectionCount": 10,
+    "fileSizeKb": "44.5"
+  },
+  {
+    "id": "dbms",
+    "name": "DBMS Architecture",
+    "category": "interview_qa",
+    "totalQuestions": 70,
+    "sectionCount": 10,
+    "fileSizeKb": "30.8"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "interview_qa",
+    "totalQuestions": 50,
+    "sectionCount": 9,
+    "fileSizeKb": "22.1"
+  },
+  {
+    "id": "dsa",
+    "name": "Data Structures & Algorithms",
+    "category": "interview_qa",
+    "totalQuestions": 139,
+    "sectionCount": 25,
+    "fileSizeKb": "59.7"
+  },
+  {
+    "id": "js-fundamentals",
+    "name": "JS DSA Fundamentals",
+    "category": "revision_handbook",
+    "totalQuestions": 12,
+    "sectionCount": 1,
+    "fileSizeKb": "5.0"
+  },
+  {
+    "id": "cpp-fundamentals",
+    "name": "C++ Fundamentals & STL",
+    "category": "revision_handbook",
+    "totalQuestions": 10,
+    "sectionCount": 1,
+    "fileSizeKb": "4.5"
+  },
+  {
+    "id": "sql-fundamentals",
+    "name": "SQL Fundamentals",
+    "category": "revision_handbook",
+    "totalQuestions": 10,
+    "sectionCount": 1,
+    "fileSizeKb": "4.3"
+  }
+]

@@ -1,0 +1,660 @@
+{
+  "id": "dbms",
+  "name": "DBMS Architecture",
+  "category": "interview_qa",
+  "totalQuestions": 70,
+  "githubFilePath": "dbms/dbms-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Fundamentals, DBMS Architecture & Relational Model",
+      "fullName": "1. Fundamentals, DBMS Architecture & Relational Model",
+      "range": "#1 – #8",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is a DBMS, and how is a database system superior to a traditional File Processing System?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#1-what-is-a-dbms-and-how-is-a-database-system-superior-to-a-t"
+        },
+        {
+          "number": 2,
+          "title": "What is the RDBMS model, and what defines the relational concept (Tables, Tuples, Attributes, Schemas)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#2-what-is-the-rdbms-model-and-what-defines-the-relational-con"
+        },
+        {
+          "number": 3,
+          "title": "Explain the 3-Schema Architecture (ANSI-SPARC) — Internal, Conceptual, and External levels.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#3-explain-the-3-schema-architecture-ansi-sparc-internal-c"
+        },
+        {
+          "number": 4,
+          "title": "What is Data Independence? Distinguish Logical Data Independence from Physical Data Independence.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#4-what-is-data-independence-distinguish-logical-data-independ"
+        },
+        {
+          "number": 5,
+          "title": "What are Keys in DBMS? Explain Super Key, Candidate Key, Primary Key, Foreign Key, and Composite Key.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#5-what-are-keys-in-dbms-explain-super-key-candidate-key-pri"
+        },
+        {
+          "number": 6,
+          "title": "What is Referential Integrity? What happens on `ON DELETE CASCADE`, `ON DELETE SET NULL`, and `ON DELETE RESTRICT`?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#6-what-is-referential-integrity-what-happens-on-on-delete-ca"
+        },
+        {
+          "number": 7,
+          "title": "What is the difference between Schema and Instance in DBMS?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#7-what-is-the-difference-between-schema-and-instance-in-dbms"
+        },
+        {
+          "number": 8,
+          "title": "What are Data Constraints (`NOT NULL`, `UNIQUE`, `CHECK`, `DEFAULT`) and where are they enforced?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#8-what-are-data-constraints-not-null-unique-check-d"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Transactions & ACID Properties",
+      "fullName": "2. Transactions & ACID Properties",
+      "range": "#9 – #15",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 9,
+          "title": "What is a Transaction in DBMS? What is the Transaction Lifecycle (Active, Partially Committed, Committed, Failed, Aborted)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#9-what-is-a-transaction-in-dbms-what-is-the-transaction-lifec"
+        },
+        {
+          "number": 10,
+          "title": "Explain the **ACID Properties** in detail (Atomicity, Consistency, Isolation, Durability).",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#10-explain-the-acid-properties-in-detail-atomicity-consis"
+        },
+        {
+          "number": 11,
+          "title": "How does a database guarantee **Atomicity** during a mid-transaction crash (Undo Log / Rollback)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#11-how-does-a-database-guarantee-atomicity-during-a-mid-tra"
+        },
+        {
+          "number": 12,
+          "title": "How does a database guarantee **Durability** after a hardware crash (Redo Log / Write-Ahead Logging - WAL)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#12-how-does-a-database-guarantee-durability-after-a-hardwar"
+        },
+        {
+          "number": 13,
+          "title": "What is the difference between `COMMIT`, `ROLLBACK`, and `SAVEPOINT`?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#13-what-is-the-difference-between-commit-rollback-and-sa"
+        },
+        {
+          "number": 14,
+          "title": "What is a Schedule in DBMS? Distinguish Serial Schedule vs Concurrent Schedule.",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#14-what-is-a-schedule-in-dbms-distinguish-serial-schedule-vs-c"
+        },
+        {
+          "number": 15,
+          "title": "What is Conflict Serializability, and how do you test if a schedule is conflict serializable (Precedence Graph)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#15-what-is-conflict-serializability-and-how-do-you-test-if-a-s"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Concurrency Control & Isolation Levels",
+      "fullName": "3. Concurrency Control & Isolation Levels",
+      "range": "#16 – #22",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 16,
+          "title": "What concurrency anomalies occur when transactions run simultaneously without isolation?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#16-what-concurrency-anomalies-occur-when-transactions-run-simul"
+        },
+        {
+          "number": 17,
+          "title": "Explain the **3 Read Anomalies**: Dirty Read, Non-Repeatable Read, and Phantom Read.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#17-explain-the-3-read-anomalies-dirty-read-non-repeatable"
+        },
+        {
+          "number": 18,
+          "title": "Explain the **4 ANSI SQL Isolation Levels** (`READ UNCOMMITTED`, `READ COMMITTED`, `REPEATABLE READ`, `SERIALIZABLE`) and which anomalies each prevents.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#18-explain-the-4-ansi-sql-isolation-levels-read-uncommitt"
+        },
+        {
+          "number": 19,
+          "title": "What are Database Locks? Explain Shared Lock (S-Lock) vs Exclusive Lock (X-Lock).",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#19-what-are-database-locks-explain-shared-lock-s-lock-vs-exc"
+        },
+        {
+          "number": 20,
+          "title": "What is Two-Phase Locking (2PL)? Distinguish Strict 2PL vs Rigorous 2PL.",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#20-what-is-two-phase-locking-2pl-distinguish-strict-2pl-vs-r"
+        },
+        {
+          "number": 21,
+          "title": "What is a Deadlock in DBMS? How do databases Detect, Prevent, and Resolve deadlocks?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#21-what-is-a-deadlock-in-dbms-how-do-databases-detect-prevent"
+        },
+        {
+          "number": 22,
+          "title": "What is MVCC (Multi-Version Concurrency Control), and how does PostgreSQL/InnoDB achieve lock-free reads?",
+          "priority": "P2",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#22-what-is-mvcc-multi-version-concurrency-control-and-how-do"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Database Indexing & B-Tree Internals",
+      "fullName": "4. Database Indexing & B-Tree Internals",
+      "range": "#23 – #30",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 23,
+          "title": "What is a Database Index, and why does an index dramatically speed up SELECT queries?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#23-what-is-a-database-index-and-why-does-an-index-dramatically"
+        },
+        {
+          "number": 24,
+          "title": "Explain **Clustered Index** vs **Non-Clustered Index (Secondary Index)**. Why can a table have only ONE Clustered Index?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#24-explain-clustered-index-vs-non-clustered-index-second"
+        },
+        {
+          "number": 25,
+          "title": "Why do databases use **B-Trees and B+ Trees** for indexes instead of Hash Tables or Binary Search Trees?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#25-why-do-databases-use-b-trees-and-b-trees-for-indexes-in"
+        },
+        {
+          "number": 26,
+          "title": "What is a Composite (Multi-Column) Index? Explain the **Leftmost Prefix Rule** in SQL indexing.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#26-what-is-a-composite-multi-column-index-explain-the-left"
+        },
+        {
+          "number": 27,
+          "title": "What is a **Covering Index**, and why does it eliminate table lookup overhead (`Index Only Scan`)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#27-what-is-a-covering-index-and-why-does-it-eliminate-tabl"
+        },
+        {
+          "number": 28,
+          "title": "What is the difference between a Dense Index and a Sparse Index?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#28-what-is-the-difference-between-a-dense-index-and-a-sparse-in"
+        },
+        {
+          "number": 29,
+          "title": "What are the performance costs and trade-offs of adding too many indexes on a table?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#29-what-are-the-performance-costs-and-trade-offs-of-adding-too"
+        },
+        {
+          "number": 30,
+          "title": "What is a Unique Index, and how does it differ from a standard Primary Key?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#30-what-is-a-unique-index-and-how-does-it-differ-from-a-standa"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Schema Design, Normalization & Denormalization",
+      "fullName": "5. Schema Design, Normalization & Denormalization",
+      "range": "#31 – #38",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 31,
+          "title": "What is Normalization, and why do we normalize relational databases?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#31-what-is-normalization-and-why-do-we-normalize-relational-da"
+        },
+        {
+          "number": 32,
+          "title": "What are Database Anomalies? Explain **Insertion Anomaly**, **Deletion Anomaly**, and **Update Anomaly** with examples.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#32-what-are-database-anomalies-explain-insertion-anomaly"
+        },
+        {
+          "number": 33,
+          "title": "What is Functional Dependency ($X \\rightarrow Y$)? Explain Full vs Partial vs Transitive Dependency.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#33-what-is-functional-dependency-x-rightarrow-y-explain-f"
+        },
+        {
+          "number": 34,
+          "title": "Explain **1NF (First Normal Form)**: Atomic values and unique column names.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#34-explain-1nf-first-normal-form-atomic-values-and-uniqu"
+        },
+        {
+          "number": 35,
+          "title": "Explain **2NF (Second Normal Form)**: Elimination of Partial Dependencies.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#35-explain-2nf-second-normal-form-elimination-of-partial"
+        },
+        {
+          "number": 36,
+          "title": "Explain **3NF (Third Normal Form)**: Elimination of Transitive Dependencies.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#36-explain-3nf-third-normal-form-elimination-of-transiti"
+        },
+        {
+          "number": 37,
+          "title": "What is **BCNF (Boyce-Codd Normal Form)**? How is BCNF stricter than 3NF?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#37-what-is-bcnf-boyce-codd-normal-form-how-is-bcnf-stric"
+        },
+        {
+          "number": 38,
+          "title": "What is **Denormalization**? When and why would a backend developer intentionally denormalize a database schema?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#38-what-is-denormalization-when-and-why-would-a-backend-de"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "SQL Execution Order & JOIN Fundamentals",
+      "fullName": "6. SQL Execution Order & JOIN Fundamentals",
+      "range": "#39 – #46",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 39,
+          "title": "What is the exact **Logical Execution Order of a SQL Query**?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#39-what-is-the-exact-logical-execution-order-of-a-sql-query"
+        },
+        {
+          "number": 40,
+          "title": "What is the difference between `WHERE` clause and `HAVING` clause?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#40-what-is-the-difference-between-where-clause-and-having-c"
+        },
+        {
+          "number": 41,
+          "title": "Explain all Types of SQL JOINs: `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN`, `CROSS JOIN`, and `SELF JOIN`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#41-explain-all-types-of-sql-joins-inner-join-left-join"
+        },
+        {
+          "number": 42,
+          "title": "What is the difference between filtering in the `ON` clause vs `WHERE` clause during a `LEFT JOIN`?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#42-what-is-the-difference-between-filtering-in-the-on-clause"
+        },
+        {
+          "number": 43,
+          "title": "What is the difference between `UNION` and `UNION ALL`?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#43-what-is-the-difference-between-union-and-union-all"
+        },
+        {
+          "number": 44,
+          "title": "What is the difference between `DELETE`, `TRUNCATE`, and `DROP` commands?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#44-what-is-the-difference-between-delete-truncate-and-dr"
+        },
+        {
+          "number": 45,
+          "title": "Distinguish SQL Commands: DDL (`CREATE`, `ALTER`), DML (`INSERT`, `UPDATE`), DCL (`GRANT`, `REVOKE`), TCL (`COMMIT`, `ROLLBACK`).",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#45-distinguish-sql-commands-ddl-create-alter-dml-ins"
+        },
+        {
+          "number": 46,
+          "title": "Explain physical Join Algorithms executed by DB engines: Nested Loop Join vs Hash Join vs Merge Join.",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#46-explain-physical-join-algorithms-executed-by-db-engines-nes"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Subqueries, Window Functions, Views & Procedures",
+      "fullName": "7. Subqueries, Window Functions, Views & Procedures",
+      "range": "#47 – #53",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 47,
+          "title": "What is a Subquery? Distinguish Correlated Subquery vs Non-Correlated Subquery.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#47-what-is-a-subquery-distinguish-correlated-subquery-vs-non-c"
+        },
+        {
+          "number": 48,
+          "title": "What is the difference between `IN` vs `EXISTS` operators in SQL? Which performs better?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#48-what-is-the-difference-between-in-vs-exists-operators-in"
+        },
+        {
+          "number": 49,
+          "title": "What are **Window Functions** in SQL? How does `OVER (PARTITION BY ... ORDER BY ...)` differ from `GROUP BY`?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#49-what-are-window-functions-in-sql-how-does-over-partit"
+        },
+        {
+          "number": 50,
+          "title": "What is the difference between `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()`?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#50-what-is-the-difference-between-row_number-rank-and"
+        },
+        {
+          "number": 51,
+          "title": "What is a Database **View**? How does a standard View differ from a **Materialized View**?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#51-what-is-a-database-view-how-does-a-standard-view-differ"
+        },
+        {
+          "number": 52,
+          "title": "What is a **Stored Procedure**? What are the pros and cons of placing business logic in Stored Procedures vs Backend Application code?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#52-what-is-a-stored-procedure-what-are-the-pros-and-cons-o"
+        },
+        {
+          "number": 53,
+          "title": "What are Database **Triggers**? When should you use them, and what maintenance risks do they pose?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#53-what-are-database-triggers-when-should-you-use-them-an"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Query Optimization, Execution Plans & Performance",
+      "fullName": "8. Query Optimization, Execution Plans & Performance",
+      "range": "#54 – #59",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 54,
+          "title": "What is a Query Execution Plan? How do you use `EXPLAIN` / `EXPLAIN ANALYZE` to debug a slow SQL query?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#54-what-is-a-query-execution-plan-how-do-you-use-explain"
+        },
+        {
+          "number": 55,
+          "title": "What is a Full Table Scan (`Seq Scan`), and how do you rewrite a query to enforce an Index Scan?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#55-what-is-a-full-table-scan-seq-scan-and-how-do-you-rewri"
+        },
+        {
+          "number": 56,
+          "title": "Why does wrapping an indexed column in a function (e.g. `WHERE YEAR(created_at) = 2026`) disable index usage (Non-SARGable query)?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#56-why-does-wrapping-an-indexed-column-in-a-function-eg-whe"
+        },
+        {
+          "number": 57,
+          "title": "What is **Connection Pooling** in backend development, and why is opening a new SQL connection per request dangerous?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#57-what-is-connection-pooling-in-backend-development-and-w"
+        },
+        {
+          "number": 58,
+          "title": "Why is `SELECT *` considered a bad practice in production APIs?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#58-why-is-select-considered-a-bad-practice-in-production-ap"
+        },
+        {
+          "number": 59,
+          "title": "How do you handle N+1 query problems when fetching relational data in backend ORMs?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#59-how-do-you-handle-n1-query-problems-when-fetching-relationa"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Relational Architecture, Storage Engines & Scaling",
+      "fullName": "9. Relational Architecture, Storage Engines & Scaling",
+      "range": "#60 – #65",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 60,
+          "title": "What is the difference between MySQL's **InnoDB** and **MyISAM** storage engines?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#60-what-is-the-difference-between-mysqls-innodb-and-myis"
+        },
+        {
+          "number": 61,
+          "title": "What is **Database Replication**? Explain Primary-Replica (Master-Slave) replication for read scaling.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#61-what-is-database-replication-explain-primary-replica-m"
+        },
+        {
+          "number": 62,
+          "title": "What is the difference between Synchronous Replication and Asynchronous Replication?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#62-what-is-the-difference-between-synchronous-replication-and-a"
+        },
+        {
+          "number": 63,
+          "title": "What is **Database Partitioning**? Distinguish Range, Hash, and List Partitioning.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#63-what-is-database-partitioning-distinguish-range-hash"
+        },
+        {
+          "number": 64,
+          "title": "What is **Database Sharding** (Horizontal Scaling)? How does Sharding differ from Partitioning?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#64-what-is-database-sharding-horizontal-scaling-how-does"
+        },
+        {
+          "number": 65,
+          "title": "What is a Shard Key? What problems occur if a shard key causes a \"Hotspot Shard\"?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#65-what-is-a-shard-key-what-problems-occur-if-a-shard-key-caus"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "System Design & SQL vs NoSQL Choice",
+      "fullName": "10. System Design & SQL vs NoSQL Choice",
+      "range": "#66 – #70",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 66,
+          "title": "**SQL vs NoSQL:** Under what exact system requirements would you choose PostgreSQL over MongoDB, and vice versa?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#66-sql-vs-nosql-under-what-exact-system-requirements-would"
+        },
+        {
+          "number": 67,
+          "title": "What is the CAP Theorem? Where do traditional RDBMS databases (CP) fit?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#67-what-is-the-cap-theorem-where-do-traditional-rdbms-database"
+        },
+        {
+          "number": 68,
+          "title": "What is **BASE Properties** (Basically Available, Soft State, Eventual Consistency) vs ACID Properties?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#68-what-is-base-properties-basically-available-soft-state"
+        },
+        {
+          "number": 69,
+          "title": "What is **Polyglot Persistence** in modern backend microservice architecture?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#69-what-is-polyglot-persistence-in-modern-backend-microserv"
+        },
+        {
+          "number": 70,
+          "title": "What is a Connection Timeout vs Query Timeout vs Lock Timeout in production database configurations?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dbms/dbms-interview-questions.md#70-what-is-a-connection-timeout-vs-query-timeout-vs-lock-timeou"
+        }
+      ]
+    }
+  ]
+}

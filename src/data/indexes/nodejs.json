@@ -1,0 +1,721 @@
+{
+  "id": "nodejs",
+  "name": "Node.js & Express.js",
+  "category": "interview_qa",
+  "totalQuestions": 72,
+  "githubFilePath": "nodejs/nodejs-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Node.js Fundamentals",
+      "fullName": "Node.js Fundamentals",
+      "range": "#1 – #6",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is Node.js, how does it differ from browser JavaScript (no DOM or window, globalThis, process, file system and network access), and which workloads is it good or poor at (I/O-heavy vs CPU-heavy)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#1-what-is-nodejs-how-does-it-differ-from-browser-javascript"
+        },
+        {
+          "number": 2,
+          "title": "What are the core parts of Node.js (V8, libuv, the thread pool, C++ bindings), and how does it handle many concurrent requests with a single JavaScript thread?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#2-what-are-the-core-parts-of-nodejs-v8-libuv-the-thread-po"
+        },
+        {
+          "number": 3,
+          "title": "What is non-blocking I/O, what is the difference between blocking and non-blocking code, and why is blocking the event loop dangerous for a server?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#3-what-is-non-blocking-io-what-is-the-difference-between-blo"
+        },
+        {
+          "number": 4,
+          "title": "What does the process object provide (process.argv, process.env, process.exit(), process.cwd()), and how do you manage configuration and secrets with environment variables and .env files (--env-file, dotenv)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#4-what-does-the-process-object-provide-processargv-process"
+        },
+        {
+          "number": 5,
+          "title": "What is the difference between LTS and Current Node.js releases, and which should production use?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#5-what-is-the-difference-between-lts-and-current-nodejs-relea"
+        },
+        {
+          "number": 6,
+          "title": "Can Node.js run TypeScript files directly (type stripping), what are its limitations, and why do you still need tsc for type checking?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#6-can-nodejs-run-typescript-files-directly-type-stripping"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Node.js Event Loop",
+      "fullName": "Node.js Event Loop",
+      "range": "#7 – #10",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 7,
+          "title": "What are the phases of the Node.js event loop (timers, pending callbacks, poll, check, close callbacks), and what runs in each?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#7-what-are-the-phases-of-the-nodejs-event-loop-timers-pendi"
+        },
+        {
+          "number": 8,
+          "title": "What is the difference between process.nextTick(), Promise microtasks, setImmediate(), and setTimeout(fn, 0), and in what order do they run?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#8-what-is-the-difference-between-processnexttick-promise-m"
+        },
+        {
+          "number": 9,
+          "title": "What is the libuv thread pool, which operations use it (fs, crypto, zlib, dns.lookup) versus OS-level async I/O (network sockets), and what does UV_THREADPOOL_SIZE control?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#9-what-is-the-libuv-thread-pool-which-operations-use-it-fs"
+        },
+        {
+          "number": 10,
+          "title": "How can recursive process.nextTick() calls or CPU-heavy code starve the event loop, and how do you detect and avoid it?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#10-how-can-recursive-processnexttick-calls-or-cpu-heavy-code"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Modules & Packages",
+      "fullName": "Modules & Packages",
+      "range": "#11 – #14",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 11,
+          "title": "How do CommonJS modules work in Node (require(), module.exports vs exports, module caching, and the module wrapper that provides **dirname and **filename)?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#11-how-do-commonjs-modules-work-in-node-require-moduleexpo"
+        },
+        {
+          "number": 12,
+          "title": "How does Node decide whether a file is ESM or CommonJS (\"type\" in package.json, .mjs and .cjs), how do you get \\_\\_dirname in ESM, and can require() load an ES module?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#12-how-does-node-decide-whether-a-file-is-esm-or-commonjs-typ"
+        },
+        {
+          "number": 13,
+          "title": "What are package.json and package-lock.json, what is the difference between dependencies and devDependencies, and what do semver ranges (^ and ~) mean?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#13-what-are-packagejson-and-package-lockjson-what-is-the-dif"
+        },
+        {
+          "number": 14,
+          "title": "What is the difference between npm install and npm ci, what are npm scripts and npx, and what do nodemon and node --watch do?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#14-what-is-the-difference-between-npm-install-and-npm-ci-what"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Core Modules",
+      "fullName": "Core Modules",
+      "range": "#15 – #19",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 15,
+          "title": "What is the difference between synchronous, callback, and promise-based fs APIs (readFileSync vs readFile vs fs/promises), and when is synchronous code acceptable?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#15-what-is-the-difference-between-synchronous-callback-and-pr"
+        },
+        {
+          "number": 16,
+          "title": "What do path.join() and path.resolve() do, and why use the path module instead of string concatenation?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#16-what-do-pathjoin-and-pathresolve-do-and-why-use-the-p"
+        },
+        {
+          "number": 17,
+          "title": "How does the EventEmitter class work (on, once, emit, off), and which core modules are built on it?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#17-how-does-the-eventemitter-class-work-on-once-emit-off"
+        },
+        {
+          "number": 18,
+          "title": "How do you create a server with the core http module, and how do its request and response objects work?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#18-how-do-you-create-a-server-with-the-core-http-module-and-ho"
+        },
+        {
+          "number": 19,
+          "title": "What is a Buffer, why does Node need it, and how does it relate to character encodings?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#19-what-is-a-buffer-why-does-node-need-it-and-how-does-it-rel"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Streams",
+      "fullName": "Streams",
+      "range": "#20 – #21",
+      "questionCount": 2,
+      "questions": [
+        {
+          "number": 20,
+          "title": "What are streams, why are they more memory-efficient than reading a whole file, and what are the four stream types (readable, writable, duplex, transform)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#20-what-are-streams-why-are-they-more-memory-efficient-than-re"
+        },
+        {
+          "number": 21,
+          "title": "What is piping, what is backpressure, and why is stream.pipeline() preferred over .pipe() for error handling?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#21-what-is-piping-what-is-backpressure-and-why-is-streampipe"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Concurrency & Scaling",
+      "fullName": "Concurrency & Scaling",
+      "range": "#22 – #24",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 22,
+          "title": "What is the difference between child_process (spawn, exec, fork), worker_threads, and the cluster module, and when would you use each?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#22-what-is-the-difference-between-child_process-spawn-exec-f"
+        },
+        {
+          "number": 23,
+          "title": "How do you scale a Node.js app across CPU cores and machines (cluster, PM2, multiple containers behind a load balancer), and why must the app be stateless to do so?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#23-how-do-you-scale-a-nodejs-app-across-cpu-cores-and-machines"
+        },
+        {
+          "number": 24,
+          "title": "What is graceful shutdown, and how do you handle SIGTERM and SIGINT to stop accepting requests and close connections cleanly?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#24-what-is-graceful-shutdown-and-how-do-you-handle-sigterm-and"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Error Handling & Process Stability",
+      "fullName": "Error Handling & Process Stability",
+      "range": "#25 – #27",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 25,
+          "title": "What is the error-first callback convention, and how do you convert callback APIs to Promises with util.promisify()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#25-what-is-the-error-first-callback-convention-and-how-do-you"
+        },
+        {
+          "number": 26,
+          "title": "What are the uncaughtException and unhandledRejection events, how does Node behave by default when they occur, and why should the process restart rather than keep running?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#26-what-are-the-uncaughtexception-and-unhandledrejection-events"
+        },
+        {
+          "number": 27,
+          "title": "What is the difference between operational errors and programmer errors, and how should each be handled?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#27-what-is-the-difference-between-operational-errors-and-progra"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Express Fundamentals",
+      "fullName": "Express Fundamentals",
+      "range": "#28 – #32",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 28,
+          "title": "What is Express.js, what does it add over the core http module, and what is the difference between app and express.Router()?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#28-what-is-expressjs-what-does-it-add-over-the-core-http-modu"
+        },
+        {
+          "number": 29,
+          "title": "How does routing work in Express (HTTP methods, route parameters, query strings, route order), and how do you organize routes into modules with express.Router()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#29-how-does-routing-work-in-express-http-methods-route-parame"
+        },
+        {
+          "number": 30,
+          "title": "What are req.params, req.query, and req.body, and why is req.body undefined without a body-parsing middleware like express.json()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#30-what-are-reqparams-reqquery-and-reqbody-and-why-is-req"
+        },
+        {
+          "number": 31,
+          "title": "What is the difference between res.send(), res.json(), res.status(), res.end(), res.redirect(), and res.sendFile(), and what causes the \"Cannot set headers after they are sent\" error?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#31-what-is-the-difference-between-ressend-resjson-ress"
+        },
+        {
+          "number": 32,
+          "title": "What changed in Express 5 (automatic forwarding of async errors, stricter route syntax with named wildcards, Node.js 18+ requirement, removed deprecated methods)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#32-what-changed-in-express-5-automatic-forwarding-of-async-err"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Middleware",
+      "fullName": "Middleware",
+      "range": "#33 – #37",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 33,
+          "title": "What is middleware in Express, what does next() do, and how does a request flow through the middleware stack to a response?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#33-what-is-middleware-in-express-what-does-next-do-and-how"
+        },
+        {
+          "number": 34,
+          "title": "What are the types of middleware (application-level, router-level, built-in, third-party, error-handling), and why does the order of app.use() calls matter?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#34-what-are-the-types-of-middleware-application-level-router-"
+        },
+        {
+          "number": 35,
+          "title": "How does error-handling middleware work (the four-argument signature), how do you forward errors with next(err), and how does async error handling differ between Express 4 and Express 5?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#35-how-does-error-handling-middleware-work-the-four-argument-s"
+        },
+        {
+          "number": 36,
+          "title": "How do you serve static files with express.static(), and how do you handle unmatched routes with a 404 catch-all?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#36-how-do-you-serve-static-files-with-expressstatic-and-how"
+        },
+        {
+          "number": 37,
+          "title": "What do common third-party middleware do (cors, helmet, morgan, cookie-parser, express-rate-limit, compression)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#37-what-do-common-third-party-middleware-do-cors-helmet-morg"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "REST API Design",
+      "fullName": "REST API Design",
+      "range": "#38 – #43",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 38,
+          "title": "What is a REST API, how do HTTP methods map to CRUD operations, and what is the difference between PUT and PATCH?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#38-what-is-a-rest-api-how-do-http-methods-map-to-crud-operatio"
+        },
+        {
+          "number": 39,
+          "title": "Which HTTP status codes should an API return for common cases (200, 201, 204, 400, 401, 403, 404, 409, 422, 429, 500), and what is the difference between 401 and 403?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#39-which-http-status-codes-should-an-api-return-for-common-case"
+        },
+        {
+          "number": 40,
+          "title": "What are safe and idempotent HTTP methods, and how do idempotency keys prevent duplicate processing when clients retry (e.g., payments)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#40-what-are-safe-and-idempotent-http-methods-and-how-do-idempo"
+        },
+        {
+          "number": 41,
+          "title": "How do you implement pagination, filtering, and sorting, and what is the difference between offset and cursor pagination?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#41-how-do-you-implement-pagination-filtering-and-sorting-and"
+        },
+        {
+          "number": 42,
+          "title": "How do you structure an Express project (routes, controllers, services, middleware), and why separate business logic from route handlers?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#42-how-do-you-structure-an-express-project-routes-controllers"
+        },
+        {
+          "number": 43,
+          "title": "How do you version an API, and why should errors follow a consistent response format?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#43-how-do-you-version-an-api-and-why-should-errors-follow-a-co"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Authentication & Security",
+      "fullName": "Authentication & Security",
+      "range": "#44 – #50",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 44,
+          "title": "Why must request input be validated on the server, and how do you validate it in middleware (Zod, Joi, or express-validator)?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#44-why-must-request-input-be-validated-on-the-server-and-how-d"
+        },
+        {
+          "number": 45,
+          "title": "How do you store passwords securely (bcrypt or argon2, salting), and why are plain text or fast hashes like MD5 and SHA-256 unsafe?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#45-how-do-you-store-passwords-securely-bcrypt-or-argon2-salti"
+        },
+        {
+          "number": 46,
+          "title": "How does JWT authentication work in Express (signing, verifying, auth middleware, expiry), and how do access and refresh tokens work together?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#46-how-does-jwt-authentication-work-in-express-signing-verify"
+        },
+        {
+          "number": 47,
+          "title": "What is the difference between session-based and token-based authentication, and where should tokens be stored on the client?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#47-what-is-the-difference-between-session-based-and-token-based"
+        },
+        {
+          "number": 48,
+          "title": "How do you implement role-based authorization as middleware?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#48-how-do-you-implement-role-based-authorization-as-middleware"
+        },
+        {
+          "number": 49,
+          "title": "How do you configure CORS in an Express API (allowed origins, credentials, preflight requests), and why can't origin '\\*' be used with credentials?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#49-how-do-you-configure-cors-in-an-express-api-allowed-origins"
+        },
+        {
+          "number": 50,
+          "title": "What are the common security risks in Node/Express apps (SQL and NoSQL injection, XSS, CSRF, brute force, secrets in code, vulnerable dependencies), and how do helmet, rate limiting, parameterized queries, and npm audit mitigate them?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#50-what-are-the-common-security-risks-in-nodeexpress-apps-sql"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Performance & Production",
+      "fullName": "Performance & Production",
+      "range": "#51 – #56",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 51,
+          "title": "How do you diagnose performance problems and memory leaks in a Node app (profiling, finding blocking code, heap snapshots)?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#51-how-do-you-diagnose-performance-problems-and-memory-leaks-in"
+        },
+        {
+          "number": 52,
+          "title": "What is caching, and how would you add an in-memory or Redis cache, or HTTP caching headers, to an Express endpoint?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#52-what-is-caching-and-how-would-you-add-an-in-memory-or-redis"
+        },
+        {
+          "number": 53,
+          "title": "How should logging work in production (structured logs, log levels, request IDs), and why is console.log not enough?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#53-how-should-logging-work-in-production-structured-logs-log"
+        },
+        {
+          "number": 54,
+          "title": "How do you connect Express to a database without leaking connections (connection pooling, one shared client, closing it on shutdown)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#54-how-do-you-connect-express-to-a-database-without-leaking-con"
+        },
+        {
+          "number": 55,
+          "title": "How do you handle file uploads in Express (multer, multipart/form-data), and what limits and checks should you apply?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#55-how-do-you-handle-file-uploads-in-express-multer-multipart"
+        },
+        {
+          "number": 56,
+          "title": "What are WebSockets and Server-Sent Events, and when would you use them instead of polling?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#56-what-are-websockets-and-server-sent-events-and-when-would-y"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Testing",
+      "fullName": "Testing",
+      "range": "#57 – #57",
+      "questionCount": 1,
+      "questions": [
+        {
+          "number": 57,
+          "title": "How do you test an Express API (supertest with node:test or Jest), and why should the app be exported separately from app.listen()?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#57-how-do-you-test-an-express-api-supertest-with-nodetest-or"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Output & Debugging Questions",
+      "fullName": "Output & Debugging Questions",
+      "range": "#58 – #63",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 58,
+          "title": "Predict the output of code that mixes process.nextTick(), Promises, setImmediate(), and setTimeout(), and explain the order.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#58-predict-the-output-of-code-that-mixes-processnexttick-pr"
+        },
+        {
+          "number": 59,
+          "title": "Predict whether setTimeout(fn, 0) or setImmediate() runs first in the main module versus inside an I/O callback, and explain why.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#59-predict-whether-settimeoutfn-0-or-setimmediate-runs-fir"
+        },
+        {
+          "number": 60,
+          "title": "Find and fix the bug in an Express route that sends a response twice (\"Cannot set headers after they are sent\").",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#60-find-and-fix-the-bug-in-an-express-route-that-sends-a-respon"
+        },
+        {
+          "number": 61,
+          "title": "Find and fix the bug where an error in an async route hangs the request or crashes the process in Express 4, and explain what Express 5 changes.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#61-find-and-fix-the-bug-where-an-error-in-an-async-route-hangs"
+        },
+        {
+          "number": 62,
+          "title": "Find and fix the bug where a middleware never calls next() or is registered in the wrong order.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#62-find-and-fix-the-bug-where-a-middleware-never-calls-next-o"
+        },
+        {
+          "number": 63,
+          "title": "Find and fix a route that blocks the event loop with synchronous or CPU-heavy work.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#63-find-and-fix-a-route-that-blocks-the-event-loop-with-synchro"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Coding Challenges",
+      "fullName": "Coding Challenges",
+      "range": "#64 – #72",
+      "questionCount": 9,
+      "questions": [
+        {
+          "number": 64,
+          "title": "Build a CRUD REST API in Express with routing, input validation, error handling, and correct status codes.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#64-build-a-crud-rest-api-in-express-with-routing-input-validat"
+        },
+        {
+          "number": 65,
+          "title": "Write a request-logging middleware that records the method, URL, status code, and response time.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#65-write-a-request-logging-middleware-that-records-the-method"
+        },
+        {
+          "number": 66,
+          "title": "Write JWT authentication middleware that protects routes and returns 401 for missing or invalid tokens.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#66-write-jwt-authentication-middleware-that-protects-routes-and"
+        },
+        {
+          "number": 67,
+          "title": "Write a centralized error-handling middleware with a custom AppError class.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#67-write-a-centralized-error-handling-middleware-with-a-custom"
+        },
+        {
+          "number": 68,
+          "title": "Implement an in-memory rate-limiting middleware (fixed window or token bucket).",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#68-implement-an-in-memory-rate-limiting-middleware-fixed-windo"
+        },
+        {
+          "number": 69,
+          "title": "Write an asyncHandler wrapper for Express 4 and explain why Express 5 doesn't need it.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#69-write-an-asynchandler-wrapper-for-express-4-and-explain-why"
+        },
+        {
+          "number": 70,
+          "title": "Stream a large file to the client, or process a large CSV line by line, without loading it into memory.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#70-stream-a-large-file-to-the-client-or-process-a-large-csv-li"
+        },
+        {
+          "number": 71,
+          "title": "Implement promisify() from scratch.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#71-implement-promisify-from-scratch"
+        },
+        {
+          "number": 72,
+          "title": "Implement an in-memory cache with a TTL for an expensive endpoint.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#72-implement-an-in-memory-cache-with-a-ttl-for-an-expensive-end"
+        }
+      ]
+    }
+  ]
+}

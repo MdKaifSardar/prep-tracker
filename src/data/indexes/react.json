@@ -1,0 +1,700 @@
+{
+  "id": "react",
+  "name": "React & Next.js",
+  "category": "interview_qa",
+  "totalQuestions": 75,
+  "githubFilePath": "react/react-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Core Fundamentals & JSX Architecture",
+      "fullName": "1. Core Fundamentals & JSX Architecture",
+      "range": "#1 – #7",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is React, and what makes it a declarative, component-based library rather than an imperative framework?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#1-what-is-react-and-what-makes-it-a-declarative-component-ba"
+        },
+        {
+          "number": 2,
+          "title": "What is JSX? How does JSX get transpiled into plain JavaScript (`React.createElement` / JSX Transform)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#2-what-is-jsx-how-does-jsx-get-transpiled-into-plain-javascri"
+        },
+        {
+          "number": 3,
+          "title": "What is the Virtual DOM? How does React's Reconciliation and Diffing algorithm work?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#3-what-is-the-virtual-dom-how-does-reacts-reconciliation-and"
+        },
+        {
+          "number": 4,
+          "title": "What is One-Way Data Flow (Unidirectional Data Flow) in React, and why does it make state predictable?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#4-what-is-one-way-data-flow-unidirectional-data-flow-in-reac"
+        },
+        {
+          "number": 5,
+          "title": "What is the difference between Functional Components and Class Components? Why are Functional Components standard today?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#5-what-is-the-difference-between-functional-components-and-cla"
+        },
+        {
+          "number": 6,
+          "title": "How does React handle events (`SyntheticEvent`)? How does it differ from native DOM event handling?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#6-how-does-react-handle-events-syntheticevent-how-does-it"
+        },
+        {
+          "number": 7,
+          "title": "Component Composition vs Inheritance: Why does React favor Composition over Class Inheritance?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#7-component-composition-vs-inheritance-why-does-react-favor-c"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Functional Components, Props & State Modeling",
+      "fullName": "2. Functional Components, Props & State Modeling",
+      "range": "#8 – #15",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 8,
+          "title": "What are Props in React? Why must Props be strictly immutable?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#8-what-are-props-in-react-why-must-props-be-strictly-immutabl"
+        },
+        {
+          "number": 9,
+          "title": "What is State in React? How does State differ from Props?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#9-what-is-state-in-react-how-does-state-differ-from-props"
+        },
+        {
+          "number": 10,
+          "title": "Why must State be treated as immutable? Why should you never mutate state directly (`state.count = 5`)?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#10-why-must-state-be-treated-as-immutable-why-should-you-never"
+        },
+        {
+          "number": 11,
+          "title": "What is the functional state updater syntax (`setCount(prev => prev + 1)`), and when MUST you use it?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#11-what-is-the-functional-state-updater-syntax-setcountprev"
+        },
+        {
+          "number": 12,
+          "title": "What is \"Lifting State Up\" in React, and when should you apply it?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#12-what-is-lifting-state-up-in-react-and-when-should-you-app"
+        },
+        {
+          "number": 13,
+          "title": "What is Prop Drilling, and what are the best techniques to prevent it?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#13-what-is-prop-drilling-and-what-are-the-best-techniques-to-p"
+        },
+        {
+          "number": 14,
+          "title": "What is Derived State, and why is copying props into state an anti-pattern?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#14-what-is-derived-state-and-why-is-copying-props-into-state-a"
+        },
+        {
+          "number": 15,
+          "title": "Controlled vs Uncontrolled Components: What is the difference, and when would you use an Uncontrolled Component?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#15-controlled-vs-uncontrolled-components-what-is-the-differenc"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Core Hooks Deep-Dive (`useState`, `useEffect`, `useRef`, `useContext`)",
+      "fullName": "3. Core Hooks Deep-Dive (`useState`, `useEffect`, `useRef`, `useContext`)",
+      "range": "#16 – #24",
+      "questionCount": 9,
+      "questions": [
+        {
+          "number": 16,
+          "title": "What are React Hooks? What are the **Two Fundamental Rules of Hooks**, and why do they exist?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#16-what-are-react-hooks-what-are-the-two-fundamental-rules-o"
+        },
+        {
+          "number": 17,
+          "title": "How does `useState` batch state updates? Why is state updating queued/asynchronous?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#17-how-does-usestate-batch-state-updates-why-is-state-updati"
+        },
+        {
+          "number": 18,
+          "title": "How does `useEffect` work? Explain its 3 dependency array behaviors (`no array`, `[]`, `[dep]`).",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#18-how-does-useeffect-work-explain-its-3-dependency-array-be"
+        },
+        {
+          "number": 19,
+          "title": "What is the Cleanup Function in `useEffect`? When does it run, and why is it essential for preventing memory leaks?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#19-what-is-the-cleanup-function-in-useeffect-when-does-it-ru"
+        },
+        {
+          "number": 20,
+          "title": "What is the **Stale Closure** problem in `useEffect` or callbacks, and how do you fix it?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#20-what-is-the-stale-closure-problem-in-useeffect-or-call"
+        },
+        {
+          "number": 21,
+          "title": "What is `useRef`? How does `useRef` differ from `useState`, and why does modifying `ref.current` **NOT** trigger a re-render?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#21-what-is-useref-how-does-useref-differ-from-usestate"
+        },
+        {
+          "number": 22,
+          "title": "What are common real-world use cases for `useRef` (DOM manipulation, storing timer IDs, previous state)?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#22-what-are-common-real-world-use-cases-for-useref-dom-manip"
+        },
+        {
+          "number": 23,
+          "title": "What is `useContext`? How does Context API propagate state, and what is its primary re-rendering performance drawback?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#23-what-is-usecontext-how-does-context-api-propagate-state"
+        },
+        {
+          "number": 24,
+          "title": "How do you replace class component lifecycle methods (`componentDidMount`, `componentDidUpdate`, `componentWillUnmount`) with `useEffect`?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#24-how-do-you-replace-class-component-lifecycle-methods-compo"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Advanced Hooks & Memoization (`useMemo`, `useCallback`, Custom Hooks)",
+      "fullName": "4. Advanced Hooks & Memoization (`useMemo`, `useCallback`, Custom Hooks)",
+      "range": "#25 – #29",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 25,
+          "title": "What is `useMemo`? What problem does it solve, and when should you use it?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#25-what-is-usememo-what-problem-does-it-solve-and-when-shou"
+        },
+        {
+          "number": 26,
+          "title": "What is `useCallback`? How does `useCallback` differ from `useMemo`?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#26-what-is-usecallback-how-does-usecallback-differ-from-u"
+        },
+        {
+          "number": 27,
+          "title": "When should you **NOT** use `useMemo` or `useCallback`? (Overhead of premature optimization).",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#27-when-should-you-not-use-usememo-or-usecallback-ove"
+        },
+        {
+          "number": 28,
+          "title": "What is a Custom Hook? How do you extract reusable stateful logic into a custom hook (`useFetch`, `useDebounce`, `useLocalStorage`)?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#28-what-is-a-custom-hook-how-do-you-extract-reusable-stateful"
+        },
+        {
+          "number": 29,
+          "title": "What is `useLayoutEffect`? How does it differ from `useEffect` regarding browser paint and DOM measurement?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#29-what-is-uselayouteffect-how-does-it-differ-from-useeffec"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Re-rendering, Keys & Performance Optimization",
+      "fullName": "5. Re-rendering, Keys & Performance Optimization",
+      "range": "#30 – #36",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 30,
+          "title": "What causes a React component to re-render, and what does/doesn't trigger a re-render?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#30-what-causes-a-react-component-to-re-render-and-what-doesdo"
+        },
+        {
+          "number": 31,
+          "title": "What is `React.memo` (Higher-Order Component)? How does shallow prop comparison work?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#31-what-is-reactmemo-higher-order-component-how-does-shal"
+        },
+        {
+          "number": 32,
+          "title": "Why are `keys` mandatory when rendering lists in React? What happens internally during Reconciliation if you omit keys?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#32-why-are-keys-mandatory-when-rendering-lists-in-react-what"
+        },
+        {
+          "number": 33,
+          "title": "Why is using array index as a `key` (`key={index}`) an anti-pattern for dynamic lists? Show a scenario where it causes UI bugs.",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#33-why-is-using-array-index-as-a-key-keyindex-an-anti-"
+        },
+        {
+          "number": 34,
+          "title": "How can Component Composition (passing `children`) prevent parent re-renders from cascading down without using `React.memo`?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#34-how-can-component-composition-passing-children-prevent-p"
+        },
+        {
+          "number": 35,
+          "title": "What is Code Splitting in React? How do `React.lazy()` and `Suspense` reduce initial JavaScript bundle size?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#35-what-is-code-splitting-in-react-how-do-reactlazy-and"
+        },
+        {
+          "number": 36,
+          "title": "What is Virtualization / Windowing (e.g. `react-window`), and how does it render lists of 100,000 items efficiently?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#36-what-is-virtualization-windowing-eg-react-window-an"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Client State Management & Data Fetching Basics",
+      "fullName": "6. Client State Management & Data Fetching Basics",
+      "range": "#37 – #42",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 37,
+          "title": "Local State vs Context API vs External Store (Zustand / Redux Toolkit): How do you decide where state should live?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#37-local-state-vs-context-api-vs-external-store-zustand-redu"
+        },
+        {
+          "number": 38,
+          "title": "Why is fetching data inside raw `useEffect` considered an anti-pattern in modern React? (Race conditions, missing cleanup, network waterfalls).",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#38-why-is-fetching-data-inside-raw-useeffect-considered-an-an"
+        },
+        {
+          "number": 39,
+          "title": "How do you handle race conditions during API data fetching in React using `AbortController`?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#39-how-do-you-handle-race-conditions-during-api-data-fetching-i"
+        },
+        {
+          "number": 40,
+          "title": "What is Server State vs Client State? Why are dedicated data-fetching libraries (TanStack Query / SWR) preferred over Redux for API data?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#40-what-is-server-state-vs-client-state-why-are-dedicated-data"
+        },
+        {
+          "number": 41,
+          "title": "How does Redux Toolkit (RTK) simplify state management over legacy Redux (slices, `createAsyncThunk`)?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#41-how-does-redux-toolkit-rtk-simplify-state-management-over"
+        },
+        {
+          "number": 42,
+          "title": "What is Zustand, and why is it popular as a lightweight alternative to Redux and Context API?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#42-what-is-zustand-and-why-is-it-popular-as-a-lightweight-alte"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Full-Stack React + Backend Integration & Authentication",
+      "fullName": "7. Full-Stack React + Backend Integration & Authentication",
+      "range": "#43 – #50",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 43,
+          "title": "How do you handle loading, success, and error states when fetching REST API data in React?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#43-how-do-you-handle-loading-success-and-error-states-when-fe"
+        },
+        {
+          "number": 44,
+          "title": "What is CORS (Cross-Origin Resource Sharing), why does it happen when React calls a Node/Express backend, and how do you resolve it?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#44-what-is-cors-cross-origin-resource-sharing-why-does-it-ha"
+        },
+        {
+          "number": 45,
+          "title": "How does Authentication work in a Full-Stack React application? Explain the JWT access token + refresh token flow.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#45-how-does-authentication-work-in-a-full-stack-react-applicati"
+        },
+        {
+          "number": 46,
+          "title": "Storage Security Debate: `HttpOnly Cookies` vs `localStorage` for JWT tokens—which should you use and why?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#46-storage-security-debate-httponly-cookies-vs-localstorage"
+        },
+        {
+          "number": 47,
+          "title": "How do you build a `<ProtectedRoute>` component in React to restrict access to authenticated users?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#47-how-do-you-build-a-protectedroute-component-in-react-to"
+        },
+        {
+          "number": 48,
+          "title": "How do you persist authentication state across page refreshes and implement a clean logout mechanism in React?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#48-how-do-you-persist-authentication-state-across-page-refreshe"
+        },
+        {
+          "number": 49,
+          "title": "How do you handle API request timeouts and global network error handling in React?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#49-how-do-you-handle-api-request-timeouts-and-global-network-er"
+        },
+        {
+          "number": 50,
+          "title": "How do you handle form submission from React to a backend API with field validation and error responses?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#50-how-do-you-handle-form-submission-from-react-to-a-backend-ap"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Next.js Architecture & Server Rendering",
+      "fullName": "8. Next.js Architecture & Server Rendering",
+      "range": "#51 – #61",
+      "questionCount": 11,
+      "questions": [
+        {
+          "number": 51,
+          "title": "Why use Next.js instead of a plain React Single Page Application (SPA)? What problems does Next.js solve (SEO, Initial Load, Full-Stack Routing)?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#51-why-use-nextjs-instead-of-a-plain-react-single-page-applica"
+        },
+        {
+          "number": 52,
+          "title": "What are the rendering strategies in Next.js? Compare SSR (Server-Side Rendering), SSG (Static Site Generation), ISR (Incremental Static Regeneration), and CSR (Client-Side Rendering).",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#52-what-are-the-rendering-strategies-in-nextjs-compare-ssr-s"
+        },
+        {
+          "number": 53,
+          "title": "What are React Server Components (RSC)? How do Server Components differ from Client Components (`\"use client\"`) in Next.js?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#53-what-are-react-server-components-rsc-how-do-server-compon"
+        },
+        {
+          "number": 54,
+          "title": "Where should you place the `\"use client\"` boundary in a Next.js application, and why should you push client components to the leaf nodes of your component tree?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#54-where-should-you-place-the-use-client-boundary-in-a-next"
+        },
+        {
+          "number": 55,
+          "title": "App Router vs Pages Router in Next.js: What are the main directory structure and architectural differences (`layout.tsx`, `page.tsx`, `loading.tsx`)?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#55-app-router-vs-pages-router-in-nextjs-what-are-the-main-dir"
+        },
+        {
+          "number": 56,
+          "title": "How do Server Actions (`\"use server\"`) work in Next.js, and how do they replace traditional API route handlers for form mutations?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#56-how-do-server-actions-use-server-work-in-nextjs-and"
+        },
+        {
+          "number": 57,
+          "title": "What are Route Handlers (`app/api/route.ts`) in Next.js, and how do you build custom REST API endpoints inside Next.js?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#57-what-are-route-handlers-appapiroutets-in-nextjs-and"
+        },
+        {
+          "number": 58,
+          "title": "How does Next.js Middleware (`middleware.ts`) work, and how do you use it for server-side auth redirects and request filtering?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#58-how-does-nextjs-middleware-middlewarets-work-and-how"
+        },
+        {
+          "number": 59,
+          "title": "How does Data Caching and Revalidation work in Next.js (`revalidatePath`, `revalidateTag`, time-based revalidation)?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#59-how-does-data-caching-and-revalidation-work-in-nextjs-rev"
+        },
+        {
+          "number": 60,
+          "title": "What causes a Hydration Mismatch Error in Next.js (e.g. `new Date()`, `window`), and how do you fix it?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#60-what-causes-a-hydration-mismatch-error-in-nextjs-eg-new"
+        },
+        {
+          "number": 61,
+          "title": "How do `next/image` and `next/font` optimize images and fonts to improve Google Core Web Vitals (LCP, CLS)?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#61-how-do-nextimage-and-nextfont-optimize-images-and-font"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Practical Coding Exercises & Scenario Drills",
+      "fullName": "9. Practical Coding Exercises & Scenario Drills",
+      "range": "#62 – #68",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 62,
+          "title": "Build a custom `useDebounce(value, delay)` hook in React.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#62-build-a-custom-usedebouncevalue-delay-hook-in-react"
+        },
+        {
+          "number": 63,
+          "title": "Build a custom `useLocalStorage(key, initialValue)` hook.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#63-build-a-custom-uselocalstoragekey-initialvalue-hook"
+        },
+        {
+          "number": 64,
+          "title": "Build an accessible, dynamic Search Autocomplete / Typeahead component with API debouncing and keyboard navigation.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#64-build-an-accessible-dynamic-search-autocomplete-typeahead"
+        },
+        {
+          "number": 65,
+          "title": "Build a dynamic Form with validation, field arrays, and submit state without third-party libraries.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#65-build-a-dynamic-form-with-validation-field-arrays-and-subm"
+        },
+        {
+          "number": 66,
+          "title": "Build a modal dialog component using React Portals (`createPortal`) that closes on ESC key or backdrop click.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#66-build-a-modal-dialog-component-using-react-portals-createp"
+        },
+        {
+          "number": 67,
+          "title": "Implement a paginated / infinite scroll data list component using `IntersectionObserver` or scroll events.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#67-implement-a-paginated-infinite-scroll-data-list-component"
+        },
+        {
+          "number": 68,
+          "title": "Implement a Theme Provider using Context API with `light` / `dark` modes persisted to localStorage.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#68-implement-a-theme-provider-using-context-api-with-light"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Skim-Level Advanced Topics & Edge Cases",
+      "fullName": "10. Skim-Level Advanced Topics & Edge Cases",
+      "range": "#69 – #75",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 69,
+          "title": "What is Automatic Batching in React 18, and how does it group state updates inside promises and timeouts?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#69-what-is-automatic-batching-in-react-18-and-how-does-it-grou"
+        },
+        {
+          "number": 70,
+          "title": "What is an Error Boundary in React? Why must Error Boundaries currently be written using Class Components (`componentDidCatch`)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#70-what-is-an-error-boundary-in-react-why-must-error-boundarie"
+        },
+        {
+          "number": 71,
+          "title": "How does React prevent Cross-Site Scripting (XSS) attacks by default, and when can `dangerouslySetInnerHTML` expose vulnerabilities?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#71-how-does-react-prevent-cross-site-scripting-xss-attacks-by"
+        },
+        {
+          "number": 72,
+          "title": "What is React Fiber (conceptual overview)? How does Fiber enable interruptible, prioritized rendering work units?",
+          "priority": "P2",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#72-what-is-react-fiber-conceptual-overview-how-does-fiber-en"
+        },
+        {
+          "number": 73,
+          "title": "What are `useTransition` and `useDeferredValue` in React 18, and when would you use them for non-urgent UI updates?",
+          "priority": "P2",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#73-what-are-usetransition-and-usedeferredvalue-in-react-18"
+        },
+        {
+          "number": 74,
+          "title": "What are `forwardRef` and `useImperativeHandle`? How do you expose child component methods to a parent?",
+          "priority": "P2",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#74-what-are-forwardref-and-useimperativehandle-how-do-you"
+        },
+        {
+          "number": 75,
+          "title": "What is Micro-Frontend Architecture (Module Federation), and when should an enterprise adopt it over a monolithic React app?",
+          "priority": "P2",
+          "type": "D",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/react/react-interview-questions.md#75-what-is-micro-frontend-architecture-module-federation-and"
+        }
+      ]
+    }
+  ]
+}

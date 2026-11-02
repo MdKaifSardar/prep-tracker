@@ -1,0 +1,109 @@
+{
+  "id": "sql-fundamentals",
+  "name": "SQL Fundamentals",
+  "category": "revision_handbook",
+  "totalQuestions": 10,
+  "githubFilePath": "sql fundamentals/sql-revision-handbook.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Handbook Chapters",
+      "fullName": "Handbook Chapters & Syntax Blueprints",
+      "range": "Ch 1 – Ch 10",
+      "questionCount": 10,
+      "questions": [
+        {
+          "number": 1,
+          "label": "Chapter 1",
+          "title": "The True SQL Execution Order",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#1-the-true-sql-execution-order"
+        },
+        {
+          "number": 2,
+          "label": "Chapter 2",
+          "title": "Three-Valued Logic, NULLs & Safe Coalescing",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#2-three-valued-logic-nulls-safe-coalescing"
+        },
+        {
+          "number": 3,
+          "label": "Chapter 3",
+          "title": "Filtering, Pattern Matching & Sorting",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#3-filtering-pattern-matching-sorting"
+        },
+        {
+          "number": 4,
+          "label": "Chapter 4",
+          "title": "Aggregation & The Golden Rule of `GROUP BY`",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#4-aggregation-the-golden-rule-of-group-by"
+        },
+        {
+          "number": 5,
+          "label": "Chapter 5",
+          "title": "Complete JOIN Mechanics & Mental Models",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#5-complete-join-mechanics-mental-models"
+        },
+        {
+          "number": 6,
+          "label": "Chapter 6",
+          "title": "Subqueries vs Common Table Expressions (CTEs)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#6-subqueries-vs-common-table-expressions-ctes"
+        },
+        {
+          "number": 7,
+          "label": "Chapter 7",
+          "title": "Window Functions — Ranking, Offsets & Running Totals",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#7-window-functions-ranking-offsets-running-totals"
+        },
+        {
+          "number": 8,
+          "label": "Chapter 8",
+          "title": "Conditional Logic, Pivoting & Data Cleaning",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#8-conditional-logic-pivoting-data-cleaning"
+        },
+        {
+          "number": 9,
+          "label": "Chapter 9",
+          "title": "Set Operations (`UNION`, `UNION ALL`, `INTERSECT`, `EXCEPT`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#9-set-operations-union-union-all-intersect-except"
+        },
+        {
+          "number": 10,
+          "label": "Chapter 10",
+          "title": "DDL, DML & Schema Integrity Quick Reference",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql fundamentals/sql-revision-handbook.md#10-ddl-dml-schema-integrity-quick-reference"
+        }
+      ]
+    }
+  ]
+}

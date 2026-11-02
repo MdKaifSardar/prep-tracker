@@ -1,0 +1,778 @@
+{
+  "id": "javascript",
+  "name": "JavaScript",
+  "category": "interview_qa",
+  "totalQuestions": 78,
+  "githubFilePath": "javascript/javascript-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Fundamentals",
+      "fullName": "Fundamentals",
+      "range": "#1 – #8",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is the difference between primitive and reference types in how they are stored, copied, and compared?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#1-what-is-the-difference-between-primitive-and-reference-types"
+        },
+        {
+          "number": 2,
+          "title": "What does typeof do, and why does typeof null return \"object\"?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#2-what-does-typeof-do-and-why-does-typeof-null-return-object"
+        },
+        {
+          "number": 3,
+          "title": "What is the difference between null, undefined, and an undeclared variable?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#3-what-is-the-difference-between-null-undefined-and-an-undec"
+        },
+        {
+          "number": 4,
+          "title": "What is NaN, why is NaN !== NaN, and how do Number.isNaN() and Object.is() differ from ===?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#4-what-is-nan-why-is-nan-nan-and-how-do-numberisnan-a"
+        },
+        {
+          "number": 5,
+          "title": "What are truthy and falsy values, and what are all the falsy values in JavaScript?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#5-what-are-truthy-and-falsy-values-and-what-are-all-the-falsy"
+        },
+        {
+          "number": 6,
+          "title": "What is type coercion (implicit vs explicit), and how does == differ from ===?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#6-what-is-type-coercion-implicit-vs-explicit-and-how-does"
+        },
+        {
+          "number": 7,
+          "title": "How do &&, ||, ??, and ?. work, and what is short-circuit evaluation?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#7-how-do-and-work-and-what-is-short-circuit-ev"
+        },
+        {
+          "number": 8,
+          "title": "What are JavaScript's key characteristics (dynamically typed, single-threaded, garbage-collected, multi-paradigm), and how is it related to ECMAScript?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#8-what-are-javascripts-key-characteristics-dynamically-typed"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "How JavaScript Works",
+      "fullName": "How JavaScript Works",
+      "range": "#9 – #12",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 9,
+          "title": "What is a JavaScript engine (e.g., V8), what happens between writing code and running it (parsing, AST, bytecode interpreter, JIT-optimized machine code), and is JavaScript interpreted, compiled, or both?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#9-what-is-a-javascript-engine-eg-v8-what-happens-between"
+        },
+        {
+          "number": 10,
+          "title": "What is the difference between the JavaScript engine and the runtime environment (browser vs Node.js), what does \"single-threaded\" actually mean, and what are the parts of the runtime (memory heap, call stack, Web APIs/libuv, task queues, event loop)?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#10-what-is-the-difference-between-the-javascript-engine-and-the"
+        },
+        {
+          "number": 11,
+          "title": "What is an execution context, what happens in its creation (memory) phase and execution phase, what is a lexical environment, and how does the call stack manage global and function execution contexts?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#11-what-is-an-execution-context-what-happens-in-its-creation"
+        },
+        {
+          "number": 12,
+          "title": "How is memory managed in JavaScript (stack vs heap, garbage collection via mark-and-sweep and reachability), and what causes memory leaks (closures, forgotten event listeners, timers)?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#12-how-is-memory-managed-in-javascript-stack-vs-heap-garbage"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Scope & Hoisting",
+      "fullName": "Scope & Hoisting",
+      "range": "#13 – #15",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 13,
+          "title": "What is the difference between var, let, and const in scope, redeclaration, and reassignment, and can a const object be modified?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#13-what-is-the-difference-between-var-let-and-const-in-scope"
+        },
+        {
+          "number": 14,
+          "title": "What are global, function, block, and lexical scope, and how do the scope chain and variable shadowing work?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#14-what-are-global-function-block-and-lexical-scope-and-how"
+        },
+        {
+          "number": 15,
+          "title": "What is hoisting, how do var, let/const, function declarations, and function expressions each behave, and what is the Temporal Dead Zone?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#15-what-is-hoisting-how-do-var-letconst-function-declaratio"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Functions & Closures",
+      "fullName": "Functions & Closures",
+      "range": "#16 – #21",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 16,
+          "title": "What are first-class functions, higher-order functions, and callback functions?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#16-what-are-first-class-functions-higher-order-functions-and"
+        },
+        {
+          "number": 17,
+          "title": "What is the difference between function declarations, function expressions, and arrow functions, including whether arrow functions have their own this and arguments and whether they can be constructors?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#17-what-is-the-difference-between-function-declarations-functi"
+        },
+        {
+          "number": 18,
+          "title": "What are rest parameters, spread syntax, default parameters, and the arguments object?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#18-what-are-rest-parameters-spread-syntax-default-parameters"
+        },
+        {
+          "number": 19,
+          "title": "What is a closure, how does it work, and what are its practical uses (including IIFEs)?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#19-what-is-a-closure-how-does-it-work-and-what-are-its-practi"
+        },
+        {
+          "number": 20,
+          "title": "What is a pure function, and what is a side effect?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#20-what-is-a-pure-function-and-what-is-a-side-effect"
+        },
+        {
+          "number": 21,
+          "title": "What are currying and function composition?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#21-what-are-currying-and-function-composition"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "this & Binding",
+      "fullName": "this & Binding",
+      "range": "#22 – #24",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 22,
+          "title": "How is the value of this determined: default binding (and the effect of strict mode), implicit binding, explicit binding, new, and arrow functions?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#22-how-is-the-value-of-this-determined-default-binding-and-th"
+        },
+        {
+          "number": 23,
+          "title": "What happens to this when a method is passed as a callback, and how do you fix it?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#23-what-happens-to-this-when-a-method-is-passed-as-a-callback"
+        },
+        {
+          "number": 24,
+          "title": "What is the difference between call(), apply(), and bind()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#24-what-is-the-difference-between-call-apply-and-bind"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Objects & Prototypes",
+      "fullName": "Objects & Prototypes",
+      "range": "#25 – #28",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 25,
+          "title": "How are objects created and accessed (dot vs bracket notation), how does destructuring work for objects and arrays, and what do Object.keys(), Object.values(), and Object.entries() do?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#25-how-are-objects-created-and-accessed-dot-vs-bracket-notatio"
+        },
+        {
+          "number": 26,
+          "title": "What is the difference between a shallow and a deep copy, and what are the limitations of spread, Object.assign(), JSON.parse(JSON.stringify(obj)), and structuredClone()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#26-what-is-the-difference-between-a-shallow-and-a-deep-copy-an"
+        },
+        {
+          "number": 27,
+          "title": "What are object mutation and immutability, and why does Object.freeze() not deeply freeze an object?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#27-what-are-object-mutation-and-immutability-and-why-does-obje"
+        },
+        {
+          "number": 28,
+          "title": "What is the prototype chain, how does prototypal inheritance work, and what is the difference between prototype and \\_\\_proto\\_\\_?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#28-what-is-the-prototype-chain-how-does-prototypal-inheritance"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Classes & Structures",
+      "fullName": "Classes & Structures",
+      "range": "#29 – #31",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 29,
+          "title": "What happens internally when new is used, and how do constructor functions and Object.create() relate to it?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#29-what-happens-internally-when-new-is-used-and-how-do-constru"
+        },
+        {
+          "number": 30,
+          "title": "How do classes relate to prototypes, and how do extends, super, static methods, method overriding, getters/setters, and #private fields work?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#30-how-do-classes-relate-to-prototypes-and-how-do-extends-sup"
+        },
+        {
+          "number": 31,
+          "title": "When would you use a Map or Set instead of an object or array, and how do you remove duplicates from an array with a Set?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#31-when-would-you-use-a-map-or-set-instead-of-an-object-or-arra"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Array Methods & Iteration",
+      "fullName": "Array Methods & Iteration",
+      "range": "#32 – #34",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 32,
+          "title": "When would you use map(), filter(), reduce(), forEach(), find(), some(), and every(), and how do they differ?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#32-when-would-you-use-map-filter-reduce-foreach-fin"
+        },
+        {
+          "number": 33,
+          "title": "Which array methods mutate the original array, including slice() vs splice(), the numeric sort() pitfall, flat(), and the non-mutating toSorted() and toReversed()?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#33-which-array-methods-mutate-the-original-array-including-sli"
+        },
+        {
+          "number": 34,
+          "title": "What is the difference between for...in and for...of?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#34-what-is-the-difference-between-forin-and-forof"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Error Handling",
+      "fullName": "Error Handling",
+      "range": "#35 – #35",
+      "questionCount": 1,
+      "questions": [
+        {
+          "number": 35,
+          "title": "How do try/catch/finally work, and when would you create a custom Error class?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#35-how-do-trycatchfinally-work-and-when-would-you-create-a-c"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Async & Event Loop",
+      "fullName": "Async & Event Loop",
+      "range": "#36 – #38",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 36,
+          "title": "How does the event loop work, what is the difference between microtasks and macrotasks, why do Promise callbacks run before setTimeout(fn, 0), and what happens when the call stack is busy?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#36-how-does-the-event-loop-work-what-is-the-difference-between"
+        },
+        {
+          "number": 37,
+          "title": "What is the difference between concurrency and parallelism?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#37-what-is-the-difference-between-concurrency-and-parallelism"
+        },
+        {
+          "number": 38,
+          "title": "What is callback hell, what are the limitations of callbacks, and why were Promises introduced?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#38-what-is-callback-hell-what-are-the-limitations-of-callbacks"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Promises & Async/Await",
+      "fullName": "Promises & Async/Await",
+      "range": "#39 – #45",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 39,
+          "title": "What is a Promise, what are its three states, and what do .then(), .catch(), and .finally() do?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#39-what-is-a-promise-what-are-its-three-states-and-what-do-t"
+        },
+        {
+          "number": 40,
+          "title": "How does Promise chaining work when a .then() callback returns a value, returns another Promise, or throws an error?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#40-how-does-promise-chaining-work-when-a-then-callback-retur"
+        },
+        {
+          "number": 41,
+          "title": "What do Promise.resolve() and Promise.reject() do, and what is the difference between Promise.all(), allSettled(), race(), and any()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#41-what-do-promiseresolve-and-promisereject-do-and-what"
+        },
+        {
+          "number": 42,
+          "title": "What does an async function return, and how is await related to Promises?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#42-what-does-an-async-function-return-and-how-is-await-related"
+        },
+        {
+          "number": 43,
+          "title": "How do you handle errors with async/await, and what is an unhandled Promise rejection?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#43-how-do-you-handle-errors-with-asyncawait-and-what-is-an-un"
+        },
+        {
+          "number": 44,
+          "title": "Why doesn't await work as expected inside forEach(), and what is the difference between sequential and parallel awaits?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#44-why-doesnt-await-work-as-expected-inside-foreach-and-wha"
+        },
+        {
+          "number": 45,
+          "title": "How do async race conditions cause stale results, and how do AbortController and AbortSignal cancel in-flight requests to prevent them?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#45-how-do-async-race-conditions-cause-stale-results-and-how-do"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "DOM & Web APIs",
+      "fullName": "DOM & Web APIs",
+      "range": "#46 – #50",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 46,
+          "title": "What is the DOM, and how does JavaScript interact with it?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#46-what-is-the-dom-and-how-does-javascript-interact-with-it"
+        },
+        {
+          "number": 47,
+          "title": "How do event bubbling, capturing, and delegation work, and what are the differences between event.target and event.currentTarget, and between preventDefault() and stopPropagation()?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#47-how-do-event-bubbling-capturing-and-delegation-work-and-w"
+        },
+        {
+          "number": 48,
+          "title": "What is the difference between innerHTML, innerText, and textContent, and what is the XSS risk with innerHTML?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#48-what-is-the-difference-between-innerhtml-innertext-and-tex"
+        },
+        {
+          "number": 49,
+          "title": "What is the difference between localStorage, sessionStorage, and cookies, how do XSS and CSRF differ as risks, and what do the HttpOnly, Secure, and SameSite cookie flags do?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#49-what-is-the-difference-between-localstorage-sessionstorage"
+        },
+        {
+          "number": 50,
+          "title": "What does fetch() return (the Response object), why doesn't it reject on 4xx/5xx errors and how do you check response.ok, how are credentials sent, and what is CORS and why does it exist?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#50-what-does-fetch-return-the-response-object-why-doesnt"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Modules",
+      "fullName": "Modules",
+      "range": "#51 – #51",
+      "questionCount": 1,
+      "questions": [
+        {
+          "number": 51,
+          "title": "What is the difference between ES modules and CommonJS?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#51-what-is-the-difference-between-es-modules-and-commonjs"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Output & Debugging Questions",
+      "fullName": "Output & Debugging Questions",
+      "range": "#52 – #58",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 52,
+          "title": "Predict the output of a var hoisting example and explain why.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#52-predict-the-output-of-a-var-hoisting-example-and-explain-why"
+        },
+        {
+          "number": 53,
+          "title": "Predict the output of a closure inside a loop and explain why.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#53-predict-the-output-of-a-closure-inside-a-loop-and-explain-wh"
+        },
+        {
+          "number": 54,
+          "title": "Predict the output of this with regular vs arrow functions.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#54-predict-the-output-of-this-with-regular-vs-arrow-functions"
+        },
+        {
+          "number": 55,
+          "title": "Predict the output of Promise + setTimeout() code and explain the event loop.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#55-predict-the-output-of-promise-settimeout-code-and-explai"
+        },
+        {
+          "number": 56,
+          "title": "Predict the output of async/await + Promise code and explain microtask behavior.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#56-predict-the-output-of-asyncawait-promise-code-and-explain"
+        },
+        {
+          "number": 57,
+          "title": "Find and fix the bug in async code that uses await inside forEach(), leaves a Promise rejection unhandled, or shows stale results because of a race condition.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#57-find-and-fix-the-bug-in-async-code-that-uses-await-inside-fo"
+        },
+        {
+          "number": 58,
+          "title": "Find and fix the bug in code that loses this in a callback or reads a stale closure value.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#58-find-and-fix-the-bug-in-code-that-loses-this-in-a-callback-o"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Coding Challenges (High-Yield Polyfills & Utilities)",
+      "fullName": "Coding Challenges (High-Yield Polyfills & Utilities)",
+      "range": "#59 – #65",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 59,
+          "title": "Implement Array.prototype.reduce() from scratch (handling empty arrays and missing initialValue).",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#59-implement-arrayprototypereduce-from-scratch-handling-em"
+        },
+        {
+          "number": 60,
+          "title": "Implement debounce() and explain exactly how it works.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#60-implement-debounce-and-explain-exactly-how-it-works"
+        },
+        {
+          "number": 61,
+          "title": "Implement throttle() and explain the difference from debounce.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#61-implement-throttle-and-explain-the-difference-from-debounc"
+        },
+        {
+          "number": 62,
+          "title": "Implement Promise.all() from scratch (order preservation, fast-reject).",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#62-implement-promiseall-from-scratch-order-preservation-fa"
+        },
+        {
+          "number": 63,
+          "title": "Implement memoize() and explain how closures make it work.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#63-implement-memoize-and-explain-how-closures-make-it-work"
+        },
+        {
+          "number": 64,
+          "title": "Implement an EventEmitter with on(), off(), once(), and emit().",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#64-implement-an-eventemitter-with-on-off-once-and-emit"
+        },
+        {
+          "number": 65,
+          "title": "Implement a deep-clone utility (and explain structuredClone vs JSON.parse/stringify limitations).",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#65-implement-a-deep-clone-utility-and-explain-structuredclone"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "DSA in JavaScript",
+      "fullName": "DSA in JavaScript",
+      "range": "#66 – #78",
+      "questionCount": 13,
+      "questions": [
+        {
+          "number": 66,
+          "title": "What are the time complexities of common JavaScript built-ins (push/pop vs shift/unshift, includes/indexOf, Map/Set lookups, sort, string concatenation), and why do they matter when solving problems?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#66-what-are-the-time-complexities-of-common-javascript-built-in"
+        },
+        {
+          "number": 67,
+          "title": "[LeetCode 1: Two Sum](https://leetcode.com/problems/two-sum/) — Find two indices whose values sum to target using a hash map lookup vs brute-force nested loops.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#67-leetcode-1-two-sumhttpsleetcodecomproblemstwo-sum"
+        },
+        {
+          "number": 68,
+          "title": "[LeetCode 242: Valid Anagram](https://leetcode.com/problems/valid-anagram/) — Check whether two strings are anagrams using a 26-element frequency array vs string sorting.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#68-leetcode-242-valid-anagramhttpsleetcodecomproblems"
+        },
+        {
+          "number": 69,
+          "title": "[LeetCode 49: Group Anagrams](https://leetcode.com/problems/group-anagrams/) — Group an array of strings into anagram clusters using sorted string keys vs frequency string hashing in a Map.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#69-leetcode-49-group-anagramshttpsleetcodecomproblems"
+        },
+        {
+          "number": 70,
+          "title": "[LeetCode 387: First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) — Find the index of the first non-repeating character using two-pass counting vs quadratic scanning.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#70-leetcode-387-first-unique-character-in-a-stringhttpsl"
+        },
+        {
+          "number": 71,
+          "title": "[LeetCode 349: Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/) — Find the intersection of two arrays returning unique elements using a Set vs linear includes scan.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#71-leetcode-349-intersection-of-two-arrayshttpsleetcode"
+        },
+        {
+          "number": 72,
+          "title": "[LeetCode 125: Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) — Check whether a string is a palindrome with two pointers and in-place ASCII character skips vs built-in reverse string allocations.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#72-leetcode-125-valid-palindromehttpsleetcodecomproble"
+        },
+        {
+          "number": 73,
+          "title": "[LeetCode 151: Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/) — Reverse words in a string, trim whitespace, and reduce multiple spaces to a single space.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#73-leetcode-151-reverse-words-in-a-stringhttpsleetcodec"
+        },
+        {
+          "number": 74,
+          "title": "[LeetCode 283: Move Zeroes](https://leetcode.com/problems/move-zeroes/) — Move all zeros to the end of an array in place while preserving order using read/write pointers vs extra array buffers.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#74-leetcode-283-move-zeroeshttpsleetcodecomproblemsmo"
+        },
+        {
+          "number": 75,
+          "title": "[LeetCode 88: Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) — Merge two sorted arrays into nums1 in-place from back to front using 3 pointers vs array copy and sort.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#75-leetcode-88-merge-sorted-arrayhttpsleetcodecomprobl"
+        },
+        {
+          "number": 76,
+          "title": "[LeetCode 3: Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) — Find the longest substring without repeating characters using dynamic sliding window with Map index jumping vs brute-force substring scanning.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#76-leetcode-3-longest-substring-without-repeating-characters"
+        },
+        {
+          "number": 77,
+          "title": "[LeetCode 20: Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) — Check whether a string of brackets is valid using a LIFO array stack vs quadratic string replacement.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#77-leetcode-20-valid-parentheseshttpsleetcodecomproble"
+        },
+        {
+          "number": 78,
+          "title": "[LeetCode 232: Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/) — Implement a FIFO queue using two LIFO array stacks with amortized O(1) operations.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/javascript/javascript-interview-questions.md#78-leetcode-232-implement-queue-using-stackshttpsleetcod"
+        }
+      ]
+    }
+  ]
+}

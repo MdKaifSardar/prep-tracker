@@ -1,0 +1,900 @@
+{
+  "id": "mongodb",
+  "name": "MongoDB",
+  "category": "interview_qa",
+  "totalQuestions": 100,
+  "githubFilePath": "mongodb/mongodb-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Fundamentals & Document Model",
+      "fullName": "1. Fundamentals & Document Model",
+      "range": "#1 – #7",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is MongoDB, and how is it different from a relational database such as MySQL or PostgreSQL?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#1-what-is-mongodb-and-how-is-it-different-from-a-relational-d"
+        },
+        {
+          "number": 2,
+          "title": "Explain the relationship between a MongoDB database, collection, document, and field.",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#2-explain-the-relationship-between-a-mongodb-database-collect"
+        },
+        {
+          "number": 3,
+          "title": "What is BSON, why does MongoDB use it, and how is it different from JSON?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#3-what-is-bson-why-does-mongodb-use-it-and-how-is-it-differe"
+        },
+        {
+          "number": 4,
+          "title": "What is the `_id` field? What is ObjectId, and why is it commonly used?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#4-what-is-the-_id-field-what-is-objectid-and-why-is-it-com"
+        },
+        {
+          "number": 5,
+          "title": "What does \"schema-less\" or \"flexible schema\" mean in MongoDB? Does MongoDB actually have a schema?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#5-what-does-schema-less-or-flexible-schema-mean-in-mongodb"
+        },
+        {
+          "number": 6,
+          "title": "What are the advantages and disadvantages of MongoDB compared with a relational database?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#6-what-are-the-advantages-and-disadvantages-of-mongodb-compare"
+        },
+        {
+          "number": 7,
+          "title": "What are the important MongoDB data types, and which ones are commonly encountered in application development?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#7-what-are-the-important-mongodb-data-types-and-which-ones-ar"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "CRUD & Querying",
+      "fullName": "2. CRUD & Querying",
+      "range": "#8 – #20",
+      "questionCount": 13,
+      "questions": [
+        {
+          "number": 8,
+          "title": "Explain MongoDB CRUD operations and write examples for inserting, reading, updating, and deleting documents.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#8-explain-mongodb-crud-operations-and-write-examples-for-inser"
+        },
+        {
+          "number": 9,
+          "title": "Given a collection of users, write queries using common comparison and logical operators such as `$gt`, `$gte`, `$lt`, `$lte`, `$eq`, `$ne`, `$in`, `$nin`, `$and`, and `$or`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#9-given-a-collection-of-users-write-queries-using-common-comp"
+        },
+        {
+          "number": 10,
+          "title": "What is the difference between `find()` and `findOne()`? When would you use each?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#10-what-is-the-difference-between-find-and-findone-whe"
+        },
+        {
+          "number": 11,
+          "title": "How do projection, sorting, `limit()`, and `skip()` work? Write a query that returns only selected fields from sorted results.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#11-how-do-projection-sorting-limit-and-skip-work-wr"
+        },
+        {
+          "number": 12,
+          "title": "How do you update documents in MongoDB? Demonstrate `$set`, `$inc`, `$unset`, and upsert in practical examples.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#12-how-do-you-update-documents-in-mongodb-demonstrate-set"
+        },
+        {
+          "number": 13,
+          "title": "What is the difference between `updateOne()`, `updateMany()`, `deleteOne()`, and `deleteMany()`? Demonstrate them in one practical exercise.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#13-what-is-the-difference-between-updateone-updatemany"
+        },
+        {
+          "number": 14,
+          "title": "Write queries to filter documents using multiple AND/OR conditions, ranges, and membership in a list of values.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#14-write-queries-to-filter-documents-using-multiple-andor-cond"
+        },
+        {
+          "number": 15,
+          "title": "Given a users collection, write queries to: find users aged between 20 and 30; find users from a particular city; find users whose email belongs to a given list; sort them by age; return only the first 10 results.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#15-given-a-users-collection-write-queries-to-find-users-aged"
+        },
+        {
+          "number": 16,
+          "title": "Write a query to find the highest-paid employees, the top N employees, and the second-highest salary.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#16-write-a-query-to-find-the-highest-paid-employees-the-top-n"
+        },
+        {
+          "number": 17,
+          "title": "How do you query for fields that exist, fields that do not exist, and fields containing null values? Explain the important differences.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#17-how-do-you-query-for-fields-that-exist-fields-that-do-not-e"
+        },
+        {
+          "number": 18,
+          "title": "How would you update a nested field inside a document? Demonstrate updating multiple nested fields in one operation.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#18-how-would-you-update-a-nested-field-inside-a-document-demon"
+        },
+        {
+          "number": 19,
+          "title": "What is the difference between replacing an entire document and updating selected fields within a document?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#19-what-is-the-difference-between-replacing-an-entire-document"
+        },
+        {
+          "number": 20,
+          "title": "Design a practical CRUD exercise for a User or Product collection and write all major queries required by its REST API.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#20-design-a-practical-crud-exercise-for-a-user-or-product-colle"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Arrays & Nested Documents",
+      "fullName": "3. Arrays & Nested Documents",
+      "range": "#21 – #26",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 21,
+          "title": "How do you query a field inside a nested document?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#21-how-do-you-query-a-field-inside-a-nested-document"
+        },
+        {
+          "number": 22,
+          "title": "How do you query documents where an array contains a particular value?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#22-how-do-you-query-documents-where-an-array-contains-a-particu"
+        },
+        {
+          "number": 23,
+          "title": "Given a document containing an array of skills, write queries to add a skill, add it only if it does not already exist, and remove a skill using `$push`, `$addToSet`, and `$pull`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#23-given-a-document-containing-an-array-of-skills-write-querie"
+        },
+        {
+          "number": 24,
+          "title": "Given an array of embedded objects, how would you query for documents where an array element satisfies multiple conditions?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#24-given-an-array-of-embedded-objects-how-would-you-query-for"
+        },
+        {
+          "number": 25,
+          "title": "Explain `$elemMatch` and positional array updates. Write a practical query that updates a specific object inside an array.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#25-explain-elemmatch-and-positional-array-updates-write-a-p"
+        },
+        {
+          "number": 26,
+          "title": "A user can have thousands of embedded items. What problems can excessively large or unbounded arrays cause, and how would you redesign the model?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#26-a-user-can-have-thousands-of-embedded-items-what-problems-c"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Indexes & Query Performance",
+      "fullName": "4. Indexes & Query Performance",
+      "range": "#27 – #44",
+      "questionCount": 18,
+      "questions": [
+        {
+          "number": 27,
+          "title": "What is a database index, and why does an index make a MongoDB query faster?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#27-what-is-a-database-index-and-why-does-an-index-make-a-mongo"
+        },
+        {
+          "number": 28,
+          "title": "Conceptually, how does a MongoDB index work? What data structure does MongoDB commonly use for indexes?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#28-conceptually-how-does-a-mongodb-index-work-what-data-struc"
+        },
+        {
+          "number": 29,
+          "title": "What happens when MongoDB executes a query without an appropriate index?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#29-what-happens-when-mongodb-executes-a-query-without-an-approp"
+        },
+        {
+          "number": 30,
+          "title": "What is the difference between a single-field index and a compound index?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#30-what-is-the-difference-between-a-single-field-index-and-a-co"
+        },
+        {
+          "number": 31,
+          "title": "What is a unique index, and when would you use one?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#31-what-is-a-unique-index-and-when-would-you-use-one"
+        },
+        {
+          "number": 32,
+          "title": "What is a multikey index, and when does MongoDB create/use one?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#32-what-is-a-multikey-index-and-when-does-mongodb-createuse-o"
+        },
+        {
+          "number": 33,
+          "title": "Why does the order of fields in a compound index matter?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#33-why-does-the-order-of-fields-in-a-compound-index-matter"
+        },
+        {
+          "number": 34,
+          "title": "Given several application queries, design the appropriate indexes for them and explain your choices.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#34-given-several-application-queries-design-the-appropriate-in"
+        },
+        {
+          "number": 35,
+          "title": "What are COLLSCAN and IXSCAN? How would you determine whether a query is using an index?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#35-what-are-collscan-and-ixscan-how-would-you-determine-whethe"
+        },
+        {
+          "number": 36,
+          "title": "What is `explain()`? How would you use `explain()` to investigate a slow MongoDB query?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#36-what-is-explain-how-would-you-use-explain-to-invest"
+        },
+        {
+          "number": 37,
+          "title": "What are the trade-offs of indexes? Why can adding too many indexes hurt an application?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#37-what-are-the-trade-offs-of-indexes-why-can-adding-too-many"
+        },
+        {
+          "number": 38,
+          "title": "An API query works quickly with 100,000 documents but becomes slow with 10 million documents. Walk through your investigation.",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#38-an-api-query-works-quickly-with-100000-documents-but-become"
+        },
+        {
+          "number": 39,
+          "title": "Explain the Equality-Sort-Range (ESR) guideline for compound indexes and apply it to a realistic query.",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#39-explain-the-equality-sort-range-esr-guideline-for-compound"
+        },
+        {
+          "number": 40,
+          "title": "What are index prefixes, and why do they matter when designing compound indexes?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#40-what-are-index-prefixes-and-why-do-they-matter-when-designi"
+        },
+        {
+          "number": 41,
+          "title": "What is a covered query? When can an index allow MongoDB to answer a query without reading the full documents?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#41-what-is-a-covered-query-when-can-an-index-allow-mongodb-to"
+        },
+        {
+          "number": 42,
+          "title": "What are partial and sparse indexes? When would each be useful, especially with optional or nullable fields?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#42-what-are-partial-and-sparse-indexes-when-would-each-be-usef"
+        },
+        {
+          "number": 43,
+          "title": "You have an endpoint `GET /products?category=x&minPrice=y&sort=rating`. How would you reason about the index needed for this query?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#43-you-have-an-endpoint-get-productscategoryxminpriceyso"
+        },
+        {
+          "number": 44,
+          "title": "A query has an index but is still slow. What possible reasons would you investigate?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#44-a-query-has-an-index-but-is-still-slow-what-possible-reason"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pagination, Filtering & API Query Patterns",
+      "fullName": "5. Pagination, Filtering & API Query Patterns",
+      "range": "#45 – #50",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 45,
+          "title": "[B/Q] How would you implement filtering, sorting, and pagination in a MongoDB-backed REST API?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#45-bq-how-would-you-implement-filtering-sorting-and-pagina"
+        },
+        {
+          "number": 46,
+          "title": "What is offset/page-based pagination using `skip()` and `limit()`? What are its advantages and limitations?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#46-what-is-offsetpage-based-pagination-using-skip-and-lim"
+        },
+        {
+          "number": 47,
+          "title": "What is cursor-based/range-based pagination, and why can it be better for large datasets?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#47-what-is-cursor-basedrange-based-pagination-and-why-can-it"
+        },
+        {
+          "number": 48,
+          "title": "Implement cursor-based pagination using an indexed field such as `_id` or `createdAt`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#48-implement-cursor-based-pagination-using-an-indexed-field-suc"
+        },
+        {
+          "number": 49,
+          "title": "An endpoint uses `skip(100000).limit(20)` and becomes increasingly slow. Explain why and redesign the pagination strategy.",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#49-an-endpoint-uses-skip100000limit20-and-becomes-increa"
+        },
+        {
+          "number": 50,
+          "title": "How would you safely construct MongoDB filters from query parameters supplied by an API client?",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#50-how-would-you-safely-construct-mongodb-filters-from-query-pa"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Data Modeling",
+      "fullName": "6. Data Modeling",
+      "range": "#51 – #64",
+      "questionCount": 14,
+      "questions": [
+        {
+          "number": 51,
+          "title": "What is data modeling in MongoDB, and why should schema design start from application access patterns?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#51-what-is-data-modeling-in-mongodb-and-why-should-schema-desi"
+        },
+        {
+          "number": 52,
+          "title": "What is embedding? What is referencing?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#52-what-is-embedding-what-is-referencing"
+        },
+        {
+          "number": 53,
+          "title": "Embedding vs referencing: what factors determine which approach you should choose?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#53-embedding-vs-referencing-what-factors-determine-which-appro"
+        },
+        {
+          "number": 54,
+          "title": "How would you model a one-to-one relationship in MongoDB?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#54-how-would-you-model-a-one-to-one-relationship-in-mongodb"
+        },
+        {
+          "number": 55,
+          "title": "How would you model a one-to-many relationship?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#55-how-would-you-model-a-one-to-many-relationship"
+        },
+        {
+          "number": 56,
+          "title": "How would you model a many-to-many relationship?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#56-how-would-you-model-a-many-to-many-relationship"
+        },
+        {
+          "number": 57,
+          "title": "Design a MongoDB schema for Users and Orders. Explain which information you would embed and which you would reference.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#57-design-a-mongodb-schema-for-users-and-orders-explain-which"
+        },
+        {
+          "number": 58,
+          "title": "Design a MongoDB schema for Products and Reviews. Explain your embedding/reference decisions.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#58-design-a-mongodb-schema-for-products-and-reviews-explain-yo"
+        },
+        {
+          "number": 59,
+          "title": "Design a MongoDB schema for a social-media application containing users, posts, comments, and likes.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#59-design-a-mongodb-schema-for-a-social-media-application-conta"
+        },
+        {
+          "number": 60,
+          "title": "Design a MongoDB schema for an e-commerce application containing users, products, carts, orders, and reviews.",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#60-design-a-mongodb-schema-for-an-e-commerce-application-contai"
+        },
+        {
+          "number": 61,
+          "title": "Why is denormalization commonly used in MongoDB? What are its benefits and costs?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#61-why-is-denormalization-commonly-used-in-mongodb-what-are-it"
+        },
+        {
+          "number": 62,
+          "title": "What problems can excessive embedding or unbounded document growth cause?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#62-what-problems-can-excessive-embedding-or-unbounded-document"
+        },
+        {
+          "number": 63,
+          "title": "You need to show the latest five reviews when displaying a product. Would you embed all reviews, reference them, or use a hybrid model? Explain your reasoning.",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#63-you-need-to-show-the-latest-five-reviews-when-displaying-a-p"
+        },
+        {
+          "number": 64,
+          "title": "Given a real application's read/write access patterns, explain how you would derive the document structure and indexes.",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#64-given-a-real-applications-readwrite-access-patterns-expla"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Aggregation",
+      "fullName": "7. Aggregation",
+      "range": "#65 – #75",
+      "questionCount": 11,
+      "questions": [
+        {
+          "number": 65,
+          "title": "What is the MongoDB aggregation framework, and how is an aggregation pipeline different from a normal `find()` query?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#65-what-is-the-mongodb-aggregation-framework-and-how-is-an-agg"
+        },
+        {
+          "number": 66,
+          "title": "[C/Q] Explain the purpose of the major aggregation stages: `$match`, `$project`, `$group`, `$sort`, `$limit`, `$unwind`, and `$lookup`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#66-cq-explain-the-purpose-of-the-major-aggregation-stages"
+        },
+        {
+          "number": 67,
+          "title": "Calculate the average salary of employees overall and the average salary for each department using aggregation.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#67-calculate-the-average-salary-of-employees-overall-and-the-av"
+        },
+        {
+          "number": 68,
+          "title": "Count users grouped by city, department, category, or another field using `$group`.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#68-count-users-grouped-by-city-department-category-or-anothe"
+        },
+        {
+          "number": 69,
+          "title": "Find the top N products, employees, or customers according to a calculated metric using aggregation.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#69-find-the-top-n-products-employees-or-customers-according-t"
+        },
+        {
+          "number": 70,
+          "title": "Given orders containing an array of products, use `$unwind` and `$group` to calculate total quantity or revenue per product.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#70-given-orders-containing-an-array-of-products-use-unwind"
+        },
+        {
+          "number": 71,
+          "title": "Use `$lookup` to combine data from two collections and return a meaningful application result.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#71-use-lookup-to-combine-data-from-two-collections-and-retur"
+        },
+        {
+          "number": 72,
+          "title": "Given a realistic reporting requirement, design an aggregation pipeline using multiple stages and explain the order of those stages.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#72-given-a-realistic-reporting-requirement-design-an-aggregati"
+        },
+        {
+          "number": 73,
+          "title": "How can indexes improve aggregation performance? Where would you typically want filtering to happen in an aggregation pipeline?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#73-how-can-indexes-improve-aggregation-performance-where-would"
+        },
+        {
+          "number": 74,
+          "title": "Given an existing aggregation pipeline, identify unnecessary stages or opportunities to improve its performance.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#74-given-an-existing-aggregation-pipeline-identify-unnecessary"
+        },
+        {
+          "number": 75,
+          "title": "When would you prefer aggregation over multiple application-level queries?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#75-when-would-you-prefer-aggregation-over-multiple-application-"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Mongoose Fundamentals",
+      "fullName": "8. Mongoose Fundamentals",
+      "range": "#76 – #90",
+      "questionCount": 15,
+      "questions": [
+        {
+          "number": 76,
+          "title": "What is Mongoose, and how is it different from the native MongoDB Node.js driver?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#76-what-is-mongoose-and-how-is-it-different-from-the-native-mo"
+        },
+        {
+          "number": 77,
+          "title": "Explain the relationship between a Mongoose Schema, Model, Document, and MongoDB Collection.",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#77-explain-the-relationship-between-a-mongoose-schema-model-d"
+        },
+        {
+          "number": 78,
+          "title": "[B/Q] Define a realistic Mongoose User or Product schema with types, required fields, defaults, validation, and timestamps.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#78-bq-define-a-realistic-mongoose-user-or-product-schema-wit"
+        },
+        {
+          "number": 79,
+          "title": "How do you create, find, update, and delete documents using Mongoose?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#79-how-do-you-create-find-update-and-delete-documents-using"
+        },
+        {
+          "number": 80,
+          "title": "What is the difference between `find()`, `findOne()`, and `findById()` in Mongoose?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#80-what-is-the-difference-between-find-findone-and-f"
+        },
+        {
+          "number": 81,
+          "title": "How do references work in Mongoose? What is the `ref` option?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#81-how-do-references-work-in-mongoose-what-is-the-ref-option"
+        },
+        {
+          "number": 82,
+          "title": "What is `populate()`? Demonstrate how you would retrieve related documents using `populate()`.",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#82-what-is-populate-demonstrate-how-you-would-retrieve-rel"
+        },
+        {
+          "number": 83,
+          "title": "How would you model Users → Orders or Users → Posts using Mongoose references?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#83-how-would-you-model-users-orders-or-users-posts-using-mo"
+        },
+        {
+          "number": 84,
+          "title": "How does Mongoose validation work? What is validated by Mongoose versus what is enforced by MongoDB itself?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#84-how-does-mongoose-validation-work-what-is-validated-by-mong"
+        },
+        {
+          "number": 85,
+          "title": "What are Mongoose middleware/hooks? Give a practical use case for `pre('save')`.",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#85-what-are-mongoose-middlewarehooks-give-a-practical-use-cas"
+        },
+        {
+          "number": 86,
+          "title": "How would you use a Mongoose pre-save hook to hash a user's password before storing it?",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#86-how-would-you-use-a-mongoose-pre-save-hook-to-hash-a-users"
+        },
+        {
+          "number": 87,
+          "title": "What is `lean()` in Mongoose? When might using `lean()` improve performance, and what functionality do you lose?",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#87-what-is-lean-in-mongoose-when-might-using-lean-impr"
+        },
+        {
+          "number": 88,
+          "title": "What are Mongoose virtuals? Give a practical example such as computing `fullName` without storing it in MongoDB.",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#88-what-are-mongoose-virtuals-give-a-practical-example-such-as"
+        },
+        {
+          "number": 89,
+          "title": "What is the `__v` version key in Mongoose? What problem can versioning or optimistic concurrency control help solve?",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#89-what-is-the-__v-version-key-in-mongoose-what-problem-can"
+        },
+        {
+          "number": 90,
+          "title": "What are Mongoose getters, setters, custom schema methods, and schema statics? When might you use them?",
+          "priority": "P2",
+          "type": "B",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#90-what-are-mongoose-getters-setters-custom-schema-methods-a"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Node.js / Express / MongoDB Backend Integration",
+      "fullName": "9. Node.js / Express / MongoDB Backend Integration",
+      "range": "#91 – #97",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 91,
+          "title": "How does a Node.js/Express application communicate with MongoDB? Walk through the flow from HTTP request to database query to HTTP response.",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#91-how-does-a-nodejsexpress-application-communicate-with-mong"
+        },
+        {
+          "number": 92,
+          "title": "How should MongoDB connection logic be structured in a Node.js application? Why should you avoid opening a new database connection for every request?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#92-how-should-mongodb-connection-logic-be-structured-in-a-node"
+        },
+        {
+          "number": 93,
+          "title": "How would you structure MongoDB/Mongoose models, controllers, services, and routes in a Full Stack backend?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#93-how-would-you-structure-mongodbmongoose-models-controllers"
+        },
+        {
+          "number": 94,
+          "title": "How would you validate request data before sending it to MongoDB? Why should API validation and database/schema validation both matter?",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#94-how-would-you-validate-request-data-before-sending-it-to-mon"
+        },
+        {
+          "number": 95,
+          "title": "How would you handle errors from MongoDB/Mongoose in Express? Explain how you would distinguish `ValidationError`, `CastError`, and duplicate-key error 11000.",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#95-how-would-you-handle-errors-from-mongodbmongoose-in-express"
+        },
+        {
+          "number": 96,
+          "title": "How would you prevent sensitive database fields such as passwords from being returned through an API?",
+          "priority": "P1",
+          "type": "B",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#96-how-would-you-prevent-sensitive-database-fields-such-as-pass"
+        },
+        {
+          "number": 97,
+          "title": "[D/P] A production API endpoint performs a MongoDB query that takes several seconds. Walk through your complete debugging process from HTTP request to database query plan.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#97-dp-a-production-api-endpoint-performs-a-mongodb-query-tha"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Security, Transactions, Concurrency & Production",
+      "fullName": "10. Security, Transactions, Concurrency & Production",
+      "range": "#98 – #100",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 98,
+          "title": "What is NoSQL injection? Show how accepting arbitrary MongoDB operators from user input can create a vulnerability, and explain how you would prevent it.",
+          "priority": "P0",
+          "type": "B",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#98-what-is-nosql-injection-show-how-accepting-arbitrary-mongod"
+        },
+        {
+          "number": 99,
+          "title": "[C/D] What are MongoDB transactions and when would you use one? Give an e-commerce checkout example and explain when a transaction may be unnecessary because of good document modeling.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#99-cd-what-are-mongodb-transactions-and-when-would-you-use-o"
+        },
+        {
+          "number": 100,
+          "title": "[C/D] Explain replication vs sharding and the problem each solves. Then explain what you would investigate before deciding that a growing Full Stack application actually needs sharding.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/mongodb/mongodb-interview-questions.md#100-cd-explain-replication-vs-sharding-and-the-problem-each-s"
+        }
+      ]
+    }
+  ]
+}

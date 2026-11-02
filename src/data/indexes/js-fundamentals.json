@@ -1,0 +1,127 @@
+{
+  "id": "js-fundamentals",
+  "name": "JS DSA Fundamentals",
+  "category": "revision_handbook",
+  "totalQuestions": 12,
+  "githubFilePath": "js dsa fundamentals/js-dsa-revision-handbook.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Handbook Chapters",
+      "fullName": "Handbook Chapters & Syntax Blueprints",
+      "range": "Ch 1 – Ch 12",
+      "questionCount": 12,
+      "questions": [
+        {
+          "number": 1,
+          "label": "Chapter 1",
+          "title": "Numbers, Integer Math & Precision",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#1-numbers-integer-math-precision"
+        },
+        {
+          "number": 2,
+          "label": "Chapter 2",
+          "title": "Character & ASCII Processing",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#2-character-ascii-processing"
+        },
+        {
+          "number": 3,
+          "label": "Chapter 3",
+          "title": "String Complete Reference & Regex",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#3-string-complete-reference-regex"
+        },
+        {
+          "number": 4,
+          "label": "Chapter 4",
+          "title": "Arrays & 2D Matrix Complete Reference",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#4-arrays-2d-matrix-complete-reference"
+        },
+        {
+          "number": 5,
+          "label": "Chapter 5",
+          "title": "Sorting & Custom Comparators",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#5-sorting-custom-comparators"
+        },
+        {
+          "number": 6,
+          "label": "Chapter 6",
+          "title": "Hash Maps & Hash Sets (`Map` & `Set`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#6-hash-maps-hash-sets-map-set"
+        },
+        {
+          "number": 7,
+          "label": "Chapter 7",
+          "title": "Stacks, Queues & Deques",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#7-stacks-queues-deques"
+        },
+        {
+          "number": 8,
+          "label": "Chapter 8",
+          "title": "Minimal Binary Heap (Priority Queue)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#8-minimal-binary-heap-priority-queue"
+        },
+        {
+          "number": 9,
+          "label": "Chapter 9",
+          "title": "Binary Search & Two-Pointer Templates",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#9-binary-search-two-pointer-templates"
+        },
+        {
+          "number": 10,
+          "label": "Chapter 10",
+          "title": "Linked List, Tree & Graph Boilerplates",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#10-linked-list-tree-graph-boilerplates"
+        },
+        {
+          "number": 11,
+          "label": "Chapter 11",
+          "title": "Bit Manipulation Complete Reference",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#11-bit-manipulation-complete-reference"
+        },
+        {
+          "number": 12,
+          "label": "Chapter 12",
+          "title": "Built-In Time & Space Complexity Master Matrix",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/js dsa fundamentals/js-dsa-revision-handbook.md#12-built-in-time-space-complexity-master-matrix"
+        }
+      ]
+    }
+  ]
+}

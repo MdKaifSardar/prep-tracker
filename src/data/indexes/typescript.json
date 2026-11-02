@@ -1,0 +1,491 @@
+{
+  "id": "typescript",
+  "name": "TypeScript",
+  "category": "interview_qa",
+  "totalQuestions": 50,
+  "githubFilePath": "typescript/typescript-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "TypeScript Fundamentals",
+      "fullName": "1. TypeScript Fundamentals",
+      "range": "#1 – #5",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is TypeScript, and what problems does it solve compared with JavaScript?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#1-what-is-typescript-and-what-problems-does-it-solve-compared"
+        },
+        {
+          "number": 2,
+          "title": "What is the difference between compile-time type checking and runtime validation? Why can't TypeScript itself validate runtime data?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#2-what-is-the-difference-between-compile-time-type-checking-an"
+        },
+        {
+          "number": 3,
+          "title": "What is type inference, and when does TypeScript infer a type versus requiring an annotation?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#3-what-is-type-inference-and-when-does-typescript-infer-a-typ"
+        },
+        {
+          "number": 4,
+          "title": "What is structural typing, and how does it differ from nominal typing?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#4-what-is-structural-typing-and-how-does-it-differ-from-nomin"
+        },
+        {
+          "number": 5,
+          "title": "What is excess property checking, and why can an object literal fail assignment while an intermediate variable succeeds?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#5-what-is-excess-property-checking-and-why-can-an-object-lite"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Types, Interfaces, and Object Shapes",
+      "fullName": "2. Types, Interfaces, and Object Shapes",
+      "range": "#6 – #11",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 6,
+          "title": "What is the difference between type and interface? When would you use each?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#6-what-is-the-difference-between-type-and-interface-when-woul"
+        },
+        {
+          "number": 7,
+          "title": "What are union types, intersection types, and literal types?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#7-what-are-union-types-intersection-types-and-literal-types"
+        },
+        {
+          "number": 8,
+          "title": "What are optional properties and readonly properties? What does readonly actually guarantee?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#8-what-are-optional-properties-and-readonly-properties-what-d"
+        },
+        {
+          "number": 9,
+          "title": "What are tuples, and how are they different from arrays?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#9-what-are-tuples-and-how-are-they-different-from-arrays"
+        },
+        {
+          "number": 10,
+          "title": "What is declaration merging, and why is it one reason to use interface?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#10-what-is-declaration-merging-and-why-is-it-one-reason-to-use"
+        },
+        {
+          "number": 11,
+          "title": "What are index signatures such as [key: string]: T, and when are they useful?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#11-what-are-index-signatures-such-as-key-string-t-and-when"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Type Safety and Narrowing",
+      "fullName": "3. Type Safety and Narrowing",
+      "range": "#12 – #17",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 12,
+          "title": "What are any, unknown, and never? What are their practical differences?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#12-what-are-any-unknown-and-never-what-are-their-practical-d"
+        },
+        {
+          "number": 13,
+          "title": "What is type narrowing, and how does TypeScript use control-flow analysis and runtime checks to narrow types?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#13-what-is-type-narrowing-and-how-does-typescript-use-control-"
+        },
+        {
+          "number": 14,
+          "title": "What is a user-defined type guard? Explain value is SomeType.",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#14-what-is-a-user-defined-type-guard-explain-value-is-sometype"
+        },
+        {
+          "number": 15,
+          "title": "What are discriminated unions, and why are they useful?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#15-what-are-discriminated-unions-and-why-are-they-useful"
+        },
+        {
+          "number": 16,
+          "title": "What is the difference between null and undefined, and what does strictNullChecks change?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#16-what-is-the-difference-between-null-and-undefined-and-what"
+        },
+        {
+          "number": 17,
+          "title": "What is void, and how is it different from undefined and never?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#17-what-is-void-and-how-is-it-different-from-undefined-and-nev"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Generics",
+      "fullName": "4. Generics",
+      "range": "#18 – #22",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 18,
+          "title": "What are generics, and why are they preferable to any in many situations?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#18-what-are-generics-and-why-are-they-preferable-to-any-in-man"
+        },
+        {
+          "number": 19,
+          "title": "What does T extends U mean in a generic constraint?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#19-what-does-t-extends-u-mean-in-a-generic-constraint"
+        },
+        {
+          "number": 20,
+          "title": "How does generic type inference work?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#20-how-does-generic-type-inference-work"
+        },
+        {
+          "number": 21,
+          "title": "How would you design getProperty<T, K extends keyof T>(obj, key) while preserving the T[K] relationship?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#21-how-would-you-design-getpropertyt-k-extends-keyof-tobj"
+        },
+        {
+          "number": 22,
+          "title": "What are generic default type parameters, and when are they useful?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#22-what-are-generic-default-type-parameters-and-when-are-they"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Type Operators and Assertions",
+      "fullName": "5. Type Operators and Assertions",
+      "range": "#23 – #28",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 23,
+          "title": "What is keyof, and how is it used with generics?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#23-what-is-keyof-and-how-is-it-used-with-generics"
+        },
+        {
+          "number": 24,
+          "title": "What are indexed access types such as T[K]?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#24-what-are-indexed-access-types-such-as-tk"
+        },
+        {
+          "number": 25,
+          "title": "What is typeof when used in a type position?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#25-what-is-typeof-when-used-in-a-type-position"
+        },
+        {
+          "number": 26,
+          "title": "What is a type assertion (as)? Does it perform runtime conversion or validation?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#26-what-is-a-type-assertion-as-does-it-perform-runtime-conve"
+        },
+        {
+          "number": 27,
+          "title": "What is as const, and how does it affect literal types and readonly behavior?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#27-what-is-as-const-and-how-does-it-affect-literal-types-and-r"
+        },
+        {
+          "number": 28,
+          "title": "What is the satisfies operator, and how is it different from a type annotation and as?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#28-what-is-the-satisfies-operator-and-how-is-it-different-from"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Utility Types",
+      "fullName": "6. Utility Types",
+      "range": "#29 – #31",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 29,
+          "title": "What are Partial, Required, Readonly, Pick, and Omit?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#29-what-are-partial-required-readonly-pick-and-omit"
+        },
+        {
+          "number": 30,
+          "title": "What are Record, Exclude, Extract, and NonNullable?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#30-what-are-record-exclude-extract-and-nonnullable"
+        },
+        {
+          "number": 31,
+          "title": "What are ReturnType, Parameters, and Awaited used for?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#31-what-are-returntype-parameters-and-awaited-used-for"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Runtime Data, APIs, and GenAI",
+      "fullName": "7. Runtime Data, APIs, and GenAI",
+      "range": "#32 – #37",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 32,
+          "title": "Why doesn't a TypeScript interface or type validate an API response or LLM response at runtime?",
+          "priority": "P0",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#32-why-doesnt-a-typescript-interface-or-type-validate-an-api-r"
+        },
+        {
+          "number": 33,
+          "title": "How does a runtime schema validator such as Zod complement TypeScript?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#33-how-does-a-runtime-schema-validator-such-as-zod-complement-t"
+        },
+        {
+          "number": 34,
+          "title": "How do you derive a TypeScript type from a Zod schema using z.infer?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#34-how-do-you-derive-a-typescript-type-from-a-zod-schema-using"
+        },
+        {
+          "number": 35,
+          "title": "How would you type structured LLM output so that the runtime validation schema and TypeScript type remain consistent?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#35-how-would-you-type-structured-llm-output-so-that-the-runtime"
+        },
+        {
+          "number": 36,
+          "title": "How would you model arbitrary or recursive JSON data in TypeScript?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#36-how-would-you-model-arbitrary-or-recursive-json-data-in-type"
+        },
+        {
+          "number": 37,
+          "title": "How do you type asynchronous streams using AsyncIterable, AsyncIterator, or AsyncGenerator?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#37-how-do-you-type-asynchronous-streams-using-asynciterable-as"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "TypeScript Configuration and Modules",
+      "fullName": "8. TypeScript Configuration and Modules",
+      "range": "#38 – #42",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 38,
+          "title": "What does strict in tsconfig.json mean, and what important checks does it enable?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#38-what-does-strict-in-tsconfigjson-mean-and-what-important-c"
+        },
+        {
+          "number": 39,
+          "title": "What are the important tsconfig.json options for a Node/Next.js project, particularly module, moduleResolution, esModuleInterop, paths, and skipLibCheck?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#39-what-are-the-important-tsconfigjson-options-for-a-nodenext"
+        },
+        {
+          "number": 40,
+          "title": "What are declaration files (.d.ts), and why are they needed?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#40-what-are-declaration-files-dts-and-why-are-they-needed"
+        },
+        {
+          "number": 41,
+          "title": "What is module augmentation, and how would you use it to extend types from a third-party library such as Express.Request?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#41-what-is-module-augmentation-and-how-would-you-use-it-to-ext"
+        },
+        {
+          "number": 42,
+          "title": "What are TypeScript enums, how do they behave at runtime, and what are alternatives such as objects with as const?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#42-what-are-typescript-enums-how-do-they-behave-at-runtime-an"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Advanced TypeScript",
+      "fullName": "9. Advanced TypeScript",
+      "range": "#43 – #50",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 43,
+          "title": "What are conditional types? Explain the T extends U ? X : Y pattern.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#43-what-are-conditional-types-explain-the-t-extends-u-x-y"
+        },
+        {
+          "number": 44,
+          "title": "What is infer in conditional types? Give a practical example.",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#44-what-is-infer-in-conditional-types-give-a-practical-example"
+        },
+        {
+          "number": 45,
+          "title": "What are mapped types, and how can you create your own utility type with them?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#45-what-are-mapped-types-and-how-can-you-create-your-own-utili"
+        },
+        {
+          "number": 46,
+          "title": "What is noUncheckedIndexedAccess, and how does it affect expressions such as arr[i]?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#46-what-is-nouncheckedindexedaccess-and-how-does-it-affect-exp"
+        },
+        {
+          "number": 47,
+          "title": "What are distributive conditional types, and when can they produce surprising results?",
+          "priority": "P2",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#47-what-are-distributive-conditional-types-and-when-can-they-p"
+        },
+        {
+          "number": 48,
+          "title": "What are template literal types, and what practical problems can they solve?",
+          "priority": "P2",
+          "type": "Q",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#48-what-are-template-literal-types-and-what-practical-problems"
+        },
+        {
+          "number": 49,
+          "title": "What are abstract classes and implements in TypeScript, and how do they differ from extends?",
+          "priority": "P2",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#49-what-are-abstract-classes-and-implements-in-typescript-and"
+        },
+        {
+          "number": 50,
+          "title": "What are the practical implications of TypeScript's variance and function parameter assignability?",
+          "priority": "P2",
+          "type": "C",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/typescript/typescript-interview-questions.md#50-what-are-the-practical-implications-of-typescripts-variance"
+        }
+      ]
+    }
+  ]
+}

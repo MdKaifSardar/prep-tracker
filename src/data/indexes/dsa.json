@@ -1,0 +1,1613 @@
+{
+  "id": "dsa",
+  "name": "Data Structures & Algorithms",
+  "category": "interview_qa",
+  "totalQuestions": 139,
+  "githubFilePath": "dsa/dsa-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "MATRIX SIMULATION & ARRAY TRANSFORMATIONS",
+      "fullName": "1. MATRIX SIMULATION & ARRAY TRANSFORMATIONS",
+      "range": "#1 – #6",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 1,
+          "label": "#1",
+          "title": "LC 54: Spiral Matrix [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/spiral-matrix/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 2,
+          "label": "#1a",
+          "title": "🔁 Follow-up Variant: LC 59: Spiral Matrix II [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/spiral-matrix-ii/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 3,
+          "label": "#2",
+          "title": "LC 48: Rotate Image [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/rotate-image/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 4,
+          "label": "#2a",
+          "title": "🔁 Follow-up Variant: Custom / Interview: Rotate Matrix 90 Deg Anti-Clockwise [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 5,
+          "label": "#3",
+          "title": "LC 73: Set Matrix Zeroes [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/set-matrix-zeroes/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 6,
+          "label": "#4",
+          "title": "LC 118: Pascal's Triangle [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/pascals-triangle/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 7,
+          "label": "#5",
+          "title": "LC 31: Next Permutation [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/next-permutation/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 8,
+          "label": "#6",
+          "title": "[BONUS] LC 289: Game of Life [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/game-of-life/",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "COMPLETE SORTING ALGORITHMS SUITE",
+      "fullName": "2. COMPLETE SORTING ALGORITHMS SUITE",
+      "range": "#7 – #14",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 9,
+          "label": "#7",
+          "title": "ALG 1: Selection Sort Algorithm Blueprint [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 10,
+          "label": "#8",
+          "title": "ALG 2: Bubble Sort Algorithm Blueprint [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 11,
+          "label": "#9",
+          "title": "ALG 3: Insertion Sort Algorithm Blueprint [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 12,
+          "label": "#10",
+          "title": "ALG 4: Merge Sort & Inversion Counting Blueprint [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 13,
+          "label": "#11",
+          "title": "ALG 5: Quick Sort Algorithm Blueprint [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 14,
+          "label": "#12",
+          "title": "ALG 6: Counting Sort Algorithm Blueprint [EASY]",
+          "priority": "P2",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 15,
+          "label": "#13",
+          "title": "LC 179: Largest Number [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/largest-number/",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 16,
+          "label": "#14",
+          "title": "[BONUS] LC 148: Sort List [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/sort-list/",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "HASHING / FREQUENCY COUNTING",
+      "fullName": "3. HASHING / FREQUENCY COUNTING",
+      "range": "#15 – #19",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 17,
+          "label": "#15",
+          "title": "LC 217: Contains Duplicate [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/contains-duplicate/",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 18,
+          "label": "#16",
+          "title": "LC 49: Group Anagrams [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/group-anagrams/",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 19,
+          "label": "#17",
+          "title": "LC 1: Two Sum [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/two-sum/",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 20,
+          "label": "#18",
+          "title": "LC 128: Longest Consecutive Sequence [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-consecutive-sequence/",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 21,
+          "label": "#19",
+          "title": "[BONUS] LC 380: Insert Delete GetRandom O(1) [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/insert-delete-getrandom-o1/",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "PREFIX SUM & DIFFERENCE ARRAYS",
+      "fullName": "4. PREFIX SUM & DIFFERENCE ARRAYS",
+      "range": "#20 – #25",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 22,
+          "label": "#20",
+          "title": "LC 560: Subarray Sum Equals K [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/subarray-sum-equals-k/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 23,
+          "label": "#20a",
+          "title": "🔁 Follow-up Variant: IB 1: Subarray with Given XOR [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 24,
+          "label": "#21",
+          "title": "LC 525: Contiguous Array [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/contiguous-array/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 25,
+          "label": "#22",
+          "title": "LC 1109: Corporate Flight Bookings [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/corporate-flight-bookings/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 26,
+          "label": "#23",
+          "title": "LC 238: Product of Array Except Self [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/product-of-array-except-self/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 27,
+          "label": "#24",
+          "title": "LC 523: Continuous Subarray Sum [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/continuous-subarray-sum/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 28,
+          "label": "#25",
+          "title": "[BONUS] LC 304: Range Sum Query 2D - Immutable [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/range-sum-query-2d-immutable/",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ARRAY GREEDY & KADANE'S ALGORITHM",
+      "fullName": "5. ARRAY GREEDY & KADANE'S ALGORITHM",
+      "range": "#26 – #30",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 29,
+          "label": "#26",
+          "title": "LC 53: Maximum Subarray [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/maximum-subarray/",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 30,
+          "label": "#27",
+          "title": "LC 121: Best Time to Buy and Sell Stock [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 31,
+          "label": "#28",
+          "title": "LC 169: Majority Element [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/majority-element/",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 32,
+          "label": "#29",
+          "title": "LC 55: Jump Game [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/jump-game/",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 33,
+          "label": "#30",
+          "title": "LC 134: Gas Station [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/gas-station/",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "TWO POINTERS",
+      "fullName": "6. TWO POINTERS",
+      "range": "#31 – #39",
+      "questionCount": 9,
+      "questions": [
+        {
+          "number": 34,
+          "label": "#31",
+          "title": "LC 283: Move Zeroes [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/move-zeroes/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 35,
+          "label": "#32",
+          "title": "LC 26: Remove Duplicates from Sorted Array [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 36,
+          "label": "#33",
+          "title": "LC 167: Two Sum II - Input Array Is Sorted [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 37,
+          "label": "#34",
+          "title": "LC 15: 3Sum [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/3sum/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 38,
+          "label": "#35",
+          "title": "LC 11: Container With Most Water [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/container-with-most-water/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 39,
+          "label": "#36",
+          "title": "LC 42: Trapping Rain Water [HARD]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/trapping-rain-water/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 40,
+          "label": "#37",
+          "title": "LC 75: Sort Colors (Dutch National Flag) [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/sort-colors/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 41,
+          "label": "#38",
+          "title": "LC 88: Merge Sorted Array [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/merge-sorted-array/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 42,
+          "label": "#39",
+          "title": "[BONUS] LC 18: 4Sum [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/4sum/",
+          "sectionId": 6,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "STRING MANIPULATION & PALINDROMES",
+      "fullName": "7. STRING MANIPULATION & PALINDROMES",
+      "range": "#40 – #42",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 43,
+          "label": "#40",
+          "title": "LC 125: Valid Palindrome [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/valid-palindrome/",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 44,
+          "label": "#41",
+          "title": "LC 5: Longest Palindromic Substring [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-palindromic-substring/",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 45,
+          "label": "#42",
+          "title": "LC 151: Reverse Words in a String [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/reverse-words-in-a-string/",
+          "sectionId": 7,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "SLIDING WINDOW",
+      "fullName": "8. SLIDING WINDOW",
+      "range": "#43 – #50",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 46,
+          "label": "#43",
+          "title": "LC 3: Longest Substring Without Repeating Characters [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 47,
+          "label": "#44",
+          "title": "LC 209: Minimum Size Subarray Sum [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/minimum-size-subarray-sum/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 48,
+          "label": "#45",
+          "title": "LC 76: Minimum Window Substring [HARD]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/minimum-window-substring/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 49,
+          "label": "#46",
+          "title": "LC 438: Find All Anagrams in a String [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 50,
+          "label": "#47",
+          "title": "LC 1004: Max Consecutive Ones III [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 51,
+          "label": "#48",
+          "title": "LC 424: Longest Repeating Character Replacement [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 52,
+          "label": "#49",
+          "title": "LC 239: Sliding Window Maximum [HARD]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/sliding-window-maximum/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 53,
+          "label": "#50",
+          "title": "[BONUS] LC 992: Subarrays with K Different Integers [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/subarrays-with-k-different-integers/",
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "BINARY SEARCH",
+      "fullName": "9. BINARY SEARCH",
+      "range": "#51 – #59",
+      "questionCount": 9,
+      "questions": [
+        {
+          "number": 54,
+          "label": "#51",
+          "title": "LC 704: Binary Search [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-search/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 55,
+          "label": "#52",
+          "title": "LC 34: Find First and Last Position of Element in Sorted Array [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 56,
+          "label": "#53",
+          "title": "LC 33: Search In Rotated Sorted Array [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 57,
+          "label": "#54",
+          "title": "LC 153: Find Minimum in Rotated Sorted Array [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 58,
+          "label": "#55",
+          "title": "LC 875: Koko Eating Bananas [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/koko-eating-bananas/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 59,
+          "label": "#56",
+          "title": "LC 1011: Capacity To Ship Packages Within D Days [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 60,
+          "label": "#57",
+          "title": "LC 74: Search a 2D Matrix [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/search-a-2d-matrix/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 61,
+          "label": "#58",
+          "title": "LC 162: Find Peak Element [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-peak-element/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 62,
+          "label": "#59",
+          "title": "[BONUS] LC 4: Median of Two Sorted Arrays [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+          "sectionId": 9,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "OVERLAPPING INTERVALS",
+      "fullName": "10. OVERLAPPING INTERVALS",
+      "range": "#60 – #64",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 63,
+          "label": "#60",
+          "title": "LC 56: Merge Intervals [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 64,
+          "label": "#61",
+          "title": "LC 57: Insert Interval [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 65,
+          "label": "#62",
+          "title": "LC 435: Non-overlapping Intervals [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 66,
+          "label": "#63",
+          "title": "LC 253: Meeting Rooms II [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 67,
+          "label": "#64",
+          "title": "[BONUS] LC 986: Interval List Intersections [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/interval-list-intersections/",
+          "sectionId": 10,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "LINKED LIST MANIPULATION",
+      "fullName": "11. LINKED LIST MANIPULATION",
+      "range": "#65 – #71",
+      "questionCount": 7,
+      "questions": [
+        {
+          "number": 68,
+          "label": "#65",
+          "title": "LC 206: Reverse Linked List [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/reverse-linked-list/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 69,
+          "label": "#66",
+          "title": "LC 234: Palindrome Linked List [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/palindrome-linked-list/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 70,
+          "label": "#67",
+          "title": "LC 21: Merge Two Sorted Lists [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/merge-two-sorted-lists/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 71,
+          "label": "#68",
+          "title": "LC 2: Add Two Numbers [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/add-two-numbers/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 72,
+          "label": "#69",
+          "title": "LC 19: Remove Nth Node From End of List [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 73,
+          "label": "#70",
+          "title": "LC 160: Intersection of Two Linked Lists [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 74,
+          "label": "#71",
+          "title": "LC 146: LRU Cache [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/lru-cache/",
+          "sectionId": 11,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "FAST & SLOW POINTERS (LINKED LIST)",
+      "fullName": "12. FAST & SLOW POINTERS (LINKED LIST)",
+      "range": "#72 – #74",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 75,
+          "label": "#72",
+          "title": "LC 141: Linked List Cycle [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/linked-list-cycle/",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 76,
+          "label": "#72a",
+          "title": "🔁 Follow-up Variant: LC 142: Linked List Cycle II [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/linked-list-cycle-ii/",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 77,
+          "label": "#73",
+          "title": "LC 143: Reorder List [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/reorder-list/",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 78,
+          "label": "#74",
+          "title": "[BONUS] LC 287: Find the Duplicate Number [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-the-duplicate-number/",
+          "sectionId": 12,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "STACK & MONOTONIC STACK",
+      "fullName": "13. STACK & MONOTONIC STACK",
+      "range": "#75 – #80",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 79,
+          "label": "#75",
+          "title": "LC 20: Valid Parentheses [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/valid-parentheses/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 80,
+          "label": "#76",
+          "title": "LC 155: Min Stack [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/min-stack/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 81,
+          "label": "#77",
+          "title": "LC 496: Next Greater Element I [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/next-greater-element-i/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 82,
+          "label": "#78",
+          "title": "LC 739: Daily Temperatures [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/daily-temperatures/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 83,
+          "label": "#79",
+          "title": "LC 84: Largest Rectangle in Histogram [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 84,
+          "label": "#80",
+          "title": "[BONUS] LC 85: Maximal Rectangle [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/maximal-rectangle/",
+          "sectionId": 13,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "HEAP / PRIORITY QUEUE",
+      "fullName": "14. HEAP / PRIORITY QUEUE",
+      "range": "#81 – #86",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 85,
+          "label": "#81",
+          "title": "LC 215: Kth Largest Element in an Array [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 86,
+          "label": "#82",
+          "title": "LC 347: Top K Frequent Elements [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/top-k-frequent-elements/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 87,
+          "label": "#83",
+          "title": "LC 973: K Closest Points to Origin [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/k-closest-points-to-origin/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 88,
+          "label": "#84",
+          "title": "LC 295: Find Median from Data Stream [HARD]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/find-median-from-data-stream/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 89,
+          "label": "#85",
+          "title": "LC 23: Merge k Sorted Lists [HARD]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/merge-k-sorted-lists/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 90,
+          "label": "#86",
+          "title": "[BONUS] LC 621: Task Scheduler [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/task-scheduler/",
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "TREE DFS / DEPTH FIRST SEARCH",
+      "fullName": "15. TREE DFS / DEPTH FIRST SEARCH",
+      "range": "#87 – #94",
+      "questionCount": 8,
+      "questions": [
+        {
+          "number": 91,
+          "label": "#87",
+          "title": "LC 104: Maximum Depth of Binary Tree [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 92,
+          "label": "#88",
+          "title": "LC 543: Diameter of Binary Tree [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/diameter-of-binary-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 93,
+          "label": "#89",
+          "title": "LC 124: Binary Tree Maximum Path Sum [HARD]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 94,
+          "label": "#90",
+          "title": "LC 236: Lowest Common Ancestor of a Binary Tree [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 95,
+          "label": "#91",
+          "title": "LC 226: Invert Binary Tree [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/invert-binary-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 96,
+          "label": "#92",
+          "title": "LC 101: Symmetric Tree [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/symmetric-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 97,
+          "label": "#93",
+          "title": "LC 105: Construct Binary Tree from Preorder and Inorder Traversal [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 98,
+          "label": "#94",
+          "title": "[BONUS] LC 297: Serialize and Deserialize Binary Tree [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+          "sectionId": 15,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "TREE BFS / LEVEL ORDER TRAVERSAL",
+      "fullName": "16. TREE BFS / LEVEL ORDER TRAVERSAL",
+      "range": "#95 – #98",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 99,
+          "label": "#95",
+          "title": "LC 102: Binary Tree Level Order Traversal [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 100,
+          "label": "#96",
+          "title": "LC 199: Binary Tree Right Side View [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-tree-right-side-view/",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 101,
+          "label": "#97",
+          "title": "LC 103: Binary Tree Zigzag Level Order Traversal [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 102,
+          "label": "#98",
+          "title": "[BONUS] LC 314: Binary Tree Vertical Order Traversal [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/binary-tree-vertical-order-traversal/",
+          "sectionId": 16,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "BINARY SEARCH TREE (BST)",
+      "fullName": "17. BINARY SEARCH TREE (BST)",
+      "range": "#99 – #102",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 103,
+          "label": "#99",
+          "title": "LC 98: Validate Binary Search Tree [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/validate-binary-search-tree/",
+          "sectionId": 17,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 104,
+          "label": "#100",
+          "title": "LC 230: Kth Smallest Element in a BST [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+          "sectionId": 17,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 105,
+          "label": "#101",
+          "title": "LC 450: Delete Node in a BST [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/delete-node-in-a-bst/",
+          "sectionId": 17,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 106,
+          "label": "#102",
+          "title": "[BONUS] LC 99: Recover Binary Search Tree [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/recover-binary-search-tree/",
+          "sectionId": 17,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "TRIE (PREFIX TREE)",
+      "fullName": "18. TRIE (PREFIX TREE)",
+      "range": "#103 – #104",
+      "questionCount": 2,
+      "questions": [
+        {
+          "number": 107,
+          "label": "#103",
+          "title": "LC 208: Implement Trie (Prefix Tree) [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+          "sectionId": 18,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 108,
+          "label": "#104",
+          "title": "[BONUS] LC 211: Design Add and Search Words Data Structure [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+          "sectionId": 18,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "BACKTRACKING / SUBSETS & PERMUTATIONS",
+      "fullName": "19. BACKTRACKING / SUBSETS & PERMUTATIONS",
+      "range": "#105 – #109",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 109,
+          "label": "#105",
+          "title": "LC 78: Subsets [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/subsets/",
+          "sectionId": 19,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 110,
+          "label": "#106",
+          "title": "LC 39: Combination Sum [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/combination-sum/",
+          "sectionId": 19,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 111,
+          "label": "#107",
+          "title": "LC 46: Permutations [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/permutations/",
+          "sectionId": 19,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 112,
+          "label": "#108",
+          "title": "LC 51: N-Queens [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/n-queens/",
+          "sectionId": 19,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 113,
+          "label": "#109",
+          "title": "[BONUS] LC 79: Word Search [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/word-search/",
+          "sectionId": 19,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "GRAPH DFS / BFS",
+      "fullName": "20. GRAPH DFS / BFS",
+      "range": "#110 – #115",
+      "questionCount": 6,
+      "questions": [
+        {
+          "number": 114,
+          "label": "#110",
+          "title": "LC 200: Number of Islands [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/number-of-islands/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 115,
+          "label": "#111",
+          "title": "LC 133: Clone Graph [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/clone-graph/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 116,
+          "label": "#112",
+          "title": "LC 785: Is Graph Bipartite? [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/is-graph-bipartite/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 117,
+          "label": "#113",
+          "title": "LC 994: Rotting Oranges [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/rotting-oranges/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 118,
+          "label": "#114",
+          "title": "LC 127: Word Ladder [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/word-ladder/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 119,
+          "label": "#115",
+          "title": "[BONUS] LC 743: Network Delay Time [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/network-delay-time/",
+          "sectionId": 20,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "TOPOLOGICAL SORT (KAHN'S ALGORITHM)",
+      "fullName": "21. TOPOLOGICAL SORT (KAHN'S ALGORITHM)",
+      "range": "#116 – #117",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 120,
+          "label": "#116",
+          "title": "LC 207: Course Schedule [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/course-schedule/",
+          "sectionId": 21,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 121,
+          "label": "#116a",
+          "title": "🔁 Follow-up Variant: LC 210: Course Schedule II [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/course-schedule-ii/",
+          "sectionId": 21,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 122,
+          "label": "#117",
+          "title": "[BONUS] LC 269: Alien Dictionary [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/alien-dictionary/",
+          "sectionId": 21,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "DISJOINT SET UNION (DSU / UNION-FIND)",
+      "fullName": "22. DISJOINT SET UNION (DSU / UNION-FIND)",
+      "range": "#118 – #120",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 123,
+          "label": "#118",
+          "title": "LC 684: Redundant Connection [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/redundant-connection/",
+          "sectionId": 22,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 124,
+          "label": "#119",
+          "title": "LC 547: Number of Provinces [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/number-of-provinces/",
+          "sectionId": 22,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 125,
+          "label": "#120",
+          "title": "[BONUS] LC 721: Accounts Merge [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/accounts-merge/",
+          "sectionId": 22,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "1D DYNAMIC PROGRAMMING",
+      "fullName": "23. 1D DYNAMIC PROGRAMMING",
+      "range": "#121 – #125",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 126,
+          "label": "#121",
+          "title": "LC 198: House Robber [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/house-robber/",
+          "sectionId": 23,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 127,
+          "label": "#122",
+          "title": "LC 70: Climbing Stairs [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/climbing-stairs/",
+          "sectionId": 23,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 128,
+          "label": "#123",
+          "title": "LC 139: Word Break [MEDIUM]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/word-break/",
+          "sectionId": 23,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 129,
+          "label": "#124",
+          "title": "LC 300: Longest Increasing Subsequence [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-increasing-subsequence/",
+          "sectionId": 23,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 130,
+          "label": "#125",
+          "title": "[BONUS] LC 152: Maximum Product Subarray [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/maximum-product-subarray/",
+          "sectionId": 23,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "KNAPSACK / 2D DYNAMIC PROGRAMMING",
+      "fullName": "24. KNAPSACK / 2D DYNAMIC PROGRAMMING",
+      "range": "#126 – #130",
+      "questionCount": 5,
+      "questions": [
+        {
+          "number": 131,
+          "label": "#126",
+          "title": "LC 322: Coin Change [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/coin-change/",
+          "sectionId": 24,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 132,
+          "label": "#127",
+          "title": "LC 416: Partition Equal Subset Sum [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/partition-equal-subset-sum/",
+          "sectionId": 24,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 133,
+          "label": "#128",
+          "title": "LC 1143: Longest Common Subsequence [MEDIUM]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/longest-common-subsequence/",
+          "sectionId": 24,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 134,
+          "label": "#129",
+          "title": "LC 72: Edit Distance [HARD]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/edit-distance/",
+          "sectionId": 24,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 135,
+          "label": "#130",
+          "title": "[BONUS] LC 518: Coin Change II [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/coin-change-ii/",
+          "sectionId": 24,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "BIT MANIPULATION & BITMASKING",
+      "fullName": "25. BIT MANIPULATION & BITMASKING",
+      "range": "#131 – #134",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 136,
+          "label": "#131",
+          "title": "LC 136: Single Number [EASY]",
+          "priority": "P0",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/single-number/",
+          "sectionId": 25,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 137,
+          "label": "#132",
+          "title": "LC 191: Number of 1 Bits [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/number-of-1-bits/",
+          "sectionId": 25,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 138,
+          "label": "#133",
+          "title": "LC 338: Counting Bits [EASY]",
+          "priority": "P1",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/counting-bits/",
+          "sectionId": 25,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        },
+        {
+          "number": 139,
+          "label": "#134",
+          "title": "[BONUS] LC 260: Single Number III [MEDIUM]",
+          "priority": "P2",
+          "type": "Q",
+          "leetcodeUrl": "https://leetcode.com/problems/single-number-iii/",
+          "sectionId": 25,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/dsa/dsa-interview-questions.md"
+        }
+      ]
+    }
+  ]
+}

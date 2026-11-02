@@ -1,0 +1,109 @@
+{
+  "id": "cpp-fundamentals",
+  "name": "C++ Fundamentals & STL",
+  "category": "revision_handbook",
+  "totalQuestions": 10,
+  "githubFilePath": "cpp fundamentals/cpp-revision-handbook.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Handbook Chapters",
+      "fullName": "Handbook Chapters & Syntax Blueprints",
+      "range": "Ch 1 – Ch 10",
+      "questionCount": 10,
+      "questions": [
+        {
+          "number": 1,
+          "label": "Chapter 1",
+          "title": "Character & ASCII Processing (`<cctype>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#1-character-ascii-processing-cctype"
+        },
+        {
+          "number": 2,
+          "label": "Chapter 2",
+          "title": "`std::string` Complete Reference (`<string>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#2-stdstring-complete-reference-string"
+        },
+        {
+          "number": 3,
+          "label": "Chapter 3",
+          "title": "`std::vector` & Arrays (`<vector>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#3-stdvector-arrays-vector"
+        },
+        {
+          "number": 4,
+          "label": "Chapter 4",
+          "title": "Hash Maps & Maps (`<unordered_map>`, `<map>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#4-hash-maps-maps-unordered_map-map"
+        },
+        {
+          "number": 5,
+          "label": "Chapter 5",
+          "title": "Sets & Priority Queues (`<unordered_set>`, `<set>`, `<queue>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#5-sets-priority-queues-unordered_set-set-queue"
+        },
+        {
+          "number": 6,
+          "label": "Chapter 6",
+          "title": "Stack, Queue, Pair & Tuple (`<stack>`, `<queue>`, `<utility>`, `<tuple>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#6-stack-queue-pair-tuple-stack-queue-utility-tuple"
+        },
+        {
+          "number": 7,
+          "label": "Chapter 7",
+          "title": "`<algorithm>` & `<numeric>` Essential Functions",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#7-algorithm-numeric-essential-functions"
+        },
+        {
+          "number": 8,
+          "label": "Chapter 8",
+          "title": "Pointers, References, Const Qualifiers, & Struct Syntax",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#8-pointers-references-const-qualifiers-struct-syntax"
+        },
+        {
+          "number": 9,
+          "label": "Chapter 9",
+          "title": "Fast I/O, Buffer Flushing, & String Tokenization",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#9-fast-io-buffer-flushing-string-tokenization"
+        },
+        {
+          "number": 10,
+          "label": "Chapter 10",
+          "title": "Numeric Limits, Math Functions, & Overflow Prevention (`<climits>`, `<cmath>`)",
+          "priority": "P0",
+          "type": "CHAPTER",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/cpp fundamentals/cpp-revision-handbook.md#10-numeric-limits-math-functions-overflow-prevention-climits-cmath"
+        }
+      ]
+    }
+  ]
+}
