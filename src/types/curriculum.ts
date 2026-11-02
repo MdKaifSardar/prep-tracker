@@ -1,43 +1,63 @@
 export type SubjectCategory = "interview_qa" | "revision_handbook";
 
-export interface SubjectManifest {
-  id: string;               // "javascript" | "js-fundamentals"
-  name: string;             // Display name
-  description: string;      // Subtitle / Track description
-  category: SubjectCategory;
-  totalItems: number;       // 78 Qs or 12 Chapters
-  topics: TopicManifest[];
-  items: CurriculumItem[];
-}
-
-export interface TopicManifest {
-  id: string;               // e.g. "1", "2", ... "9" or slug
-  order: number;            // 1, 2, 3...
-  name: string;             // "1. JS Fundamentals, Engine & Scope"
-  rangeOrLabel: string;     // "#1 – #15" or "Chapter 4"
-  itemCount: number;
-}
-
-export type ItemType = "C" | "Q" | "D" | "P" | "SYNTAX" | "TEMPLATE" | "GOTCHA" | "TABLE";
-
-export interface CurriculumItem {
-  id: string;               // "js_q15" or "jsfund_c4_matrix"
-  subjectId: string;        // "javascript" | "js-fundamentals"
-  topicId: string;          // "1", "2", ...
-  order: number;
+export interface QuestionIndexItem {
+  number: number;
+  label?: string; // e.g. "#1" or "#1a" or "Chapter 1"
   title: string;
-  priority?: "P0" | "P1";   // (For Q&A)
-  type: ItemType;
-  summary: string;          // TL;DR concept or syntax rule
-  explanation?: string;     // Core Concept & Explanation breakdown
-  codeSnippet?: string;     // Code implementation / template
-  gotchas?: string;         // Traps, edge cases, or memory quirks
-  leetcodeUrl?: string;     // Official problem link (for DSA)
-  docRef?: string;          // Anchor in original markdown repo
+  priority: "P0" | "P1" | "P2";
+  type: string; // "C" | "Q" | "D" | "P" | "B" | "CHAPTER"
+  sectionId: number;
+  leetcodeUrl?: string;
+  githubUrl: string;
 }
 
-export interface UserSubjectProgress {
-  completedItemIds: string[]; // e.g. ["js_q1", "js_q15"] or ["jsfund_c1", "jsfund_c4"]
-  lastStudiedAt: string;      // "YYYY-MM-DD"
-  updatedAt: number;          // Epoch millis
+export interface SectionIndex {
+  id: number;
+  name: string;
+  fullName: string;
+  range: string;
+  questionCount: number;
+  questions: QuestionIndexItem[];
+}
+
+export interface SubjectIndex {
+  id: string;
+  name: string;
+  category: SubjectCategory;
+  totalQuestions: number;
+  githubFilePath: string;
+  githubUrl: string;
+  sections: SectionIndex[];
+}
+
+export interface SubjectSummary {
+  id: string;
+  name: string;
+  category: SubjectCategory;
+  totalQuestions: number;
+  sectionCount: number;
+  fileSizeKb: string;
+}
+
+export interface QuestionProgress {
+  questionNumber: number;
+  firstSolvedAt: string; // YYYY-MM-DD
+  lastRevisedAt: string;  // YYYY-MM-DD
+  revisionCount: number;  // 1, 2, 3...
+  notes?: string;
+}
+
+export interface SubjectProgressRecord {
+  subjectId: string;
+  uniqueCompletedCount: number;
+  totalRevisionCount: number;
+  lastActiveDate?: string;
+  questions: Record<number, QuestionProgress>;
+}
+
+// Legacy format compatibility
+export interface LegacySubjectProgress {
+  completedItemIds?: string[];
+  lastStudiedAt?: string;
+  updatedAt?: number;
 }
