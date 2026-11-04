@@ -21,7 +21,7 @@ import Navbar from "@/components/Navbar";
 import KpiCards from "@/components/KpiCards";
 import ActivityHeatmap from "@/components/ActivityHeatmap";
 import TopicProgressGrid from "@/components/TopicProgressGrid";
-import QuickLogModal from "@/components/QuickLogModal";
+import QuestionSelectorModal from "@/components/QuestionSelectorModal";
 import RecentLogsList from "@/components/RecentLogsList";
 import AuthScreen from "@/components/AuthScreen";
 import { Zap } from "lucide-react";
@@ -102,33 +102,6 @@ export default function DashboardPage() {
 
   // Calculate KPIs
   const kpiStats: KPIStats = calculateKPIs(logs);
-
-  // Action: Quick Log New Problems
-  const handleSaveLog = async (logData: {
-    date: string;
-    topicId: string;
-    topicName: string;
-    problemRange: string;
-    parsedCount: number;
-    isRevision: boolean;
-    notes?: string;
-  }) => {
-    try {
-      await addDoc(collection(db, "daily_logs"), {
-        date: logData.date,
-        topicId: logData.topicId,
-        topicName: logData.topicName,
-        problemRange: logData.problemRange,
-        parsedCount: logData.parsedCount,
-        isRevision: logData.isRevision,
-        notes: logData.notes?.trim() || "",
-        timestamp: new Date(logData.date).getTime(),
-      });
-    } catch (error) {
-      console.error("Failed to add daily log:", error);
-      alert("Failed to save log to Firestore. Please check your network or Firestore permissions.");
-    }
-  };
 
   // Action: Delete Log
   const handleDeleteLog = async (id: string) => {
@@ -228,39 +201,30 @@ export default function DashboardPage() {
           <div style={{
             background: "rgba(239, 68, 68, 0.12)",
             border: "1px solid rgba(239, 68, 68, 0.35)",
-            color: "#fecaca",
-            padding: "1rem 1.25rem",
             borderRadius: "var(--radius-md)",
-            fontSize: "0.85rem",
+            padding: "1rem 1.25rem",
             marginBottom: "1.5rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.6rem",
+            color: "#fca5a5",
+            fontSize: "0.875rem",
+            lineHeight: 1.5,
           }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span style={{ fontWeight: 700, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                🔒 Firestore Permission Denied
-              </span>
-              <button
-                onClick={() => setPermissionError(null)}
-                style={{ color: "#fca5a5", fontWeight: 700 }}
-              >
-                ✕
-              </button>
-            </div>
-            <p style={{ margin: 0, lineHeight: 1.4, color: "#fecaca" }}>
-              Your Firebase Firestore Security Rules are currently blocking reads. To fix this, open the <strong>Firebase Console</strong> → <strong>Firestore Database</strong> → <strong>Rules</strong> tab and publish:
+            <strong style={{ display: "block", color: "#fff", marginBottom: "0.25rem" }}>
+              ⚠️ Firestore Access Blocked (Security Rules)
+            </strong>
+            <p style={{ margin: "0 0 0.5rem" }}>
+              Your Firebase security rules are currently denying read/write operations to this authorized account.
             </p>
             <pre style={{
-              background: "rgba(0, 0, 0, 0.4)",
-              padding: "0.6rem 0.8rem",
+              background: "rgba(0,0,0,0.4)",
+              padding: "0.5rem 0.75rem",
               borderRadius: "4px",
               fontFamily: "var(--font-mono)",
-              fontSize: "0.78rem",
-              color: "#38bdf8",
+              fontSize: "0.8rem",
+              color: "#e2e8f0",
               overflowX: "auto",
             }}>
-{`rules_version = '2';
+{`// Firebase Console -> Firestore Database -> Rules
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
@@ -320,14 +284,11 @@ service cloud.firestore {
         />
       </main>
 
-      {/* Quick Log Modal Dialog */}
-      <QuickLogModal
+      {/* Question Selector Modal Dialog */}
+      <QuestionSelectorModal
         isOpen={isLogModalOpen}
         onClose={() => setIsLogModalOpen(false)}
-        topics={topics.length > 0 ? topics : DEFAULT_TOPICS}
-        logs={logs}
-        selectedTopic={selectedTopicForLog}
-        onSaveLog={handleSaveLog}
+        initialSubjectId={selectedTopicForLog?.id}
       />
     </div>
   );

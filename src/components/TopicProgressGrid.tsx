@@ -66,8 +66,6 @@ export default function TopicProgressGrid({
       }}>
         {sortedTopics.map((t) => {
           const newActivity = activityMap.get(t.id) || 0;
-          // Note: If historical logs were imported into daily_logs, baselineCompleted is already included in logs
-          // We compute completed = Math.max(t.baselineCompleted, newActivity) or total
           const totalCompleted = newActivity;
           const target = t.target || 100;
           const percentage = Math.min(100, Math.round((totalCompleted / target) * 100));
@@ -84,109 +82,118 @@ export default function TopicProgressGrid({
                 display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                transition: "all 0.2s ease",
               }}
             >
-              {/* Header */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.85rem" }}>
+              {/* Card Header */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <div style={{
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "var(--radius-full)",
-                    backgroundColor: t.color || "var(--accent-primary)",
-                    boxShadow: `0 0 10px ${t.color || "var(--accent-primary)"}`,
-                  }} />
-                  <span style={{ fontWeight: 700, fontSize: "0.95rem" }}>{t.name}</span>
+                  <div
+                    style={{
+                      width: "0.6rem",
+                      height: "0.6rem",
+                      borderRadius: "50%",
+                      backgroundColor: t.color || "var(--accent-primary)",
+                      boxShadow: `0 0 8px ${t.color || "var(--accent-primary)"}`,
+                    }}
+                  />
+                  <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text-primary)" }}>
+                    {t.name}
+                  </h3>
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-                  <button
-                    onClick={() => handleStartEdit(t)}
-                    title="Edit target goal"
-                    style={{
-                      padding: "0.3rem",
-                      borderRadius: "var(--radius-sm)",
-                      color: "var(--text-muted)",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Edit2 size={13} />
-                  </button>
-                  <button
-                    onClick={() => onQuickLogTopic(t)}
-                    className="btn-primary"
-                    style={{
-                      fontSize: "0.75rem",
-                      padding: "0.3rem 0.6rem",
-                      borderRadius: "var(--radius-sm)",
-                    }}
-                  >
-                    <PlusCircle size={13} />
-                    <span>Log</span>
-                  </button>
-                </div>
+                {/* Quick Log Button */}
+                <button
+                  onClick={() => onQuickLogTopic(t)}
+                  className="btn-secondary"
+                  style={{
+                    padding: "0.3rem 0.6rem",
+                    fontSize: "0.75rem",
+                    gap: "0.25rem",
+                  }}
+                  title="Quick Log Problems"
+                >
+                  <PlusCircle size={13} />
+                  <span>Log</span>
+                </button>
               </div>
 
-              {/* Progress Numbers */}
+              {/* Stats & Progress numbers */}
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "0.5rem" }}>
                 <div>
-                  <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "#fff" }}>
+                  <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--text-primary)" }}>
                     {totalCompleted}
                   </span>
                   <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginLeft: "0.25rem" }}>
-                    / {isEditing ? (
-                      <input
-                        type="number"
-                        value={editTargetValue}
-                        onChange={(e) => setEditTargetValue(parseInt(e.target.value, 10) || 1)}
-                        onBlur={() => handleSaveEdit(t.id)}
-                        onKeyDown={(e) => e.key === "Enter" && handleSaveEdit(t.id)}
-                        autoFocus
-                        style={{
-                          width: "60px",
-                          background: "var(--bg-input)",
-                          border: "1px solid var(--accent-primary)",
-                          color: "#fff",
-                          padding: "0.1rem 0.3rem",
-                          borderRadius: "4px",
-                          fontSize: "0.85rem",
-                        }}
-                      />
-                    ) : (
-                      `${target} target`
-                    )}
+                    / {isEditing ? "" : target}
                   </span>
                 </div>
 
-                <span style={{
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
-                  color: percentage >= 100 ? "var(--accent-emerald)" : "var(--accent-primary)",
-                }}>
-                  {percentage}%
-                </span>
+                {isEditing ? (
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                    <input
+                      type="number"
+                      value={editTargetValue}
+                      onChange={(e) => setEditTargetValue(Number(e.target.value))}
+                      style={{
+                        width: "60px",
+                        padding: "0.15rem 0.3rem",
+                        background: "var(--bg-input)",
+                        border: "1px solid var(--border-subtle)",
+                        color: "var(--text-primary)",
+                        borderRadius: "var(--radius-sm)",
+                        fontSize: "0.85rem",
+                      }}
+                      autoFocus
+                    />
+                    <button
+                      onClick={() => handleSaveEdit(t.id)}
+                      className="btn-primary"
+                      style={{ padding: "0.15rem 0.4rem", fontSize: "0.75rem" }}
+                    >
+                      Save
+                    </button>
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                    <span style={{ fontSize: "0.85rem", fontWeight: 700, color: percentage >= 100 ? "var(--accent-emerald)" : "var(--text-secondary)" }}>
+                      {percentage}%
+                    </span>
+                    <button
+                      onClick={() => handleStartEdit(t)}
+                      style={{
+                        color: "var(--text-muted)",
+                        background: "none",
+                        border: "none",
+                        padding: "0.1rem",
+                        cursor: "pointer",
+                      }}
+                      title="Edit Target"
+                    >
+                      <Edit2 size={12} />
+                    </button>
+                  </div>
+                )}
               </div>
 
-              {/* Animated Progress Bar */}
+              {/* Progress Bar */}
               <div style={{
                 width: "100%",
-                height: "8px",
+                height: "6px",
+                background: "rgba(255, 255, 255, 0.08)",
                 borderRadius: "var(--radius-full)",
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
                 overflow: "hidden",
-                marginBottom: "0.85rem",
+                marginBottom: "0.75rem",
               }}>
                 <div
                   style={{
                     width: `${percentage}%`,
                     height: "100%",
-                    borderRadius: "var(--radius-full)",
                     background: percentage >= 100
-                      ? "linear-gradient(90deg, #10b981, #34d399)"
-                      : `linear-gradient(90deg, ${t.color || "var(--accent-primary)"}, #818cf8)`,
-                    boxShadow: `0 0 10px ${t.color || "var(--accent-primary)"}80`,
-                    transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      ? "var(--accent-emerald)"
+                      : `linear-gradient(90deg, ${t.color || "#6366f1"}, #06b6d4)`,
+                    borderRadius: "var(--radius-full)",
+                    transition: "width 0.5s ease",
                   }}
                 />
               </div>
@@ -204,52 +211,30 @@ export default function TopicProgressGrid({
                 </span>
               </div>
 
-              {/* Links to Dedicated Subject Views */}
-              {t.id === "javascript" && (
-                <Link
-                  href="/subjects/javascript"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginTop: "0.85rem",
-                    paddingTop: "0.75rem",
-                    borderTop: "1px solid var(--border-subtle)",
-                    fontSize: "0.8rem",
-                    color: "var(--accent-primary)",
-                    textDecoration: "none",
-                    fontWeight: 600,
-                  }}
-                >
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-                    <BookOpen size={13} /> Master Question Bank (78 Qs)
+              {/* Link to Subject Index */}
+              <Link
+                href={`/subjects/${t.id}`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginTop: "0.85rem",
+                  paddingTop: "0.75rem",
+                  borderTop: "1px solid var(--border-subtle)",
+                  fontSize: "0.8rem",
+                  color: t.color || "var(--accent-primary)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                }}
+              >
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                  <BookOpen size={13} />
+                  <span>
+                    Questions Index ({t.target} {t.id.includes("fundamentals") ? "Ch" : "Qs"})
                   </span>
-                  <ArrowRight size={13} />
-                </Link>
-              )}
-
-              {t.id === "js-fundamentals" && (
-                <Link
-                  href="/subjects/js-fundamentals"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginTop: "0.85rem",
-                    paddingTop: "0.75rem",
-                    borderTop: "1px solid var(--border-subtle)",
-                    fontSize: "0.8rem",
-                    color: "var(--accent-cyan)",
-                    textDecoration: "none",
-                    fontWeight: 600,
-                  }}
-                >
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-                    <BookOpen size={13} /> Revision Handbook (12 Ch)
-                  </span>
-                  <ArrowRight size={13} />
-                </Link>
-              )}
+                </span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           );
         })}
