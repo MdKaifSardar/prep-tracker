@@ -2,7 +2,7 @@
   "id": "nodejs",
   "name": "Node.js & Express.js",
   "category": "interview_qa",
-  "totalQuestions": 72,
+  "totalQuestions": 66,
   "githubFilePath": "nodejs/nodejs-interview-questions.md",
   "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md",
   "sections": [
@@ -581,139 +581,82 @@
     },
     {
       "id": 14,
-      "name": "Output & Debugging Questions",
-      "fullName": "Output & Debugging Questions",
-      "range": "#58 – #63",
-      "questionCount": 6,
-      "questions": [
-        {
-          "number": 58,
-          "title": "Predict the output of code that mixes process.nextTick(), Promises, setImmediate(), and setTimeout(), and explain the order.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#58-predict-the-output-of-code-that-mixes-processnexttick-pr"
-        },
-        {
-          "number": 59,
-          "title": "Predict whether setTimeout(fn, 0) or setImmediate() runs first in the main module versus inside an I/O callback, and explain why.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#59-predict-whether-settimeoutfn-0-or-setimmediate-runs-fir"
-        },
-        {
-          "number": 60,
-          "title": "Find and fix the bug in an Express route that sends a response twice (\"Cannot set headers after they are sent\").",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#60-find-and-fix-the-bug-in-an-express-route-that-sends-a-respon"
-        },
-        {
-          "number": 61,
-          "title": "Find and fix the bug where an error in an async route hangs the request or crashes the process in Express 4, and explain what Express 5 changes.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#61-find-and-fix-the-bug-where-an-error-in-an-async-route-hangs"
-        },
-        {
-          "number": 62,
-          "title": "Find and fix the bug where a middleware never calls next() or is registered in the wrong order.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#62-find-and-fix-the-bug-where-a-middleware-never-calls-next-o"
-        },
-        {
-          "number": 63,
-          "title": "Find and fix a route that blocks the event loop with synchronous or CPU-heavy work.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 14,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#63-find-and-fix-a-route-that-blocks-the-event-loop-with-synchro"
-        }
-      ]
-    },
-    {
-      "id": 15,
       "name": "Coding Challenges",
       "fullName": "Coding Challenges",
-      "range": "#64 – #72",
+      "range": "#58 – #66",
       "questionCount": 9,
       "questions": [
         {
-          "number": 64,
+          "number": 58,
           "title": "Build a CRUD REST API in Express with routing, input validation, error handling, and correct status codes.",
           "priority": "P0",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#64-build-a-crud-rest-api-in-express-with-routing-input-validat"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#58-build-a-crud-rest-api-in-express-with-routing-input-validat"
         },
         {
-          "number": 65,
+          "number": 59,
           "title": "Write a request-logging middleware that records the method, URL, status code, and response time.",
           "priority": "P0",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#65-write-a-request-logging-middleware-that-records-the-method"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#59-write-a-request-logging-middleware-that-records-the-method"
         },
         {
-          "number": 66,
+          "number": 60,
           "title": "Write JWT authentication middleware that protects routes and returns 401 for missing or invalid tokens.",
           "priority": "P0",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#66-write-jwt-authentication-middleware-that-protects-routes-and"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#60-write-jwt-authentication-middleware-that-protects-routes-and"
         },
         {
-          "number": 67,
+          "number": 61,
           "title": "Write a centralized error-handling middleware with a custom AppError class.",
           "priority": "P0",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#67-write-a-centralized-error-handling-middleware-with-a-custom"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#61-write-a-centralized-error-handling-middleware-with-a-custom"
         },
         {
-          "number": 68,
+          "number": 62,
           "title": "Implement an in-memory rate-limiting middleware (fixed window or token bucket).",
           "priority": "P1",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#68-implement-an-in-memory-rate-limiting-middleware-fixed-windo"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#62-implement-an-in-memory-rate-limiting-middleware-fixed-windo"
         },
         {
-          "number": 69,
+          "number": 63,
           "title": "Write an asyncHandler wrapper for Express 4 and explain why Express 5 doesn't need it.",
           "priority": "P1",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#69-write-an-asynchandler-wrapper-for-express-4-and-explain-why"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#63-write-an-asynchandler-wrapper-for-express-4-and-explain-why"
         },
         {
-          "number": 70,
+          "number": 64,
           "title": "Stream a large file to the client, or process a large CSV line by line, without loading it into memory.",
           "priority": "P1",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#70-stream-a-large-file-to-the-client-or-process-a-large-csv-li"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#64-stream-a-large-file-to-the-client-or-process-a-large-csv-li"
         },
         {
-          "number": 71,
+          "number": 65,
           "title": "Implement promisify() from scratch.",
           "priority": "P1",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#71-implement-promisify-from-scratch"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#65-implement-promisify-from-scratch"
         },
         {
-          "number": 72,
+          "number": 66,
           "title": "Implement an in-memory cache with a TTL for an expensive endpoint.",
           "priority": "P1",
           "type": "Q",
-          "sectionId": 15,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#72-implement-an-in-memory-cache-with-a-ttl-for-an-expensive-end"
+          "sectionId": 14,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/nodejs/nodejs-interview-questions.md#66-implement-an-in-memory-cache-with-a-ttl-for-an-expensive-end"
         }
       ]
     }

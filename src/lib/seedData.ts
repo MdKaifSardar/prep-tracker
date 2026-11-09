@@ -8,7 +8,7 @@ export const DEFAULT_TOPICS: Topic[] = [
   { id: "js-fundamentals", name: "JS DSA Fundamentals", target: 12, baselineCompleted: 0, order: 2.5, color: "#06b6d4" },
   { id: "react", name: "React", target: 75, baselineCompleted: 31, order: 3, color: "#06b6d4" },
   { id: "typescript", name: "TypeScript", target: 50, baselineCompleted: 0, order: 4, color: "#3178c6" },
-  { id: "nodejs", name: "NodeJS", target: 72, baselineCompleted: 0, order: 5, color: "#22c55e" },
+  { id: "nodejs", name: "NodeJS", target: 66, baselineCompleted: 0, order: 5, color: "#22c55e" },
   { id: "dbms", name: "DBMS", target: 70, baselineCompleted: 0, order: 6, color: "#a855f7" },
   { id: "sql", name: "SQL", target: 80, baselineCompleted: 0, order: 7, color: "#ec4899" },
   { id: "mongodb", name: "MongoDB", target: 100, baselineCompleted: 0, order: 8, color: "#84cc16" },

@@ -19,9 +19,9 @@
     "id": "nodejs",
     "name": "Node.js & Express.js",
     "category": "interview_qa",
-    "totalQuestions": 72,
-    "sectionCount": 15,
-    "fileSizeKb": "34.9"
+    "totalQuestions": 66,
+    "sectionCount": 14,
+    "fileSizeKb": "32.1"
   },
   {
     "id": "react",
