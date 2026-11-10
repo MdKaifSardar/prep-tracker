@@ -9,6 +9,7 @@ import dsaIndex from "@/data/indexes/dsa.json";
 import jsFundIndex from "@/data/indexes/js-fundamentals.json";
 import cppFundIndex from "@/data/indexes/cpp-fundamentals.json";
 import sqlFundIndex from "@/data/indexes/sql-fundamentals.json";
+import postgresqlIndex from "@/data/indexes/postgresql.json";
 import manifestJson from "@/data/indexes/manifest.json";
 
 import { SubjectIndex, SubjectSummary, SubjectProgressRecord } from "@/types/curriculum";
@@ -25,6 +26,7 @@ const ALL_INDEXES: Record<string, SubjectIndex> = {
   "js-fundamentals": jsFundIndex as SubjectIndex,
   "cpp-fundamentals": cppFundIndex as SubjectIndex,
   "sql-fundamentals": sqlFundIndex as SubjectIndex,
+  postgresql: postgresqlIndex as SubjectIndex,
 };
 
 export function getSubjectIndex(subjectId: string): SubjectIndex | null {

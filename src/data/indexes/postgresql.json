@@ -1,0 +1,199 @@
+{
+  "id": "postgresql",
+  "name": "PostgreSQL",
+  "category": "interview_qa",
+  "totalQuestions": 18,
+  "githubFilePath": "postgresql/postgresql-interview-questions.md",
+  "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md",
+  "sections": [
+    {
+      "id": 1,
+      "name": "Architecture, Process Model & Memory",
+      "fullName": "1. Architecture, Process Model & Memory",
+      "range": "#1 – #3",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 1,
+          "title": "What is the PostgreSQL process-per-connection architecture, why do connections consume substantial memory, and how does PgBouncer solve connection scaling bottlenecks?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#1-what-is-the-postgresql-process-per-connection-architecture"
+        },
+        {
+          "number": 2,
+          "title": "What is the PostgreSQL memory hierarchy (`shared_buffers` vs `work_mem`), and why can misconfiguring `work_mem` cause instantaneous Out-Of-Memory (OOM) crashes?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#2-what-is-the-postgresql-memory-hierarchy-shared_buffers-vs"
+        },
+        {
+          "number": 3,
+          "title": "What are the core architectural differences between PostgreSQL and MySQL (InnoDB) regarding process models, MVCC storage, and table clustering?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 1,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#3-what-are-the-core-architectural-differences-between-postgres"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "MVCC, Tuple Storage & VACUUM Mechanics",
+      "fullName": "2. MVCC, Tuple Storage & VACUUM Mechanics",
+      "range": "#4 – #7",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 4,
+          "title": "How does PostgreSQL implement MVCC without Undo Logs, what do `xmin` and `xmax` hidden headers do, and why do readers never block writers?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#4-how-does-postgresql-implement-mvcc-without-undo-logs-what-d"
+        },
+        {
+          "number": 5,
+          "title": "What causes dead tuple bloat in tables and indexes, how does standard `VACUUM` reclaim dead space, and why does `VACUUM FULL` acquire an exclusive table lock?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#5-what-causes-dead-tuple-bloat-in-tables-and-indexes-how-does"
+        },
+        {
+          "number": 6,
+          "title": "What is the Heap-Only Tuple (HOT) optimization, how does it eliminate index update amplification, and how does adjusting table `fillfactor` boost write throughput?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#6-what-is-the-heap-only-tuple-hot-optimization-how-does-it"
+        },
+        {
+          "number": 7,
+          "title": "What is the 32-bit Transaction ID (XID) wraparound problem, what happens if autovacuum fails to freeze old tuples, and how do frozen tuples prevent database shutdown?",
+          "priority": "P1",
+          "type": "C",
+          "sectionId": 2,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#7-what-is-the-32-bit-transaction-id-xid-wraparound-problem"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Specialized Indexing Strategies",
+      "fullName": "3. Specialized Indexing Strategies",
+      "range": "#8 – #11",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 8,
+          "title": "What is the PostgreSQL indexing ecosystem (B-Tree vs GIN vs GiST vs BRIN), and when should you choose each index type?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#8-what-is-the-postgresql-indexing-ecosystem-b-tree-vs-gin-vs"
+        },
+        {
+          "number": 9,
+          "title": "How do Partial Indexes and Expression (Functional) Indexes work, and how do they reduce index footprint and accelerate targeted queries?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#9-how-do-partial-indexes-and-expression-functional-indexes-w"
+        },
+        {
+          "number": 10,
+          "title": "How do Covering Indexes (`INCLUDE` clause) enable Index-Only Scans without reading the heap table, and what role does the Visibility Map play?",
+          "priority": "P1",
+          "type": "P",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#10-how-do-covering-indexes-include-clause-enable-index-only"
+        },
+        {
+          "number": 11,
+          "title": "Why does standard `CREATE INDEX` lock production tables, how does `CREATE INDEX CONCURRENTLY` work safely, and how do you recover from an `INVALID` index?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 3,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#11-why-does-standard-create-index-lock-production-tables-how"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "JSONB & Postgres SQL Superpowers",
+      "fullName": "4. JSONB & Postgres SQL Superpowers",
+      "range": "#12 – #14",
+      "questionCount": 3,
+      "questions": [
+        {
+          "number": 12,
+          "title": "What is the difference between `JSON` and `JSONB` data types, how do you query nested documents with operators (`->`, `->>`, `@>`), and how do you index JSONB with GIN?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#12-what-is-the-difference-between-json-and-jsonb-data-types"
+        },
+        {
+          "number": 13,
+          "title": "How does atomic UPSERT work using `ON CONFLICT DO UPDATE / DO NOTHING`, and how does the `RETURNING` clause eliminate redundant `SELECT` roundtrips?",
+          "priority": "P0",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#13-how-does-atomic-upsert-work-using-on-conflict-do-update-d"
+        },
+        {
+          "number": 14,
+          "title": "What are PostgreSQL Application Advisory Locks (`pg_advisory_lock`), and how can backend services use them for distributed mutexes without Redis?",
+          "priority": "P1",
+          "type": "Q",
+          "sectionId": 4,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#14-what-are-postgresql-application-advisory-locks-pg_advisory"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "WAL, Replication, Partitioning & Performance",
+      "fullName": "5. WAL, Replication, Partitioning & Performance",
+      "range": "#15 – #18",
+      "questionCount": 4,
+      "questions": [
+        {
+          "number": 15,
+          "title": "What is the role of Write-Ahead Logging (WAL) in ACID durability and crash recovery, and how do Checkpoints balance disk I/O spikes against recovery time?",
+          "priority": "P0",
+          "type": "C",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#15-what-is-the-role-of-write-ahead-logging-wal-in-acid-durabi"
+        },
+        {
+          "number": 16,
+          "title": "What is the difference between Physical Streaming Replication (WAL-based) and Logical Replication (pub/sub), and when would you use each?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#16-what-is-the-difference-between-physical-streaming-replicatio"
+        },
+        {
+          "number": 17,
+          "title": "How does Declarative Table Partitioning (Range, List, Hash) work, and how does Partition Pruning accelerate queries over 100M+ row tables?",
+          "priority": "P1",
+          "type": "D",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#17-how-does-declarative-table-partitioning-range-list-hash"
+        },
+        {
+          "number": 18,
+          "title": "How do you analyze an `EXPLAIN (ANALYZE, BUFFERS)` execution plan (Seq Scan vs Index Scan vs Bitmap Heap Scan, and shared buffer hits)?",
+          "priority": "P0",
+          "type": "P",
+          "sectionId": 5,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/postgresql/postgresql-interview-questions.md#18-how-do-you-analyze-an-explain-analyze-buffers-execution"
+        }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,7 @@ export const DEFAULT_TOPICS: Topic[] = [
   { id: "mongodb", name: "MongoDB", target: 100, baselineCompleted: 0, order: 8, color: "#84cc16" },
   { id: "cpp-fundamentals", name: "C++ Fundamentals", target: 10, baselineCompleted: 0, order: 9, color: "#6366f1" },
   { id: "sql-fundamentals", name: "SQL Fundamentals", target: 10, baselineCompleted: 0, order: 10, color: "#14b8a6" },
+  { id: "postgresql", name: "PostgreSQL", target: 18, baselineCompleted: 0, order: 11, color: "#336791" },
 ];
 
 /**

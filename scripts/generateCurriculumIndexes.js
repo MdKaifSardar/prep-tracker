@@ -269,6 +269,7 @@ const SUBJECT_CONFIGS = [
   { id: 'js-fundamentals', name: 'JS DSA Fundamentals', file: 'js dsa fundamentals/js-dsa-revision-handbook.md', parser: parseHandbookChapters },
   { id: 'cpp-fundamentals', name: 'C++ Fundamentals & STL', file: 'cpp fundamentals/cpp-revision-handbook.md', parser: parseHandbookChapters },
   { id: 'sql-fundamentals', name: 'SQL Fundamentals', file: 'sql fundamentals/sql-revision-handbook.md', parser: parseHandbookChapters },
+  { id: 'postgresql', name: 'PostgreSQL', file: 'postgresql/postgresql-interview-questions.md', parser: parseStandardQuestions },
 ];
 
 console.log('⚡ Generating lightweight question indexes directly from GitHub Markdown files...\n');
