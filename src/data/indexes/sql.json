@@ -2,16 +2,16 @@
   "id": "sql",
   "name": "SQL & Query Engineering",
   "category": "interview_qa",
-  "totalQuestions": 80,
+  "totalQuestions": 40,
   "githubFilePath": "sql/sql-interview-questions.md",
   "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md",
   "sections": [
     {
       "id": 1,
       "name": "SQL Foundations, Execution Order & Basic Querying",
-      "fullName": "1. SQL Foundations, Execution Order & Basic Querying",
-      "range": "#1 – #8",
-      "questionCount": 8,
+      "fullName": "SQL Foundations, Execution Order & Basic Querying",
+      "range": "#1 – #5",
+      "questionCount": 5,
       "questions": [
         {
           "number": 1,
@@ -47,692 +47,354 @@
         },
         {
           "number": 5,
-          "title": "How does pagination work using `LIMIT` and `OFFSET`, and why does deep offset pagination (`OFFSET 100000`) degrade database performance?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 1,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#5-how-does-pagination-work-using-limit-and-offset-and-why"
-        },
-        {
-          "number": 6,
-          "title": "How do pattern matching operators (`LIKE`, `ILIKE`, `SIMILAR TO`, Regex) work, and how do wildcard positions affect index utilization?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 1,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#6-how-do-pattern-matching-operators-like-ilike-similar"
-        },
-        {
-          "number": 7,
           "title": "Write a query to find all duplicate records based on email address and return their occurrence counts.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 1,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#7-write-a-query-to-find-all-duplicate-records-based-on-email-a"
-        },
-        {
-          "number": 8,
-          "title": "Write a query to filter rows matching multiple boolean conditions where some column values are nullable, avoiding common three-valued logic bugs.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 1,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#8-write-a-query-to-filter-rows-matching-multiple-boolean-condi"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#5-write-a-query-to-find-all-duplicate-records-based-on-email-a"
         }
       ]
     },
     {
       "id": 2,
       "name": "Aggregations, Grouping & Multi-Condition Filtering",
-      "fullName": "2. Aggregations, Grouping & Multi-Condition Filtering",
-      "range": "#9 – #16",
-      "questionCount": 8,
+      "fullName": "Aggregations, Grouping & Multi-Condition Filtering",
+      "range": "#6 – #10",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 9,
+          "number": 6,
           "title": "What is the difference between the `WHERE` clause and the `HAVING` clause, and when must filtering happen before vs after grouping?",
           "priority": "P0",
           "type": "C",
           "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#9-what-is-the-difference-between-the-where-clause-and-the-h"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#6-what-is-the-difference-between-the-where-clause-and-the-h"
         },
         {
-          "number": 10,
+          "number": 7,
           "title": "What is the difference between `COUNT(*)`, `COUNT(column)`, `COUNT(1)`, and `COUNT(DISTINCT column)` in execution and NULL handling?",
           "priority": "P0",
           "type": "C",
           "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#10-what-is-the-difference-between-count-countcolumn"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#7-what-is-the-difference-between-count-countcolumn"
         },
         {
-          "number": 11,
+          "number": 8,
           "title": "How does multi-column `GROUP BY` work, and why must every column in the `SELECT` list either appear in `GROUP BY` or inside an aggregate function?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#11-how-does-multi-column-group-by-work-and-why-must-every-co"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#8-how-does-multi-column-group-by-work-and-why-must-every-co"
         },
         {
-          "number": 12,
+          "number": 9,
           "title": "What is Conditional Aggregation, and how do you use `CASE WHEN` inside `SUM()` or `COUNT()` to compute pivot metrics in a single table scan?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#12-what-is-conditional-aggregation-and-how-do-you-use-case-wh"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#9-what-is-conditional-aggregation-and-how-do-you-use-case-wh"
         },
         {
-          "number": 13,
-          "title": "What are grouping extensions (`ROLLUP`, `CUBE`, `GROUPING SETS`), and how do they generate subtotal and grand total summary rows?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#13-what-are-grouping-extensions-rollup-cube-grouping-se"
-        },
-        {
-          "number": 14,
+          "number": 10,
           "title": "Write a query to calculate the average, minimum, maximum salary, and employee headcount for each department.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#14-write-a-query-to-calculate-the-average-minimum-maximum-sal"
-        },
-        {
-          "number": 15,
-          "title": "Write a query to find all customers who have placed orders across at least 3 distinct product categories.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#15-write-a-query-to-find-all-customers-who-have-placed-orders-a"
-        },
-        {
-          "number": 16,
-          "title": "Write a query using conditional aggregation to calculate the total transaction volume and the percentage of successful payments per merchant.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 2,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#16-write-a-query-using-conditional-aggregation-to-calculate-the"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#10-write-a-query-to-calculate-the-average-minimum-maximum-sal"
         }
       ]
     },
     {
       "id": 3,
       "name": "Comprehensive JOIN Mechanics & Complex Multi-Table Queries",
-      "fullName": "3. Comprehensive JOIN Mechanics & Complex Multi-Table Queries",
-      "range": "#17 – #24",
-      "questionCount": 8,
+      "fullName": "Comprehensive JOIN Mechanics & Complex Multi-Table Queries",
+      "range": "#11 – #15",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 17,
+          "number": 11,
           "title": "Explain the visual mechanics and return sets of all SQL JOIN types: `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL OUTER JOIN`, and `CROSS JOIN`.",
           "priority": "P0",
           "type": "C",
           "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#17-explain-the-visual-mechanics-and-return-sets-of-all-sql-join"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#11-explain-the-visual-mechanics-and-return-sets-of-all-sql-join"
         },
         {
-          "number": 18,
+          "number": 12,
           "title": "What is the critical difference between placing a filter condition in the `ON` clause versus the `WHERE` clause during a `LEFT JOIN` (The Outer Join Nullification Trap)?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#18-what-is-the-critical-difference-between-placing-a-filter-con"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#12-what-is-the-critical-difference-between-placing-a-filter-con"
         },
         {
-          "number": 19,
+          "number": 13,
           "title": "What is a `SELF JOIN`, and how is it used to model hierarchical and sequential relationships within a single table?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#19-what-is-a-self-join-and-how-is-it-used-to-model-hierarchi"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#13-what-is-a-self-join-and-how-is-it-used-to-model-hierarchi"
         },
         {
-          "number": 20,
+          "number": 14,
           "title": "What is an Anti-Join, and how do `LEFT JOIN ... WHERE right.id IS NULL`, `NOT EXISTS`, and `NOT IN` compare in performance and NULL handling?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#20-what-is-an-anti-join-and-how-do-left-join-where-right"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#14-what-is-an-anti-join-and-how-do-left-join-where-right"
         },
         {
-          "number": 21,
-          "title": "What is a `CROSS JOIN` (Cartesian Product), and what are its practical use cases (e.g. generating calendar date grids)?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#21-what-is-a-cross-join-cartesian-product-and-what-are-its"
-        },
-        {
-          "number": 22,
+          "number": 15,
           "title": "Write a query to find all employees who earn a higher salary than their direct manager using a `SELF JOIN`.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#22-write-a-query-to-find-all-employees-who-earn-a-higher-salary"
-        },
-        {
-          "number": 23,
-          "title": "Write a query to find all customers who have never placed an order using both `LEFT JOIN ... IS NULL` and `NOT EXISTS`.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#23-write-a-query-to-find-all-customers-who-have-never-placed-an"
-        },
-        {
-          "number": 24,
-          "title": "Write a query to find asymmetric pairs (e.g., users who follow someone who does not follow them back).",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 3,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#24-write-a-query-to-find-asymmetric-pairs-eg-users-who-foll"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#15-write-a-query-to-find-all-employees-who-earn-a-higher-salary"
         }
       ]
     },
     {
       "id": 4,
       "name": "Subqueries & Common Table Expressions (CTEs)",
-      "fullName": "4. Subqueries & Common Table Expressions (CTEs)",
-      "range": "#25 – #32",
-      "questionCount": 8,
+      "fullName": "Subqueries & Common Table Expressions (CTEs)",
+      "range": "#16 – #20",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 25,
+          "number": 16,
           "title": "What is the difference between a Non-Correlated Subquery and a Correlated Subquery, and how does the engine execute them?",
           "priority": "P0",
           "type": "C",
           "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#25-what-is-the-difference-between-a-non-correlated-subquery-and"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#16-what-is-the-difference-between-a-non-correlated-subquery-and"
         },
         {
-          "number": 26,
+          "number": 17,
           "title": "What is the difference between `EXISTS` and `IN` operators, and why does `NOT IN` fail completely if the subquery returns even a single `NULL` value?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#26-what-is-the-difference-between-exists-and-in-operators"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#17-what-is-the-difference-between-exists-and-in-operators"
         },
         {
-          "number": 27,
-          "title": "Distinguish Scalar Subqueries, Row Subqueries, and Table-Derived Subqueries, and where each can be placed in a SQL statement.",
-          "priority": "P1",
-          "type": "C",
-          "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#27-distinguish-scalar-subqueries-row-subqueries-and-table-der"
-        },
-        {
-          "number": 28,
+          "number": 18,
           "title": "What is a Common Table Expression (CTE, `WITH` clause), and what advantages does it provide over nested subqueries?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#28-what-is-a-common-table-expression-cte-with-clause-and"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#18-what-is-a-common-table-expression-cte-with-clause-and"
         },
         {
-          "number": 29,
-          "title": "What is a CTE Optimization Fence, and how do database query planners handle inlining vs materializing CTEs (Postgres 12+ behavior)?",
-          "priority": "P2",
-          "type": "C",
-          "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#29-what-is-a-cte-optimization-fence-and-how-do-database-query"
-        },
-        {
-          "number": 30,
+          "number": 19,
           "title": "What is a Recursive CTE, what are its 4 mandatory components (Anchor, UNION ALL, Recursive Member, Termination), and how does it execute?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#30-what-is-a-recursive-cte-what-are-its-4-mandatory-components"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#19-what-is-a-recursive-cte-what-are-its-4-mandatory-components"
         },
         {
-          "number": 31,
-          "title": "Write a query to find all employees whose salary is above the average salary of their respective department using a correlated subquery and a CTE.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#31-write-a-query-to-find-all-employees-whose-salary-is-above-th"
-        },
-        {
-          "number": 32,
+          "number": 20,
           "title": "Write a recursive CTE to traverse an employee organizational chart and compute the management depth/level for every employee from the CEO downwards.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#32-write-a-recursive-cte-to-traverse-an-employee-organizational"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#20-write-a-recursive-cte-to-traverse-an-employee-organizational"
         }
       ]
     },
     {
       "id": 5,
       "name": "Window Functions — Ranking, Offsets & Partitions",
-      "fullName": "5. Window Functions — Ranking, Offsets & Partitions",
-      "range": "#33 – #41",
-      "questionCount": 9,
+      "fullName": "Window Functions — Ranking, Offsets & Partitions",
+      "range": "#21 – #25",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 33,
+          "number": 21,
           "title": "What are Window Functions in SQL, how does `OVER (PARTITION BY ... ORDER BY ...)` differ from `GROUP BY`, and why don't window functions collapse rows?",
           "priority": "P0",
           "type": "C",
           "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#33-what-are-window-functions-in-sql-how-does-over-partition"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#21-what-are-window-functions-in-sql-how-does-over-partition"
         },
         {
-          "number": 34,
+          "number": 22,
           "title": "Explain the exact differences between `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()` when duplicate values/ties occur.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#34-explain-the-exact-differences-between-row_number-rank"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#22-explain-the-exact-differences-between-row_number-rank"
         },
         {
-          "number": 35,
-          "title": "What does `NTILE(n)` do, and how do you use it to divide data into quartiles (top 25%) or deciles (top 10%)?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#35-what-does-ntilen-do-and-how-do-you-use-it-to-divide-dat"
-        },
-        {
-          "number": 36,
+          "number": 23,
           "title": "How do offset window functions `LAG()` and `LEAD()` work, and how do you supply custom default fallback values for boundary rows?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#36-how-do-offset-window-functions-lag-and-lead-work-an"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#23-how-do-offset-window-functions-lag-and-lead-work-an"
         },
         {
-          "number": 37,
-          "title": "What are `FIRST_VALUE()`, `LAST_VALUE()`, and `NTH_VALUE()`, and why does `LAST_VALUE()` return the current row instead of the partition's last row without an explicit frame clause?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#37-what-are-first_value-last_value-and-nth_value"
-        },
-        {
-          "number": 38,
+          "number": 24,
           "title": "Write a query to find the top 2 highest-paid employees in each department, properly handling ties.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#38-write-a-query-to-find-the-top-2-highest-paid-employees-in-ea"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#24-write-a-query-to-find-the-top-2-highest-paid-employees-in-ea"
         },
         {
-          "number": 39,
+          "number": 25,
           "title": "Write a query to find the N-th highest salary in a company across all departments without using `LIMIT` or `OFFSET`.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#39-write-a-query-to-find-the-n-th-highest-salary-in-a-company-a"
-        },
-        {
-          "number": 40,
-          "title": "Write a query to calculate Month-over-Month (MoM) revenue percentage growth using `LAG()`.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#40-write-a-query-to-calculate-month-over-month-mom-revenue-pe"
-        },
-        {
-          "number": 41,
-          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 5,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#41-write-a-query-to-solve-the-classic-gaps-and-islands-problem"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#25-write-a-query-to-find-the-n-th-highest-salary-in-a-company-a"
         }
       ]
     },
     {
       "id": 6,
-      "name": "Window Functions — Running Aggregates & Frame Specifications",
-      "fullName": "6. Window Functions — Running Aggregates & Frame Specifications",
-      "range": "#42 – #49",
-      "questionCount": 8,
+      "name": "Window Functions — Running Aggregates & Sequential Patterns",
+      "fullName": "Window Functions — Running Aggregates & Sequential Patterns",
+      "range": "#26 – #30",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 42,
-          "title": "What is a Window Frame specification in SQL (`ROWS` vs `RANGE` vs `GROUPS`), and what are frame boundaries (`UNBOUNDED PRECEDING`, `CURRENT ROW`, `n PRECEDING`)?",
-          "priority": "P0",
-          "type": "C",
-          "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#42-what-is-a-window-frame-specification-in-sql-rows-vs-rang"
-        },
-        {
-          "number": 43,
-          "title": "What is the dangerous default window frame when `ORDER BY` is specified without an explicit frame clause, and how does `RANGE` cause unexpected duplicate grouping?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#43-what-is-the-dangerous-default-window-frame-when-order-by-i"
-        },
-        {
-          "number": 44,
+          "number": 26,
           "title": "How do you compute a running cumulative total (Running Sum) partitioned by category and ordered by transaction date?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#44-how-do-you-compute-a-running-cumulative-total-running-sum"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#26-how-do-you-compute-a-running-cumulative-total-running-sum"
         },
         {
-          "number": 45,
+          "number": 27,
           "title": "How do you compute a 7-day or 30-day moving average using `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#45-how-do-you-compute-a-7-day-or-30-day-moving-average-using-r"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#27-how-do-you-compute-a-7-day-or-30-day-moving-average-using-r"
         },
         {
-          "number": 46,
+          "number": 28,
           "title": "How do you compute the percentage contribution of each row to the total partition sum using window aggregation?",
           "priority": "P1",
           "type": "Q",
           "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#46-how-do-you-compute-the-percentage-contribution-of-each-row-t"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#28-how-do-you-compute-the-percentage-contribution-of-each-row-t"
         },
         {
-          "number": 47,
-          "title": "Write a query to compute the cumulative daily revenue per store location throughout the current fiscal year.",
+          "number": 29,
+          "title": "Write a query to calculate Month-over-Month (MoM) revenue percentage growth using `LAG()`.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#47-write-a-query-to-compute-the-cumulative-daily-revenue-per-st"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#29-write-a-query-to-calculate-month-over-month-mom-revenue-pe"
         },
         {
-          "number": 48,
-          "title": "Write a query to calculate a 7-day rolling average of daily active users (DAU) for an application.",
+          "number": 30,
+          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#48-write-a-query-to-calculate-a-7-day-rolling-average-of-daily"
-        },
-        {
-          "number": 49,
-          "title": "Write a query to detect anomaly transactions where a user's transaction amount is greater than 3x their rolling 5-transaction average.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 6,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#49-write-a-query-to-detect-anomaly-transactions-where-a-users"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#30-write-a-query-to-solve-the-classic-gaps-and-islands-problem"
         }
       ]
     },
     {
       "id": 7,
       "name": "Conditional Logic, Pivoting & Data Transformation",
-      "fullName": "7. Conditional Logic, Pivoting & Data Transformation",
-      "range": "#50 – #57",
-      "questionCount": 8,
+      "fullName": "Conditional Logic, Pivoting & Data Transformation",
+      "range": "#31 – #35",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 50,
+          "number": 31,
           "title": "What is the difference between a Simple `CASE` expression and a Searched `CASE WHEN` expression, and what is their short-circuit evaluation order?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#50-what-is-the-difference-between-a-simple-case-expression-an"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#31-what-is-the-difference-between-a-simple-case-expression-an"
         },
         {
-          "number": 51,
+          "number": 32,
           "title": "How do you pivot rows into columns in standard SQL without vendor-specific keywords using conditional aggregation?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#51-how-do-you-pivot-rows-into-columns-in-standard-sql-without-v"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#32-how-do-you-pivot-rows-into-columns-in-standard-sql-without-v"
         },
         {
-          "number": 52,
-          "title": "How do you unpivot columns into rows using `UNION ALL` or `CROSS JOIN LATERAL` in relational SQL?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#52-how-do-you-unpivot-columns-into-rows-using-union-all-or-c"
-        },
-        {
-          "number": 53,
-          "title": "What are the most common string manipulation functions in SQL (`CONCAT`, `CONCAT_WS`, `SUBSTRING`, `SPLIT_PART`, `TRIM`, `REPLACE`)?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#53-what-are-the-most-common-string-manipulation-functions-in-sq"
-        },
-        {
-          "number": 54,
+          "number": 33,
           "title": "What is the difference between `COALESCE` and `NULLIF`, and how do you use them to prevent division-by-zero errors (`1 / NULLIF(x, 0)`)?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#54-what-is-the-difference-between-coalesce-and-nullif-and"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#33-what-is-the-difference-between-coalesce-and-nullif-and"
         },
         {
-          "number": 55,
+          "number": 34,
           "title": "How do date-time manipulation functions work (`DATE_TRUNC`, `EXTRACT`, `DATEDIFF`, interval math), and how do you calculate user age from birthdate?",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#55-how-do-date-time-manipulation-functions-work-date_trunc"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#34-how-do-date-time-manipulation-functions-work-date_trunc"
         },
         {
-          "number": 56,
+          "number": 35,
           "title": "Write a query to pivot monthly sales totals into 12 distinct month columns (`Jan`, `Feb`, ..., `Dec`) for each product category.",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#56-write-a-query-to-pivot-monthly-sales-totals-into-12-distinct"
-        },
-        {
-          "number": 57,
-          "title": "Write a query to classify users into loyalty tiers (`Bronze`, `Silver`, `Gold`, `Platinum`) based on purchase frequency and total lifetime spend.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 7,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#57-write-a-query-to-classify-users-into-loyalty-tiers-bronze"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#35-write-a-query-to-pivot-monthly-sales-totals-into-12-distinct"
         }
       ]
     },
     {
       "id": 8,
-      "name": "Set Operations, Upserts & DML Mechanics",
-      "fullName": "8. Set Operations, Upserts & DML Mechanics",
-      "range": "#58 – #64",
-      "questionCount": 7,
+      "name": "Set Operations, DML & Query Performance Optimization",
+      "fullName": "Set Operations, DML & Query Performance Optimization",
+      "range": "#36 – #40",
+      "questionCount": 5,
       "questions": [
         {
-          "number": 58,
+          "number": 36,
           "title": "What is the difference between `UNION` and `UNION ALL`, why is `UNION ALL` significantly faster, and what are the schema union compatibility requirements?",
           "priority": "P0",
           "type": "C",
           "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#58-what-is-the-difference-between-union-and-union-all-why"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#36-what-is-the-difference-between-union-and-union-all-why"
         },
         {
-          "number": 59,
-          "title": "What do `INTERSECT` and `EXCEPT` (or `MINUS`) do, and how do they handle duplicate rows and `NULL` values?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#59-what-do-intersect-and-except-or-minus-do-and-how-do"
-        },
-        {
-          "number": 60,
-          "title": "What is an `UPSERT` operation, and how do PostgreSQL (`ON CONFLICT (col) DO UPDATE`) and MySQL (`ON DUPLICATE KEY UPDATE`) implement it?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#60-what-is-an-upsert-operation-and-how-do-postgresql-on-co"
-        },
-        {
-          "number": 61,
-          "title": "How do you perform writable Common Table Expressions with `RETURNING` clauses in PostgreSQL to atomically move or archive data between tables?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#61-how-do-you-perform-writable-common-table-expressions-with-r"
-        },
-        {
-          "number": 62,
+          "number": 37,
           "title": "What is the difference between `TRUNCATE`, `DELETE`, and `DROP` in terms of rollback capability, transaction log overhead, and triggers?",
           "priority": "P1",
           "type": "C",
           "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#62-what-is-the-difference-between-truncate-delete-and-dr"
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#37-what-is-the-difference-between-truncate-delete-and-dr"
         },
         {
-          "number": 63,
-          "title": "Write an idempotent `UPSERT` query that inserts a new user session or increments their login count and updates `last_login_at` on primary key conflict.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#63-write-an-idempotent-upsert-query-that-inserts-a-new-user-s"
-        },
-        {
-          "number": 64,
-          "title": "Write a query to deduplicate a table in-place, deleting all duplicate records while keeping the row with the latest `created_at` timestamp.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 8,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#64-write-a-query-to-deduplicate-a-table-in-place-deleting-all"
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "name": "Business Metrics & Real-World Product Analytics Queries",
-      "fullName": "9. Business Metrics & Real-World Product Analytics Queries",
-      "range": "#65 – #72",
-      "questionCount": 8,
-      "questions": [
-        {
-          "number": 65,
-          "title": "How do you calculate Day 1, Day 7, and Day 30 User Retention Rates using cohort analysis in SQL?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#65-how-do-you-calculate-day-1-day-7-and-day-30-user-retention"
-        },
-        {
-          "number": 66,
-          "title": "How do you calculate Monthly Churn Rate for a SaaS subscription product?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#66-how-do-you-calculate-monthly-churn-rate-for-a-saas-subscript"
-        },
-        {
-          "number": 67,
-          "title": "How do you compute Daily Active Users (DAU), Monthly Active Users (MAU), and the DAU/MAU Stickiness Ratio in SQL?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#67-how-do-you-compute-daily-active-users-dau-monthly-active"
-        },
-        {
-          "number": 68,
-          "title": "How do you analyze an E-commerce conversion funnel (Visitor → View Item → Add to Cart → Purchase) to calculate step-by-step drop-off rates?",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#68-how-do-you-analyze-an-e-commerce-conversion-funnel-visitor"
-        },
-        {
-          "number": 69,
-          "title": "How do you calculate Customer Lifetime Value (LTV) and Average Order Value (AOV) grouped by customer acquisition month?",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#69-how-do-you-calculate-customer-lifetime-value-ltv-and-avera"
-        },
-        {
-          "number": 70,
-          "title": "Write a query to detect rapid financial transaction fraud: Flag any user who makes 2 or more transactions within 60 seconds from different IP addresses.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#70-write-a-query-to-detect-rapid-financial-transaction-fraud-f"
-        },
-        {
-          "number": 71,
-          "title": "Write a query to generate a complete monthly cohort retention matrix showing the percentage of users retained in month 1, 2, 3, etc. after registration.",
-          "priority": "P0",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#71-write-a-query-to-generate-a-complete-monthly-cohort-retentio"
-        },
-        {
-          "number": 72,
-          "title": "Write a query to find \"Reactivated Users\": Users who were active this month, inactive last month, but active at least once in prior history.",
-          "priority": "P1",
-          "type": "Q",
-          "sectionId": 9,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#72-write-a-query-to-find-reactivated-users-users-who-were-ac"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "name": "Query Optimization, Indexing Interactions & Execution Plan Tuning",
-      "fullName": "10. Query Optimization, Indexing Interactions & Execution Plan Tuning",
-      "range": "#73 – #80",
-      "questionCount": 8,
-      "questions": [
-        {
-          "number": 73,
+          "number": 38,
           "title": "What is SARGability (Search Argument Able), and why does wrapping an indexed column in a function (`WHERE DATE(created_at) = '2026-01-01'`) destroy index seeks?",
           "priority": "P0",
           "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#73-what-is-sargability-search-argument-able-and-why-does-wra"
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#38-what-is-sargability-search-argument-able-and-why-does-wra"
         },
         {
-          "number": 74,
+          "number": 39,
           "title": "How do multi-column Composite Indexes work, and what is the Leftmost Prefix Rule for query filters and range scans?",
           "priority": "P0",
           "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#74-how-do-multi-column-composite-indexes-work-and-what-is-the"
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#39-how-do-multi-column-composite-indexes-work-and-what-is-the"
         },
         {
-          "number": 75,
-          "title": "What is a Covering Index (`INCLUDE` clause), and why does it enable Index-Only Scans by eliminating table heap lookups?",
-          "priority": "P0",
-          "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#75-what-is-a-covering-index-include-clause-and-why-does-it"
-        },
-        {
-          "number": 76,
+          "number": 40,
           "title": "Why is Keyset Pagination (Seek method: `WHERE id > last_seen_id LIMIT 20`) exponentially faster than Offset Pagination (`OFFSET 500000 LIMIT 20`) on large tables?",
           "priority": "P0",
           "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#76-why-is-keyset-pagination-seek-method-where-id-last_seen"
-        },
-        {
-          "number": 77,
-          "title": "How do you interpret `EXPLAIN ANALYZE` output (Seq Scan vs Index Scan vs Index Only Scan vs Bitmap Scan, Hash Join vs Nested Loop, actual time vs cost)?",
-          "priority": "P0",
-          "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#77-how-do-you-interpret-explain-analyze-output-seq-scan-vs-i"
-        },
-        {
-          "number": 78,
-          "title": "What causes a database join or sort operation to spill to disk (TempDB / disk work files), and how do you resolve it?",
-          "priority": "P1",
-          "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#78-what-causes-a-database-join-or-sort-operation-to-spill-to-di"
-        },
-        {
-          "number": 79,
-          "title": "Rewrite a non-SARGable query (`WHERE YEAR(order_date) = 2026 AND UPPER(status) = 'PAID'`) to make it fully SARGable for B-Tree index seeks.",
-          "priority": "P0",
-          "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#79-rewrite-a-non-sargable-query-where-yearorder_date-2026"
-        },
-        {
-          "number": 80,
-          "title": "Rewrite a slow deep-offset pagination query on a 10-million row table into an ultra-fast Keyset Pagination query.",
-          "priority": "P0",
-          "type": "P",
-          "sectionId": 10,
-          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#80-rewrite-a-slow-deep-offset-pagination-query-on-a-10-million"
+          "sectionId": 8,
+          "githubUrl": "https://github.com/MdKaifSardar/Interview-Prep/blob/main/sql/sql-interview-questions.md#40-why-is-keyset-pagination-seek-method-where-id-last_seen"
         }
       ]
     }

@@ -11,9 +11,9 @@
     "id": "sql",
     "name": "SQL & Query Engineering",
     "category": "interview_qa",
-    "totalQuestions": 80,
-    "sectionCount": 10,
-    "fileSizeKb": "37.8"
+    "totalQuestions": 40,
+    "sectionCount": 8,
+    "fileSizeKb": "19.8"
   },
   {
     "id": "nodejs",
