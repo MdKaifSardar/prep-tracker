@@ -47,7 +47,7 @@
         },
         {
           "number": 5,
-          "title": "Write a query to find all duplicate records based on email address and return their occurrence counts.",
+          "title": "Write a query to find all duplicate records based on email address and return their occurrence counts. — [LC 182: Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 1,
@@ -137,7 +137,7 @@
         },
         {
           "number": 14,
-          "title": "What is an Anti-Join, and how do `LEFT JOIN ... WHERE right.id IS NULL`, `NOT EXISTS`, and `NOT IN` compare in performance and NULL handling?",
+          "title": "What is an Anti-Join, and how do `LEFT JOIN ... WHERE right.id IS NULL`, `NOT EXISTS`, and `NOT IN` compare in performance and NULL handling? — [LC 183: Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
@@ -145,7 +145,7 @@
         },
         {
           "number": 15,
-          "title": "Write a query to find all employees who earn a higher salary than their direct manager using a `SELF JOIN`.",
+          "title": "Write a query to find all employees who earn a higher salary than their direct manager using a `SELF JOIN`. — [LC 181: Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 3,
@@ -194,7 +194,7 @@
         },
         {
           "number": 20,
-          "title": "Write a recursive CTE to traverse an employee organizational chart and compute the management depth/level for every employee from the CEO downwards.",
+          "title": "Write a recursive CTE to traverse an employee organizational chart and compute the management depth/level for every employee from the CEO downwards. — [LC 1270: All People Report to Given Manager](https://leetcode.com/problems/all-people-report-to-the-given-manager/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
@@ -219,7 +219,7 @@
         },
         {
           "number": 22,
-          "title": "Explain the exact differences between `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()` when duplicate values/ties occur.",
+          "title": "Explain the exact differences between `ROW_NUMBER()`, `RANK()`, and `DENSE_RANK()` when duplicate values/ties occur. — [LC 178: Rank Scores](https://leetcode.com/problems/rank-scores/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
@@ -227,7 +227,7 @@
         },
         {
           "number": 23,
-          "title": "How do offset window functions `LAG()` and `LEAD()` work, and how do you supply custom default fallback values for boundary rows?",
+          "title": "How do offset window functions `LAG()` and `LEAD()` work, and how do you supply custom default fallback values for boundary rows? — [LC 180: Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
@@ -235,7 +235,7 @@
         },
         {
           "number": 24,
-          "title": "Write a query to find the top 2 highest-paid employees in each department, properly handling ties.",
+          "title": "Write a query to find the top 2 highest-paid employees in each department, properly handling ties. — [LC 185: Department Top Three Salaries](https://leetcode.com/problems/department-top-three-salaries/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
@@ -243,7 +243,7 @@
         },
         {
           "number": 25,
-          "title": "Write a query to find the N-th highest salary in a company across all departments without using `LIMIT` or `OFFSET`.",
+          "title": "Write a query to find the N-th highest salary in a company across all departments without using `LIMIT` or `OFFSET`. — [LC 176: Second Highest Salary](https://leetcode.com/problems/second-highest-salary/) & [LC 177: Nth Highest Salary](https://leetcode.com/problems/nth-highest-salary/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 5,
@@ -260,7 +260,7 @@
       "questions": [
         {
           "number": 26,
-          "title": "How do you compute a running cumulative total (Running Sum) partitioned by category and ordered by transaction date?",
+          "title": "How do you compute a running cumulative total (Running Sum) partitioned by category and ordered by transaction date? — [LC 534: Game Play Analysis III](https://leetcode.com/problems/game-play-analysis-iii/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -268,7 +268,7 @@
         },
         {
           "number": 27,
-          "title": "How do you compute a 7-day or 30-day moving average using `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`?",
+          "title": "How do you compute a 7-day or 30-day moving average using `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`? — [LC 1321: Restaurant Growth](https://leetcode.com/problems/restaurant-growth/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -284,7 +284,7 @@
         },
         {
           "number": 29,
-          "title": "Write a query to calculate Month-over-Month (MoM) revenue percentage growth using `LAG()`.",
+          "title": "Write a query to calculate Month-over-Month (MoM) revenue percentage growth using `LAG()`. — [LC 1193: Monthly Transactions I](https://leetcode.com/problems/monthly-transactions-i/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -292,7 +292,7 @@
         },
         {
           "number": 30,
-          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user.",
+          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user. — [LC 1285: Continuous Ranges](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/) & [LC 1454: Active Users](https://leetcode.com/problems/active-users/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -317,7 +317,7 @@
         },
         {
           "number": 32,
-          "title": "How do you pivot rows into columns in standard SQL without vendor-specific keywords using conditional aggregation?",
+          "title": "How do you pivot rows into columns in standard SQL without vendor-specific keywords using conditional aggregation? — [LC 1179: Reformat Department Table](https://leetcode.com/problems/reformat-department-table/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
@@ -341,7 +341,7 @@
         },
         {
           "number": 35,
-          "title": "Write a query to pivot monthly sales totals into 12 distinct month columns (`Jan`, `Feb`, ..., `Dec`) for each product category.",
+          "title": "Write a query to pivot monthly sales totals into 12 distinct month columns (`Jan`, `Feb`, ..., `Dec`) for each product category. — [LC 1179: Reformat Department Table](https://leetcode.com/problems/reformat-department-table/)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
