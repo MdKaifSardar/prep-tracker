@@ -96,7 +96,7 @@
         },
         {
           "number": 10,
-          "title": "Write a query to calculate the average, minimum, maximum salary, and employee headcount for each department.",
+          "title": "Write a query to calculate the average, minimum, maximum salary, and employee headcount for each department. — [LC 1075: Project Employees I](https://leetcode.com/problems/project-employees-i/) / [Local Lab 01](lab/exercises/01_department_salary_stats/README.md)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 2,
@@ -194,7 +194,7 @@
         },
         {
           "number": 20,
-          "title": "Write a recursive CTE to traverse an employee organizational chart and compute the management depth/level for every employee from the CEO downwards. — [LC 1270: All People Report to Given Manager](https://leetcode.com/problems/all-people-report-to-the-given-manager/)",
+          "title": "Write a recursive CTE to traverse an employee organizational chart and compute the management depth/level for every employee from the CEO downwards. — [LC 1270 (Premium)](https://leetcode.com/problems/all-people-report-to-the-given-manager/) / [Local Lab 02](lab/exercises/02_recursive_org_chart/README.md)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 4,
@@ -260,7 +260,7 @@
       "questions": [
         {
           "number": 26,
-          "title": "How do you compute a running cumulative total (Running Sum) partitioned by category and ordered by transaction date? — [LC 534: Game Play Analysis III](https://leetcode.com/problems/game-play-analysis-iii/)",
+          "title": "How do you compute a running cumulative total (Running Sum) partitioned by category and ordered by transaction date? — [LC 534 (Premium)](https://leetcode.com/problems/game-play-analysis-iii/) / [Local Lab 03](lab/exercises/03_running_cumulative_sum/README.md)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -292,7 +292,7 @@
         },
         {
           "number": 30,
-          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user. — [LC 1285: Continuous Ranges](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/) & [LC 1454: Active Users](https://leetcode.com/problems/active-users/)",
+          "title": "Write a query to solve the classic Gaps and Islands problem: Identify consecutive active login streaks for each user. — [LC 1285 / 1454 (Premium)](https://leetcode.com/problems/find-the-start-and-end-number-of-continuous-ranges/) / [Local Lab 04](lab/exercises/04_gaps_and_islands_streaks/README.md)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 6,
@@ -341,7 +341,7 @@
         },
         {
           "number": 35,
-          "title": "Write a query to pivot monthly sales totals into 12 distinct month columns (`Jan`, `Feb`, ..., `Dec`) for each product category. — [LC 1179: Reformat Department Table](https://leetcode.com/problems/reformat-department-table/)",
+          "title": "Write a query to pivot monthly sales totals into 12 distinct month columns (`Jan`, `Feb`, ..., `Dec`) for each product category. — [LC 1179: Reformat Department Table](https://leetcode.com/problems/reformat-department-table/) / [Local Lab 05](lab/exercises/05_twelve_month_financial_pivot/README.md)",
           "priority": "P0",
           "type": "Q",
           "sectionId": 7,
